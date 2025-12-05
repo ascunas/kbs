@@ -1,0 +1,282 @@
+<!-- saved from url=(0084)http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zep0005/main_phone.kbs -->
+<html style="height: 100%;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <meta http-equiv="imagetoolbar" content="no">
+
+
+    <script language="javascript">
+        var pre_hostname = location.hostname;
+        var liBehindFirstDot = location.hostname.indexOf(".") + 1;
+        if (liBehindFirstDot > 0) {
+            document.domain = location.hostname.substr(liBehindFirstDot);
+        }
+    </script>
+    <script language="javascript">
+        var myEPCM = parent.parent.EPCM;
+
+        // 복지안내
+        function OBN_BOK1() {
+            //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnBok1','','');
+            var ju_url = "https://ebokji.kbs.co.kr/ASP/GUIDEBOK_2018.ASP";
+            window.open(ju_url);
+        }
+        // 복지신청양식
+        function OBN_BOK2() {
+            //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnBok2','','');
+            var ju_url = "https://ebokji.kbs.co.kr/ASP/GUIDEBOK_2018.ASP";
+            window.open(ju_url);
+        }
+        // 시간외-월별지급내역
+        function OBN_OT() {
+            myEPCM.doObjBasedNavigate('KBSObnSystem', 'KBSObnOT', '', '');
+        }
+        // 지급내역
+        function OBN_JI() {
+            // myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnJikup','','');
+            var ju_url = "https://erpprd.kbs.co.kr:443/kbs/zweb_fi/ess_pay_information_list.htm";
+            window.open(ju_url);
+        }
+        // 법인카드
+        function OBN_BCARD() {
+            myEPCM.doObjBasedNavigate('KBSObnSystem', 'KBSObnBCard', '', '');
+        }
+
+        function doNavigate(pcd) {
+            if (pcd != "null") {
+                myEPCM.doNavigate(pcd);
+            }
+        }
+
+        function doMouseover(gubun) {
+            if (gubun == 'PCD') {
+                document.all.img20.src = "../../sap/zcommon/images/help_tab_01_on.gif";
+            } else {
+                document.all.img21.src = "../../sap/zcommon/images/help_tab_02_on.gif";
+            }
+        }
+
+        function doMouseout(gubun) {
+            if (document.getElementById("GV_GUBUN").value == "DivPCD") {
+                document.all.img20.src = "../../sap/zcommon/images/help_tab_01_on.gif"
+                document.all.img21.src = "../../sap/zcommon/images/help_tab_02_off.gif"
+            } else {
+                document.all.img20.src = "../../sap/zcommon/images/help_tab_01_off.gif"
+                document.all.img21.src = "../../sap/zcommon/images/help_tab_02_on.gif"
+            }
+        }
+
+        function clickTab(gubun, str) {
+            if (gubun == 'Bok') {
+                // 복지카드
+                DivBok.style.display = "block";
+                DivJu.style.display = "none";
+
+                if (document.all.bokFrm.src == "")
+                    document.all.bokFrm.src = "http://kbs.ezwel.com/cuser/kbs/point/kbsPointView.ez?emp_num=" + str;
+            } else {
+                // 주차요금
+                DivBok.style.display = "none";
+                DivJu.style.display = "block";
+
+                if (document.all.juchaFrm.src == "")
+                    document.all.juchaFrm.src = "http://mk.kbs.co.kr/m012/ptl_kbsportal.php?user_id=" + str;
+            }
+        }
+
+        // 2008.10.15 복지+주차로 바뀜
+        function onLoadBok(str) {
+            if (flag == 'X') clickTab('Bok', str)
+        }
+
+        function goJucahSite() {
+            var ju_url = "http://220.73.4.2/";
+            window.open(ju_url, "_blank");
+        }
+
+        function changeMonth() {
+            var date = document.getElementById("GV_MONTH").value;
+            location.href = "main_phone.kbs?gv_date=" + date + "&gv_flag=X&gv_start_date=" + sdate;
+        }
+
+        function onLoadPhone() {
+            if (flag == 'X')
+                clickDivHan();
+        }
+    </script>
+    <script type="text/javascript">
+        <!--
+        function MM_preloadImages() { //v3.0
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+                    if (a[i].indexOf("#") != 0) {
+                        d.MM_p[j] = new Image;
+                        d.MM_p[j++].src = a[i];
+                    }
+            }
+        }
+
+        function MM_swapImgRestore() { //v3.0
+            var i, x, a = document.MM_sr;
+            for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++) x.src = x.oSrc;
+        }
+
+        function MM_findObj(n, d) { //v4.01
+            var p, i, x;
+            if (!d) d = document;
+            if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                d = parent.frames[n.substring(p + 1)].document;
+                n = n.substring(0, p);
+            }
+            if (!(x = d[n]) && d.all) x = d.all[n];
+            for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+            for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+            if (!x && d.getElementById) x = d.getElementById(n);
+            return x;
+        }
+
+        function MM_swapImage() { //v3.0
+            var i, j = 0,
+                x, a = MM_swapImage.arguments;
+            document.MM_sr = new Array;
+            for (i = 0; i < (a.length - 2); i += 3)
+                if ((x = MM_findObj(a[i])) != null) {
+                    document.MM_sr[j++] = x;
+                    if (!x.oSrc) x.oSrc = x.src;
+                    x.src = a[i + 2];
+                }
+        }
+        //
+        -->
+    </script>
+
+    <script language="javascript">
+        var flag = '';
+        var sdate = '20241130';
+    </script>
+
+    <script language="JavaScript">
+        {
+            var liBehindFirstDot = location.hostname.indexOf(".") + 1;
+            if (liBehindFirstDot > 0) document.domain = location.hostname.substr(liBehindFirstDot);
+        }
+    </script>
+    <script type="text/javascript" language="JavaScript" src="./events.js.다운로드"></script>
+    <script type="text/javascript" language="JavaScript" src="./event_dictionary.js.다운로드"></script>
+    <link id="urstyle" rel="stylesheet" type="text/css" href="./ur_nn7.css">
+    <script type="text/javascript" language="JavaScript">
+        var popup_emptydoc = "/sap/public/bsp/sap/htmlb/domainRelaxMin.htm?0017";
+        var HTMLB_SECTION508 = false;
+    </script>
+    <script type="text/javascript" language="JavaScript">
+        var sapUrDomainRelaxing = {
+            NONE: "NONE",
+            MINIMAL: "MINIMAL",
+            MAXIMAL: "MAXIMAL"
+        };
+        ur_system = {
+            doc: window.document,
+            mimepath: "/sap/public/bc/ur/Design2002/themes/sap_standard/common/",
+            stylepath: "/sap/public/bc/ur/Design2002/themes/sap_standard/ur/",
+            emptyhoverurl: "/sap/public/bsp/sap/htmlb/domainRelaxMin.htm?0017",
+            is508: false,
+            direction: "ltr",
+            domainrelaxing: sapUrDomainRelaxing.MINIMAL,
+            browser_abbrev: "nn7",
+            dateformat: 5,
+            firstdayofweek: 0,
+            ur_version: "6.0.17.0.0",
+            css_version: "6.0.17.0.0"
+        }
+    </script>
+    <script type="text/javascript" language="JavaScript" src="./sapUrMapi_nn7.js.다운로드"></script>
+    <script type="text/javascript" language="JavaScript" src="./popup_nn7.js.다운로드"></script>
+	
+    <link rel="stylesheet" type="text/css" href="css/style_new.css">
+</head>
+
+<body style="background-color: #f3f3f3;">
+    <div id="urFrames">
+		<iframe id="sapPopupMainId_X0" name="sapPopupMainId_X0" src="./domainRelaxMin(6).html" style="z-index:1001;display:block;position:absolute;top:-5000;width:0;height:0" frameborder="0" border="no" scrolling="no" tabindex="-1"></iframe>
+	</div>
+    <script type="text/javascript" language="JavaScript" src="./urMessageBundle_ko.js.다운로드"></script>
+    <script type="text/javascript" language="JavaScript" src="./misc.js.다운로드"></script>
+
+                                    
+	<div class="wrap">
+		<div class="list-table">            
+		    <div class="list-table-header">
+				<h3 class="table-caption">핸드폰 사용내역</h3>
+				<span class="util"><a href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zhr0004/search_bcard.kbs" target="_blank">더보기</a></span>
+			</div>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th scope="row">기간</th>
+						<td>
+							<select name="GV_MONTH" onchange="javascript:changeMonth()" id="GV_MONTH">
+								<option value="20241121">2024년&nbsp;11월</option>
+								<option value="20241021">2024년&nbsp;10월</option>
+								<option value="20240921">2024년&nbsp;09월</option>
+								<option value="20240821">2024년&nbsp;08월</option>
+								<option value="20240721">2024년&nbsp;07월</option>
+								<option value="20240621">2024년&nbsp;06월</option>
+								<option value="20240521">2024년&nbsp;05월</option>
+								<option value="20240421">2024년&nbsp;04월</option>
+								<option value="20240321">2024년&nbsp;03월</option>
+								<option value="20240221">2024년&nbsp;02월</option>
+								<option value="20240121">2024년&nbsp;01월</option>
+								<option value="20231221">2023년&nbsp;12월</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">11월 사용금액</th>
+						<td class="right">44030원</td>
+					</tr>
+					<tr>
+						<th scope="row">본인부담</th>
+						<td class="right">1100원</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+
+    <!--133041 -->
+    <script language="JavaScript">
+        function sapOnResize() {
+            ;
+        }
+        window.onresize = sapOnResize;
+    </script><!--133041 -->
+    <script language="JavaScript">
+        htmlbDisableBackspaceNavigation();
+    </script>
+    <div class="urFocTop" id="ur-topfocus"></div>
+    <div class="urFocBtm" id="ur-bottomfocus"></div>
+    <div class="urFocLft" id="ur-leftfocus"></div>
+    <div class="urFocRgt" id="ur-rightfocus"></div>
+    <div class="urFocEdg" id="ur-edge1focus"></div>
+    <div class="urFocEdg" id="ur-edge2focus"></div>
+    <div class="urFocEdg" id="ur-edge3focus"></div>
+    <div class="urFocEdg" id="ur-edge4focus"></div>
+    <script defer="">
+        sapUrMapi_Focus_RegisterCreate('null');
+    </script>
+    <script language="JavaScript">
+        sapUrMapi_initLinkStatus();
+    </script>
+
+</body>
+
+</html>

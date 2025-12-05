@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ESS 메뉴</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+    <script type="text/javascript" src="./ESS 메뉴_files/jquery-3.3.1.min.js.다운로드"></script>
+    <script type="text/javascript" src="./ESS 메뉴_files/jquery-ui.js.다운로드"></script>
+    <script type="text/javascript" src="./ESS 메뉴_files/marjoram-1.5.0.js.다운로드"></script>
+    <script src="./ESS 메뉴_files/jstree.js.다운로드"></script>
+    <!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+-->
+    <link rel="stylesheet" href="./ESS 메뉴_files/jquery-ui.css">
+    <link rel="stylesheet" href="./ESS 메뉴_files/all.css" crossorigin="anonymous">
+    <!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+-->
+    <link rel="stylesheet" href="./ESS 메뉴_files/style.css">
+    <link rel="stylesheet" href="./ESS 메뉴_files/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./ESS 메뉴_files/marjoram-1.0.0.css">
+    <link rel="shortcut icon" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/images/favicon.ico">
+    <link rel="stylesheet" href="./ESS 메뉴_files/css/style_new.css">
+    <style>
+        html {
+            //overflow: hidden;
+            overflow-y: hidden;
+        }
+
+        body {
+            //    min-width: 1350px;
+        }
+
+        iframe {
+            width: 99%;
+            height: 100%;
+        }
+
+        .jstree-default .jstree-anchor {
+            font-size: 1.2rem;
+        }
+
+        .table {
+            //display: table-cell;
+            display: inline;
+            float: left;
+        }
+
+        .list {
+            vertical-align: top;
+            border-right: 2px solid #DDD;
+            width: 200px;
+            min-width: 200px;
+            height: 94vh;
+            position: fixed;
+            left: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-family: "Helvetica Neue", "Apple SD Gothic Neo", Arial, "Malgun Gothic", dotum, sans-serif;
+        }
+
+        .detail {
+            height: 92vh;
+            width: 85%;
+            padding-left: 10px;
+            position: fixed;
+            left: 200px;
+        }
+.detail {
+    height: 92vh;
+    width: 85%;
+    width: calc(100% - 200px);
+    min-width: 1024px;
+    padding-left: 0;
+    position: fixed;
+    left: 200px;
+}
+        .esshead {
+            background-image: linear-gradient(white, #DDD);
+            border: 1px solid #DDD;
+            height: 42px;
+            line-height: 42px;
+            color: #09437f;
+            font-weight: bold;
+            border-radius: 2px;
+            margin: 4px;
+            margin-right: 8px;
+            font-size: 1.6rem;
+            padding-left: 15px;
+            margin-bottom: 4px;
+        }
+
+        .glyphicon {
+            color: #999;
+            margin-right: -2px !important;
+            font-size: 0.96rem;
+        }
+
+        .header {
+            height: 42px;
+            line-height: 42px;
+            background-color: #09437f;
+        }
+
+        .myinfo {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .inline {
+            display: inline-block;
+            margin: 0px 10px;
+            color: #bfe2fc;
+        }
+
+        .home {
+            float: left;
+            cursor: pointer;
+        }
+
+        .jstree-default .jstree-disabled {
+            cursor: default;
+            color: black;
+        }
+
+        .jstree-default .jstree-disabled>.jstree-icon {
+            opacity: 1;
+            filter: none;
+            -webkit-filter: none;
+        }
+
+        .jstree-anchor:not(.jstree-disabled)>.jstree-themeicon {
+            margin-left: -6px;
+            margin-right: -6px;
+        }
+    </style>
+    <script>
+        document.domain = "kbs.co.kr";
+        $(document).ready(function() {
+
+            //나의 인사정보 가져오기
+            Ajax.url = "../zweb_common/ajax_common.htm?function_name=ZGET_MYINFO";
+            Ajax.param = {};
+            Ajax.async = false;
+            Ajax.Call();
+            $("#vdsk1").text(Ajax.result.VDSK1X);
+            $("#ename").text(Ajax.result.ENAME);
+
+            //ESS리스트 가져오기
+            Ajax.url = "../zweb_common/ajax_common.htm?function_name=ZWEB_GET_ESSLIST";
+            Ajax.param = {};
+            Ajax.async = false;
+            Ajax.Call();
+            var list = Ajax.result.IT_ZESS;
+            var $ullist1 = $(".ullist1");
+            var $ullist2 = $(".ullist2");
+            var $ullist3 = $(".ullist3");
+            var $jstree = $("#jstree");
+
+            $.each(list, function(i, v) {
+                if (v.ZLEVEL === '1') // 1레벨
+                {
+                    var clone = $ullist1.clone();
+                    clone.children().text(v.TITLE);
+                    clone.children().attr("id", v.LINK + v.LINK2 + v.LINK3);
+                    if (v.ZUPPER !== 'X') {
+                        clone.children().attr("data-jstree", '{"icon":"images/dot_gray.png"}');
+                    }
+                    if (v.NEWOP === 'X') {
+                        clone.children().attr("newop", 'X');
+                        clone.children().attr("opwidth", v.OPWIDTH);
+                        clone.children().attr("opheight", v.OPHEIGHT);
+                    }
+
+                    // xa31535 2020.08.06 추가
+                    clone.children().attr("crossbr", v.CROSSBR);
+
+                    $jstree.append(clone);
+                } else if (v.ZLEVEL === '2') // 2레벨
+                {
+                    var clone = $ullist2.clone();
+                    clone.children().text(v.TITLE);
+                    clone.children().attr("id", v.LINK + v.LINK2 + v.LINK3);
+                    if (v.ZUPPER !== 'X') {
+                        clone.children().attr("data-jstree", '{"icon":"images/dot_gray.png"}');
+                    }
+                    if (v.NEWOP === 'X') {
+                        clone.children().attr("newop", 'X');
+                        clone.children().attr("opwidth", v.OPWIDTH);
+                        clone.children().attr("opheight", v.OPHEIGHT);
+                    }
+
+                    // xa31535 2020.08.06 추가
+                    clone.children().attr("crossbr", v.CROSSBR);
+
+                    $(".lilist1").last().append(clone);
+                } else if (v.ZLEVEL === '3') // 3레벨
+                {
+                    var clone = $ullist3.clone();
+                    clone.children().text(v.TITLE);
+                    clone.children().attr("id", v.LINK + v.LINK2 + v.LINK3);
+                    clone.children().attr("data-jstree", '{"icon":"images/dot_gray.png"}');
+                    if (v.NEWOP === 'X') {
+                        clone.children().attr("newop", 'X');
+                        clone.children().attr("opwidth", v.OPWIDTH);
+                        clone.children().attr("opheight", v.OPHEIGHT);
+                    }
+
+                    // xa31535 2020.08.06 추가
+                    clone.children().attr("crossbr", v.CROSSBR);
+
+                    $(".lilist2").last().append(clone);
+                }
+
+
+
+            });
+            //jstree 적용
+            $('#jstree')
+                .on('changed.jstree', function(e, data) {
+                    if (data.node.li_attr.newop === 'X') {
+
+                        if (!!document.documentMode) { //IE 로 접속했을 경우
+                            openLink(data.node.id, data.node.li_attr.opwidth, data.node.li_attr.opheight);
+                        } else {
+                            if (data.node.li_attr.crossbr == 'X') { //크로스 브라우징을 지원하지 않는 웹페이지
+                                alert("해당 페이지는 인터넷 익스플로러(IE)로 접속해주세요.");
+                                location.href = "../zweb_ess/ess_list.htm";
+                            } else {
+                                openLink(data.node.id, data.node.li_attr.opwidth, data.node.li_attr.opheight);
+                            }
+                        }
+                    } else {
+                        $('iframe').attr("src", data.node.id);
+                        if (!!document.documentMode) { //IE 로 접속했을 경우
+                            Loader.Pop();
+                        } else {
+                            if (data.node.li_attr.crossbr == 'X') { //크로스 브라우징을 지원하지 않는 웹페이지
+                                alert("해당 페이지는 인터넷 익스플로러(IE)로 접속해주세요.");
+                                location.href = "../zweb_ess/ess_list.htm";
+                            } else {
+                                Loader.Pop();
+                            }
+                        }
+                    }
+                }).jstree();
+
+            //iframe 이벤트
+            $('iframe').on('load', function() {
+                Loader.Close();
+                //iframe 내부 디자인 변경
+                var $iframe = $("#essFrame");
+
+                var istr = $iframe.attr('src');
+                if (istr.indexOf("zep0005") > 0 | istr.indexOf("INSA_FORM") > 0) {
+                    $iframe.css("max-width", "850px");
+                } else $iframe.css("max-width", "99%");
+
+                $iframe.contents().find("html").css("overflow-x", "hidden");
+                //$iframe.contents().find(".urEdf2HlpDate").css("position","relative");
+                //$iframe.contents().find(".urEdf2HlpDate").css("top","4px");
+                $iframe.contents().find(".urEdf2HlpDate").css("vertical-align", "text-bottom");
+                $iframe.contents().find(".day_day_txt").css("background-repeat", "no-repeat");
+                $iframe.contents().find(".day_day_txt").css("background-position", "center");
+                $iframe.contents().find("a").on("click", function() {
+                    setTimeout(function() {
+                        //$iframe.contents().find(".urEdf2HlpDate").css("position","relative");
+                        //$iframe.contents().find(".urEdf2HlpDate").css("top","4px");
+                        $iframe.contents().find(".day_day_txt").css("background-repeat", "no-repeat");
+                        $iframe.contents().find(".day_day_txt").css("background-position", "center");
+                    }, 2000);
+                });
+                $iframe.contents().find(".bsp").on("click", function() {
+                    setTimeout(function() {
+                        //$iframe.contents().find(".urEdf2HlpDate").css("position","relative");
+                        //$iframe.contents().find(".urEdf2HlpDate").css("top","4px");
+                        $iframe.contents().find(".day_day_txt").css("background-repeat", "no-repeat");
+                        $iframe.contents().find(".day_day_txt").css("background-position", "center");
+                    }, 2000);
+                });
+            });
+
+            //home 이벤트
+            $(".home").on('click', function() {
+                location.reload();
+            });
+        });
+
+        //새창으로 띄우는 함수
+        function openLink(link, lwidth, lheight) {
+            if (lwidth === undefined) {
+                lwidth = 1350;
+                lheight = 900;
+            }
+            var target = "_b" + lwidth;
+            var win = window.open(link, target, 'width=' + lwidth + ', height=' + lheight + ', menubar=yes,location=no,resizable=yes,scrollbars=yes,status=no');
+            win.focus();
+
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="myinfo">
+            <div class="inline home"><img src="./ESS 메뉴_files/home.png"></div>
+            <div class="inline">부서: <span id="vdsk1">총무국(광주)</span></div>
+            <div class="inline">이름: <span id="ename">정광본</span></div>
+        </div>
+    </div>
+    <div style="min-width:1350px;">
+        <div style="display: inline;">
+            <div id="tablelist" class="table list">
+                <div class="esshead">
+                    <img src="./ESS 메뉴_files/icon_ess.png" width="24">&nbsp;ESS
+                </div>
+                <!--레벨1용 템플릿-->
+                <ul class="ullist1" style="display:none;">
+                    <li data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" class="lilist1"></li>
+                </ul>
+                <!--레벨2용 템플릿-->
+                <ul class="ullist2" style="display:none;">
+                    <li data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" class="lilist2"></li>
+                </ul>
+                <!--레벨3용 템플릿-->
+                <ul class="ullist3" style="display:none;">
+                    <li class="lilist3"></li>
+                </ul>
+                <div id="jstree" class="jstree jstree-1 jstree-default" role="tree" aria-multiselectable="true" tabindex="0" aria-activedescendant="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_MAIN.HTM" aria-busy="false">
+                    <ul class="jstree-container-ul jstree-children" role="group">
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/dot_gray.png&quot;}" aria-selected="false" aria-level="1" aria-labelledby="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_MAIN.HTM_anchor" id="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_MAIN.HTM" class="jstree-node lilist1 jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_MAIN.HTM_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/dot_gray.png&quot;); background-position: center center; background-size: auto;"></i>ESS홈</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/dot_gray.png&quot;}" newop="X" opwidth="600" opheight="480" aria-selected="false" aria-level="1" aria-labelledby="/SAP/BC/BSP/SAP/ZWEB_ESS/MAIN_POP_PHONE.HTM_anchor" id="/SAP/BC/BSP/SAP/ZWEB_ESS/MAIN_POP_PHONE.HTM" class="jstree-node lilist1 jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="/SAP/BC/BSP/SAP/ZWEB_ESS/MAIN_POP_PHONE.HTM_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/dot_gray.png&quot;); background-position: center center; background-size: auto;"></i>ESS 담당자 연락처보기</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/dot_gray.png&quot;}" newop="X" opwidth="330" opheight="360" aria-selected="false" aria-level="1" aria-labelledby="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_SET_PASSWORD.htm_anchor" id="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_SET_PASSWORD.htm" class="jstree-node lilist1 jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="/SAP/BC/BSP/SAP/ZWEB_ESS/ESS_SET_PASSWORD.htm_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/dot_gray.png&quot;); background-position: center center; background-size: auto;"></i>ESS 비밀번호 관리</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_4_anchor" aria-disabled="true" aria-expanded="false" id="j1_4" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_4_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>인사업무</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_8_anchor" aria-disabled="true" aria-expanded="false" id="j1_8" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_8_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>제증명 발급신청</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_14_anchor" aria-disabled="true" aria-expanded="false" id="j1_14" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_14_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>근태</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_18_anchor" aria-disabled="true" aria-expanded="false" id="j1_18" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_18_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>출장</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_23_anchor" aria-disabled="true" aria-expanded="false" id="j1_23" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_23_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>시간외(통상근무)</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/dot_gray.png&quot;}" aria-selected="false" aria-level="1" aria-labelledby="/SAP/BC/BSP/SAP/ZHR0002/PAY_ACCOUNT_CHANGE_ESS.HTM_anchor" id="/SAP/BC/BSP/SAP/ZHR0002/PAY_ACCOUNT_CHANGE_ESS.HTM" class="jstree-node lilist1 jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="/SAP/BC/BSP/SAP/ZHR0002/PAY_ACCOUNT_CHANGE_ESS.HTM_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/dot_gray.png&quot;); background-position: center center; background-size: auto;"></i>계좌(급여,시간외) 변경신청</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_30_anchor" aria-disabled="true" aria-expanded="false" id="j1_30" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_30_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>유연근무</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_35_anchor" aria-disabled="true" aria-expanded="false" id="j1_35" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_35_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>급여</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_39_anchor" aria-disabled="true" aria-expanded="false" id="j1_39" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_39_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>법인카드 신청/변경</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_43_anchor" aria-disabled="true" aria-expanded="false" id="j1_43" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_43_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>지급조회</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_47_anchor" aria-disabled="true" aria-expanded="false" id="j1_47" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_47_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>복리후생</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/folder.png&quot;, &quot;disabled&quot; : true }" aria-selected="false" aria-level="1" aria-labelledby="j1_61_anchor" aria-disabled="true" aria-expanded="false" id="j1_61" class="jstree-node lilist1 jstree-closed"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-disabled" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="j1_61_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/folder.png&quot;); background-position: center center; background-size: auto;"></i>근로시간 면제자</a></li>
+                        <li role="treeitem" data-jstree="{&quot;icon&quot;:&quot;images/dot_gray.png&quot;}" aria-selected="false" aria-level="1" aria-labelledby="/sap/bc/bsp/sap/zep0005/main_parking2.htm_anchor" id="/sap/bc/bsp/sap/zep0005/main_parking2.htm" class="jstree-node lilist1 jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm#" tabindex="-1" id="/sap/bc/bsp/sap/zep0005/main_parking2.htm_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;images/dot_gray.png&quot;); background-position: center center; background-size: auto;"></i>주차 내역 조회</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="table detail">
+                <iframe id="essFrame" src="./ESS 메뉴_files/ess_main_new.html" frameborder="0" width="100%" style="max-width: 100%;width:100%"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
