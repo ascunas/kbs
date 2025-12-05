@@ -114,6 +114,12 @@ body {
         box-sizing: border-box;
     }
 
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     /* 메인 레이아웃 */
     .layout {
         display: flex;
@@ -161,6 +167,11 @@ body {
         flex: 1;
         text-align: center;
         border: 1px solid transparent;
+    }
+    .tab-btn.disabled {
+        cursor: no-drop;
+        pointer-events: none;
+        opacity: 0.4;
     }
     .tab-btn.active {
         background: #fff;
@@ -281,6 +292,7 @@ body {
         border-collapse: collapse;
         font-size: 14px;
         margin-top: 10px;
+        table-layout: fixed;
     }
 
     thead th {
@@ -351,6 +363,7 @@ body {
         display: inline-block;
         width: 14px;
         height: 14px;
+        padding-right: 2px;
         background-image: url(../images/icon_more.svg);
         background-repeat: no-repeat;
     }
@@ -358,12 +371,11 @@ body {
     dl.type1, dl.type2 {
         display: flex;
         justify-content: space-between;
-        margin: 10px 0;
-        padding: 0 10px;
+        padding: 4px 10px;
         font-weight: 600;
     }
     dl + dl {
-        margin-top: 10px!important;
+        padding-top: 10px!important;
     }
     dl.type2 {
         padding: 10px;
@@ -384,10 +396,10 @@ body {
         font-weight: 700;
     }
     .title + dl {
-        margin-top: 20px;
+        padding-top: 20px;
     }
     dl:last-child {
-        margin-bottom: 0;
+        margin-top: 6px;
     }
 
     .custom-select {
@@ -408,17 +420,83 @@ body {
         font-size: 12px;
     }
 
-    .jstree { padding: 10px;}
-    .jstree-node, .jstree-children, .jstree-container-ul {
-        display: block;
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        list-style-image: none;
-        font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-        font-size: 14px;
-        font-weight: 500;
+    iframe {
+        width: 100%;
     }
+
+    .jstree-default .jstree-anchor {
+        font-size: 14px;;
+    }
+
+    .list {
+        vertical-align: top;
+        border-right: 1px solid #DDD;
+        width: 250px;
+        min-width: 250px;
+        height: 100vh;            
+        background: #fff;
+        position: fixed;
+        left: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-family: "Helvetica Neue", "Apple SD Gothic Neo", Arial, "Malgun Gothic", dotum, sans-serif;
+        box-shadow: 2px 4px 6px rgb(0, 0, 50, 10%);
+        z-index: 9;
+    }
+
+    .detail {
+        height: 92vh;
+        width: 85%;
+        padding-left: 10px;
+        position: fixed;
+        left: 200px;
+    }
+    .detail {
+        height: 92vh;
+        height: calc(100% - 60px);
+        width: 85%;
+        width: calc(100% - 250px);
+        /* min-width: 1024px; */
+        padding-left: 0;
+        position: fixed;
+        left: 250px;
+    }
+    .esshead {
+        display: flex;
+        border-bottom: 1px solid #DDD;
+        height: 60px;
+        line-height: 60px;
+        color: #140661;
+        font-weight: bold;
+        font-size: 32px;
+        padding-left: 15px;
+    }
+    .esshead img {
+        margin-right: 10px
+    }
+
+    .glyphicon {
+        color: #999;
+        margin-right: -2px !important;
+        font-size: 0.96rem;
+    }
+
+    .header {
+        height: 60px;
+        line-height: 60px;
+        background-color: #140661;
+    }
+
+    .myinfo {
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .inline {
+        display: inline-block;
+        margin: 0px 10px;
+        color: #fff;
+    }    
 
     .avata:before {
         content: "";
@@ -433,6 +511,39 @@ body {
         top: 5px;
     }
 
+    .home {
+        float: left;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    .jstree-default .jstree-disabled {
+        cursor: default;
+        color: black;
+    }
+
+    .jstree-default .jstree-disabled>.jstree-icon {
+        opacity: 1;
+        filter: none;
+        -webkit-filter: none;
+    }
+
+    .jstree-anchor:not(.jstree-disabled)>.jstree-themeicon {
+        margin-left: -6px;
+        margin-right: -6px;
+    }
+
+    .jstree { padding: 10px;}
+    .jstree-node, .jstree-children, .jstree-container-ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        list-style-image: none;
+        font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+    }
 
     .jstree-default .jstree-leaf > .jstree-ocl {
         background-position: -68px -4px !important;
