@@ -95,8 +95,25 @@ input[type="text"] + input[type="text"] {margin-left: 6px;}
 .center {text-align: center!important;}
 .right {text-align: right!important;}
 
+.mtauto {margin-top: 46px}
+.mt10 {margin-top: 10px}
+.mt20 {margin-top: 20px}
+.mt30 {margin-top: 30px}
+.mt40 {margin-top: 40px}
+.mt50 {margin-top: 50px}
+
+.pt20 {padding-top: 20px}
+
+.border-top {
+    border-top: 1px solid #ddd;
+}
+
+.grid {display: grid; gap: 10px;}
 
 
+* {
+    box-sizing: border-box;
+}
 
 
 
@@ -139,8 +156,11 @@ body {
         padding: 22px 24px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
-    .card + .card {
+    .card + .card, .card + .flex-wrap {
         margin-top: 20px;
+    }
+    .flex-wrap .card + .card {
+        margin-top: 0px;
     }
 
     /* 탭 버튼 */
@@ -173,6 +193,10 @@ body {
         pointer-events: none;
         opacity: 0.4;
     }
+    .tab-btn.disabled span {
+        pointer-events: none;
+        opacity: 0.4;
+    }
     .tab-btn.active {
         background: #fff;
         color: #000;
@@ -188,6 +212,9 @@ body {
         font-weight: 700;
         margin-bottom: 14px;
     }
+    .title.only-title {
+        margin-bottom: 0px;
+    }
     .subtitle {
         font-size: 16px;
         margin: 0px 0 20px;
@@ -200,6 +227,12 @@ body {
         display: flex;
         justify-content: space-evenly;
         gap: 10px;
+    }
+    .tripanel.flex .panel-item{
+        flex: 1;
+    }
+    .tripanel + .tripanel {
+        margin-top: 20px;
     }
     .panel-item {
         /* flex: 1; */
@@ -217,10 +250,13 @@ body {
         margin-top: 10px;
     }
 
+    .bold {font-weight: 600;}
+
     .green { color: #00a997; }
     .blue { color: #0084cd; }
     .orange { color: #9e22d6; }
     .red { color: #ff4d4d; }
+    .gray { color: #727272; }
 
     .info-box {
         background: #F4F6FA;
@@ -254,6 +290,9 @@ body {
         font-weight: 600;
         font-size: 14px;
     }
+
+    .ess-main-body, .mss-main-body { margin: 0; padding: 20px; background-color: #f3f3f3}
+    .ess-iframe-body, .mss-iframe-body {background-color: #fff;}
 
     /* 시간외 정보 new flex box version */
     .time-box-row {
@@ -291,7 +330,7 @@ body {
         width: 100%;
         border-collapse: collapse;
         font-size: 14px;
-        margin-top: 10px;
+        margin-top: 0px;
         table-layout: fixed;
     }
 
@@ -336,6 +375,11 @@ body {
         gap: 20px;
         flex-wrap: wrap;
     }
+    .flex-wrap.gap0 {
+        gap: 0px;
+        flex-direction: column;
+        align-items: inherit;
+    }
     .flex-wrap > div {
         flex: 1;
         position: relative;
@@ -348,6 +392,9 @@ body {
         width: 1px;
         height: 100%;
         background-color: #f0f0f0;
+    }
+    .flex-wrap.gap0 > div + div:before{
+        display: none;;
     }
 
     .more {
@@ -373,6 +420,7 @@ body {
         justify-content: space-between;
         padding: 4px 10px;
         font-weight: 600;
+        font-size: 16px;
     }
     dl + dl {
         padding-top: 10px!important;
@@ -390,6 +438,7 @@ body {
     dl.type1 dd, dl.type2 dd {
         text-align: right;
         font-weight: 600;
+        word-break: keep-all;
     }
     dl.type2 dd {
         text-align: right;
@@ -398,7 +447,7 @@ body {
     .title + dl {
         padding-top: 20px;
     }
-    dl:last-child {
+    dl.type2:last-child {
         margin-top: 6px;
     }
 
@@ -421,7 +470,7 @@ body {
     }
 
     iframe {
-        width: 100%;
+        width: 100%!important;
     }
 
     .jstree-default .jstree-anchor {
@@ -439,7 +488,6 @@ body {
         left: 0;
         overflow-y: auto;
         overflow-x: hidden;
-        font-family: "Helvetica Neue", "Apple SD Gothic Neo", Arial, "Malgun Gothic", dotum, sans-serif;
         box-shadow: 2px 4px 6px rgb(0, 0, 50, 10%);
         z-index: 9;
     }
@@ -471,8 +519,33 @@ body {
         font-size: 32px;
         padding-left: 15px;
     }
-    .esshead img {
+    .esshead img, .msshead img {
         margin-right: 10px
+    }
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .esshead {
+        display: flex;
+        border-bottom: 1px solid #DDD;
+        height: 60px;
+        line-height: 60px;
+        color: #140661;
+        font-weight: bold;
+        font-size: 32px;
+        padding-left: 15px;
+    }
+    .msshead {
+        display: flex;
+        border-bottom: 1px solid #DDD;
+        height: 60px;
+        line-height: 60px;
+        color: #140661;
+        font-weight: 600;
+        font-size: 24px;
+        padding-left: 15px;
     }
 
     .glyphicon {
@@ -510,6 +583,43 @@ body {
         position: relative;
         top: 5px;
     }
+
+    .icon {
+        content: "";
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 10px;
+        height: 10px;
+    }
+    .icon.icon-member {
+        margin-top: 6px;
+        width: 48px;
+        height: 44px;
+        background-image: url(../images/icon_member.svg);
+    }
+    .icon.icon-global {
+        margin-top: 6px;
+        width: 48px;
+        height: 44px;
+        background-image: url(../images/icon_global.svg);
+    }
+
+    .link-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .link-wrap .system-link {
+        padding: 12px;
+        border-radius: 6px;
+        background-color: #E1EBF5;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 600;
+    }
+
 
     .home {
         float: left;
