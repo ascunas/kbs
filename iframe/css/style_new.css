@@ -238,6 +238,13 @@ body {
         /* flex: 1; */
         text-align: center;
     }
+    .panel-item.mss-link-hyunwon {
+        cursor: pointer;
+    }
+    .panel-item.mss-link-hyunwon:hover {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+    }
     .counter {
         font-size: 32px;
         font-weight: 800;
@@ -303,6 +310,7 @@ body {
 
     .time-box {
         flex: 1;
+        min-height: 70px;
         background: #f1f4f8;
         border-radius: 6px;
         padding: 14px 6px;
