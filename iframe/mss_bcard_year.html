@@ -1,0 +1,390 @@
+
+<!-- saved from url=(0081)https://erp.kbs.co.kr/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zep0010/mss_bcard_year.kbs -->
+<html style="height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title></title>
+      
+<style>
+/****************************************MSS*********************************************************************/
+/***배경**/
+.mss_bg_01
+{
+	background:url(../../sap/zcommon/images/mss_bg_01_3.gif);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.mss_bg_01_3
+{
+	background:url(../../sap/zcommon/images/mss_bg_01_190.gif);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.mss_bg_02
+{
+	background:url(../../sap/zcommon/images/mss_bg_02_3.gif);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.mss_bg_02_3
+{
+	background:url(../../sap/zcommon/images/mss_bg_02_190.gif);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+
+/***테이블 맨 윗쪽 강조라인**/
+.line_mss01
+{
+	background:url(../../sap/zcommon/images/ess_line.gif);
+	height:2px;
+	background-repeat:repeat-x;
+}
+
+/**테이블에서 1번째 타이틀**/
+.mss01_tit
+{
+	font-family:"굴림", "돋움","Verdana","Arial";
+	font-size:9pt;
+	color: #011f51;
+	padding-top:2px;
+	background-color:#e7e8ec;
+	height:19px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+.mss_red
+{
+	font-family:"굴림", "돋움","Verdana","Arial";
+	font-size:9pt;
+	color: #d96a53;
+	padding-top:2px;
+	white-space:nowrap;
+	text-align:right;
+ 	font-weight:bold;
+	background-color:#ffffff;
+}
+/**테이블에서 2번째 타이틀**/
+td.mss_01-1txt
+{
+	font-family:"굴림", "돋움","Verdana","Arial";	
+	height:19px;
+	color: #666666;
+	font-size:9pt;
+	background-color:#f0f0f0;
+	padding-top:2px;
+	text-align:center;
+	background-color:#f0f0f0;
+	vertical-align:middle;
+}
+td.mss_01-1txt_h
+{
+	font-family:"굴림", "돋움","Verdana","Arial";	
+	color:#666666;
+	font-size:9pt;
+	background-color:#FFDEAD ; /*#f0f0f0;*/
+	padding-top:2px;
+	text-align:center;
+	background-color:#FFDEAD ; /*#f0f0f0;*/
+	vertical-align:middle;
+}
+
+td.mss_01txt_h
+{
+	font-family:"굴림", "돋움","Verdana","Arial";	
+	height:57px;
+	color: #666666;
+	font-size:9pt;
+	background-color:#FFFFFF;
+	padding-top:2px;
+	text-align:center;
+}
+
+td.mss_01txt_h2
+{
+	font-family:"굴림", "돋움","Verdana","Arial";	
+	height:59px;
+	color: #666666;
+	font-size:9pt;
+	background-color:#FFFFFF;
+	padding-top:2px;
+	text-align:center;
+}
+
+
+/**테이블에서 기본 텍스트**/
+td.mss_01txt /**가운데정렬**/
+{
+	font-family:"굴림", "돋움","Verdana","Arial";	
+	height:19px;
+	color: #666666;
+	font-size:9pt;
+	background-color:#FFFFFF;
+	padding-top:2px;
+	text-align:center;
+}
+td.mss_01txt_L /**왼쪽정렬**/
+{
+	font-family:"굴림", "돋움","Verdana","Arial";
+	color: #666666;
+	font-size:9pt;
+	background-color:#FFFFFF;
+	padding-top:2px;
+}
+td.mss_01txt_L a:link    { font-size:9pt; color: #666666; text-decoration: none; }
+td.mss_01txt_L a:visited { font-size:9pt; color: #666666; text-decoration: none; }
+td.mss_01txt_L a:active  { font-size:9pt; color: #666666; text-decoration: none; }
+td.mss_01txt_L a:hover   { font-size:9pt; color: #ff7e23; text-decoration: none; }
+
+td.mss_02txt /**td배경노란색**/
+{
+	font-family:"굴림", "돋움","Verdana","Arial";	
+	height:19px;
+	color: #666666;
+	font-size:9pt;
+	font-weight:bold;
+	background-color:#FFFFcc;
+	padding-top:2px;
+	text-align:center;
+}
+/*테이블 텍스트 강조*/
+.mss_01txt_b
+{
+	font-family:"굴림", "돋움","Verdana","Arial";
+	color: #666666;
+	font-size:9pt;
+	font-weight:bold;
+	height:19px;
+	background-color:#FFFFFF;
+	padding-top:2px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+/*****07문서생성***/
+td.mss_07 a:link
+{font-family:"굴림", "돋움","Verdana","Arial"; height:18px; text-decoration: none;font-size:9pt; color: #666666; padding-left:8px; background-image: url(../../sap/zcommon/images/icon_tic_s.gif); background-repeat:no-repeat;}
+td.mss_07 a:visited
+{text-decoration: none; font-size:9pt; color: #666666; padding-left:9px; background-image: url(../../sap/zcommon/images/icon_tic_s.gif); background-repeat:no-repeat;}
+td.mss_07 a:active
+{text-decoration: none;font-size:9pt; color: #F15500; padding-left:9px; background-image: url(../../sap/zcommon/images/icon_tic_s.gif); background-repeat:no-repeat;}
+td.mss_07 a:hover
+{text-decoration: none;font-size:9pt; color: #F15500; padding-left:9px; background-image: url(../../sap/zcommon/images/icon_tic_s.gif); background-repeat:no-repeat;}
+
+</style>
+
+      
+<script type="text/javascript">
+var pre_hostname = location.hostname;
+var liBehindFirstDot = location.hostname.indexOf( "." ) + 1;
+if (liBehindFirstDot > 0) {
+      document.domain = location.hostname.substr( liBehindFirstDot );
+}
+
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+
+var myEPCM = parent.parent.EPCM;
+
+// 전일지출내역
+function OBN_MSS_JICHUL() {
+  myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSJicul','','');
+}
+
+// 법인카드 모니터링 세부내역
+function OBN_MSS_CARD() {
+  myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSCard','','');
+}
+
+// 전일법인카드사용내역
+function OBN_MSS_BCARD() {
+  //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSBcard','','');
+  gShowWindow( '../ZHR0004/mss_get_card.kbs', 'ot_bcard' , '860', '550' );
+}
+
+// 시간외예산실적
+function OBN_MSS_OT(year, month) {
+  //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnOTYesan','','');
+  gShowWindow( '../ZHR0017/ot_month_yesan.kbs', 'ot_yesan' , '520', '480' );
+}
+
+// 부서별시간현황
+function OBN_MSS_DEPT() {
+  //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSOtsil','','');
+  gShowWindow( '../ZHR0017/ot_buseo_info.kbs', 'ot_sigan' , '800', '700' );
+}
+
+// 출장현황
+function OBN_MSS_CHUL() {
+  //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSChul','','');
+  gShowWindow( '../ZHR0010N/X_BTRIP_COST_LIST_ALL.kbs', 'ot_chul' , '800', '700' );
+}
+
+// 현원정보
+function OBN_MSS_HYUN() {
+  //myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSHyun','','');
+  gShowWindow( '../ZHR0016/guntae_state.htm', 'ot_guntae' , '1100', '650' );
+}
+
+// 예산 대비 실적(전일기준 ) 비용예산으로 이동
+function OBN_MSS_YESAN() {
+  myEPCM.doObjBasedNavigate('KBSObnSystem','KBSObnMSSYesan','','');
+}
+
+
+//문서생산
+var mflag = 'A';
+
+// mflag: A 문서생산 mflag: B문서접수
+function setMoon() {
+  if( mflag == 'A') {
+    mflag = 'B';
+    document.all.Image3.src = '../../sap/zcommon/images/mss_tit07_01on.gif';
+    document.all.Image4.src = '../../sap/zcommon/images/mss_tit07_02off.gif';
+    document.all.mFrm.src   = 'http://kobiskms.kbs.co.kr/portal.nsf/SapConnApp?openform&system=regdocsend';
+  } else if( mflag == 'B' ) {
+    mflag = 'A';
+    document.all.Image3.src = '../../sap/zcommon/images/mss_tit07_01off.gif';
+    document.all.Image4.src = '../../sap/zcommon/images/mss_tit07_02on.gif';
+    document.all.mFrm.src   = 'http://kobiskms.kbs.co.kr/portal.nsf/SapConnApp?openform&system=regdocaccept';
+  } else {
+  }
+  document.body.focus();
+}
+
+// MORE버튼 클릭
+function goMore(gubun) {
+  var url;
+  if( gubun == 'moon' ) {
+    if( mflag == 'A' ) {
+      url = 'http://kobiskms.kbs.co.kr/portal.nsf/SapConnApp?openform&system=regdocsend_more';
+    } else {
+      url = 'http://kobiskms.kbs.co.kr/portal.nsf/SapConnApp?openform&system=regdocaccept_more';
+    }
+    gShowWindow( url, 'moon_more', '810', '550' );
+  }
+}
+
+//공사주간업무팝업
+function open_jugan() {
+  window.open('http://wreport.kbs.co.kr/mss.html', '_blank');
+}
+
+//새창띄우기
+function gShowWindow(strPageURL, strWindowName, lngWidth, lngHeight, strOptions)
+{
+    var lngTop, lngLeft;
+    if(strOptions == "") {
+        strOptions = "toolbar=no, location=no, menubar=no, scrollbars=auto, status=yes, resizable=yes";
+    }
+
+    lngTop = (window.screen.height - lngHeight) / 2;
+    lngLeft = (window.screen.width - lngWidth) / 2;
+    strOptions = strOptions + ", width=" + lngWidth + ", height=" + lngHeight + ", top=" + lngTop + ", left=" + lngLeft;
+    win = window.open( strPageURL,strWindowName,strOptions );
+    win.focus();
+}
+
+</script>
+
+      <script language="javascript">
+      </script>
+      
+    <script language="JavaScript">
+{var liBehindFirstDot = location.hostname.indexOf(".")+1;if (liBehindFirstDot > 0)document.domain = location.hostname.substr(liBehindFirstDot);}
+</script><meta http-equiv="imagetoolbar" content="no"><script type="text/javascript" language="JavaScript" src="./events.js.다운로드"></script><script type="text/javascript" language="JavaScript" src="./event_dictionary.js.다운로드"></script><link id="urstyle" rel="stylesheet" type="text/css" href="./ur_nn7.css"><script type="text/javascript" language="JavaScript">var popup_emptydoc="/sap/public/bsp/sap/htmlb/domainRelaxMin.htm?0017";var HTMLB_SECTION508 = false;</script><script type="text/javascript" language="JavaScript">var sapUrDomainRelaxing = {NONE:"NONE",MINIMAL:"MINIMAL",MAXIMAL:"MAXIMAL"};ur_system={doc:window.document ,mimepath:"/sap/public/bc/ur/Design2002/themes/sap_standard/common/",stylepath:"/sap/public/bc/ur/Design2002/themes/sap_standard/ur/",emptyhoverurl:"/sap/public/bsp/sap/htmlb/domainRelaxMin.htm?0017",is508:false,direction:"ltr",domainrelaxing:sapUrDomainRelaxing.MINIMAL,browser_abbrev:"nn7",dateformat:5,firstdayofweek:0,ur_version:"6.0.17.0.0",css_version:"6.0.17.0.0"}</script><script type="text/javascript" language="JavaScript" src="./sapUrMapi_nn7.js.다운로드"></script><script type="text/javascript" language="JavaScript" src="./popup_nn7.js.다운로드"></script></head><body class="urBdyStd" scroll="No" style="margin-left:0px;margin-right:0px;margin-top:0px;margin-bottom:0px"><div id="urFrames"><iframe id="sapPopupMainId_X0" name="sapPopupMainId_X0" src="./domainRelaxMin(3).html" style="z-index:1001;display:block;position:absolute;top:-5000;width:0;height:0" frameborder="0" border="no" scrolling="no" tabindex="-1"></iframe></div><script type="text/javascript" language="JavaScript" src="./urMessageBundle_ko.js.다운로드"></script><script type="text/javascript" language="JavaScript" src="./misc.js.다운로드"></script>
+      <input disabled="" type="hidden" id="htmlb_first_form_id" name="htmlb_first_form_id" value="BspForm"><form id="BspForm" name="BspForm" method="POST" autocomplete="off"><input type="hidden" name="htmlbScrollX"><input type="hidden" name="htmlbScrollY"><input type="hidden" name="htmlbevt_ty"><input type="hidden" name="htmlbdoc_id" value=""><input type="hidden" name="htmlbevt_frm" id="htmlbevt_frm" value="BspForm"><input type="hidden" name="htmlbevt_oid"><input type="hidden" name="htmlbevt_id"><input type="hidden" name="htmlbevt_cnt"><input type="hidden" name="htmlbevt_par1"><input type="hidden" name="htmlbevt_par2"><input type="hidden" name="htmlbevt_par3"><input type="hidden" name="htmlbevt_par4"><input type="hidden" name="htmlbevt_par5"><input type="hidden" name="htmlbevt_par6"><input type="hidden" name="htmlbevt_par7"><input type="hidden" name="htmlbevt_par8"><input type="hidden" name="htmlbevt_par9"><input type="hidden" name="onInputProcessing" value="htmlb"><input type="hidden" name="BspForm_complete" id="BspForm_complete" code="OK"><input type="hidden" name="sap-htmlb-design" id="sap-htmlb-design" value="">
+      
+      
+<table width="235" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td height="170" class="mss_bg_02" valign="top"><!--배경시작 -->
+  <table width="235" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+  <td height="26" valign="top"><!--타이틀시작 -->
+    <img src="./mss_tit_07.gif" width="235" height="26" border="0" usemap="#Map4"></td>
+</tr>
+  <tr>
+  <td height="106" valign="top"><table width="235" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+  <td height="4" colspan="3"></td>
+</tr>
+  <tr>
+  <td width="12" height="85">&nbsp;</td>
+  <td height="85" valign="top"><!--내용 테이블 시작 -->
+    <table width="213" border="0" cellspacing="0" cellpadding="0">
+    <tbody><tr>
+    <td width="60" height="85"><div align="center"><img src="./mss_icon_04.gif" width="39" height="60"></div></td>
+    <td width="153"><!--속내용 개발부분 시작 -->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tbody><tr>
+      <td class="mss_01txt_L"><img src="./mss_08.gif" width="15" height="12">누적건수</td>
+      <td class="mss_01txt_L"><div align="right">785 건</div></td>
+    </tr>
+      <tr>
+      <td class="mss_01txt_L"><img src="./mss_08_off.gif" width="15" height="12">누적액</td>
+      <td class="mss_01txt_L"><div align="right">48,759,352 원</div></td>
+    </tr>
+      <tr>
+      <td class="mss_01txt_L"><img src="./mss_08_off.gif" width="15" height="12">당월건수</td>
+      <td class="mss_01txt_L"><div align="right">14 건</div></td>
+    </tr>
+      <tr>
+      <td class="mss_01txt_L"><img src="./mss_08_off.gif" width="15" height="12">당월금액</td>
+      <td class="mss_01txt_L"><div align="right">906,060 원</div></td>
+    </tr>
+    </tbody></table>
+      <!--속내용 개발부분 끝--></td>
+  </tr>
+  </tbody></table>
+    <!--내용 테이블 끝--></td>
+  <td width="20" height="85">&nbsp;</td>
+</tr>
+  <tr>
+  <td height="17" colspan="3"></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+<map name="Map4">
+<area shape="rect" coords="191,8,226,23" href="javascript:OBN_MSS_BCARD()">
+</map>
+
+
+      
+      <script>
+      </script>
+      
+      
+      </form>
+    <!--173733 -->
+<script language="JavaScript">
+function sapOnResize(){;}window.onresize=sapOnResize;
+</script><!--173733 --><script language="JavaScript">htmlbDisableBackspaceNavigation();</script><div class="urFocTop" id="ur-topfocus"></div><div class="urFocBtm" id="ur-bottomfocus"></div><div class="urFocLft" id="ur-leftfocus"></div><div class="urFocRgt" id="ur-rightfocus"></div><div class="urFocEdg" id="ur-edge1focus"></div><div class="urFocEdg" id="ur-edge2focus"></div><div class="urFocEdg" id="ur-edge3focus"></div><div class="urFocEdg" id="ur-edge4focus"></div><script defer="">sapUrMapi_Focus_RegisterCreate('null');</script><script language="JavaScript">sapUrMapi_initLinkStatus();</script>
+
+</body></html>

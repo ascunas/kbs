@@ -8,7 +8,6 @@ let resizeScheduled = false;
 ----------------------------- */
 function calculateHeight() {
     requestAnimationFrame(() => {
-        // scrollHeight 대신 실제 렌더링 높이를 사용 (증가/감소 모두 반영)
         const height = document.documentElement.getBoundingClientRect().height;
 
         parent.postMessage({
@@ -35,17 +34,14 @@ function scheduleHeightUpdate() {
 }
 
 /* ----------------------------
-    초기 실행
+    jQuery DOM 준비 완료
 ----------------------------- */
-window.addEventListener("load", scheduleHeightUpdate);
-document.addEventListener("DOMContentLoaded", scheduleHeightUpdate);
+$(function () {
+    // 초기 업데이트
+    scheduleHeightUpdate();
 
-/* ----------------------------
-    DOM 변동 감지
------------------------------ */
-document.addEventListener("DOMContentLoaded", () => {
+    // DOM 변경 감지
     const target = document.body;
-
     if (target) {
         const mo = new MutationObserver(() => {
             scheduleHeightUpdate();
@@ -60,13 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ----------------------------
-    부모에서 "requestHeight" 요청 받기
+    window load 이벤트
 ----------------------------- */
-window.addEventListener("message", (e) => {
-    if (e.data && e.data.type === "requestHeight") {
+$(window).on("load", function () {
+    scheduleHeightUpdate();
+});
+
+/* ----------------------------
+    부모 메시지 수신
+----------------------------- */
+$(window).on("message", function (e) {
+    const data = e.originalEvent.data;
+    if (data && data.type === "requestHeight") {
         scheduleHeightUpdate();
     }
 });
+
 
 
 /* ----------------------------
