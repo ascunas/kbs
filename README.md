@@ -8,3 +8,12 @@
 - main_ot_new.html <!-- 25.12.05 추가 50시간 넘으면 class red 추가 --><!-- 25.12.05 시간외 수당 없을때 처리 --> 주석참조
 - main_jikup_new.html <!-- 25.12.05 추가 말줄임 처리 class="ellipsis" --> 주석 참조
 - main_daechul_new.html <!-- 25.12.05 복지안내 바로가기 버튼 추가 --> 주석 참조
+
+25.12.08
+- style_new.css 수정
+- /images/icon_ess01.svg, /images/icon_ess02.svg, /images/icon_mss02.svg 추가
+- /iframe/images/icon_global.svg 추가, iframe/images/icon_member.svg 추가
+- ess 내부 iframe 파일들 공통적으로 body에 class 추가
+- mss 관련 html 파일 추가
+- common.js iframe 높이계산 관련 수정
+- 로그인 추가
