@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://erpdev.kbs.co.kr/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_mss/mss_main.htm -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(function () {
+        // iframe → 부모 : 높이 전달
+        $(window).on("message", function (e) {
+          var ev = e.originalEvent;
+          var data = ev.data;
+
+          if (!data || data.type !== "iframeHeight") return;
+
+          // 메시지를 보낸 iframe만 높이 적용
+          $("iframe").each(function () {
+            if (this.contentWindow === ev.source) {
+              $(this).height(data.height);
+            }
+          });
+        });
+
+        // 부모 창이 resize되면 모든 iframe에게 다시 보내기
+        $(window).on("resize", function () {
+          $("iframe").each(function () {
+            this.contentWindow.postMessage({ type: "requestHeight" }, "*");
+          });
+        });
+
+        // 초기 로딩 후 1회 강제 높이 요청(일부 브라우저 최초 계산용)
+        $(window).on("load", function () {
+          $("iframe").each(function () {
+            this.contentWindow.postMessage({ type: "requestHeight" }, "*");
+          });
+        });
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/style_new.css" />
+  </head>
+  <body class="mss-main-body">
+
+    <div class="layout">
+
+      <!-- 좌측영역 -->
+      <div class="left-side">
+
+        <!--해외 근무자 현황-->
+        <div class="divborder card" style="">
+          <iframe width="235" height="200" class="iframe" src="./mss_overseas_new.html"></iframe>
+        </div>
+      </div>
+
+      <!-- 우측영역 -->
+      <div class="right-side">
+        
+        <!--근무자 현황-->
+        <div class="divborder card" style="">
+          <iframe width="235" height="200" class="iframe" src="./mss_hyunwon_new.html"></iframe>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
