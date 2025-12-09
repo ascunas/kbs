@@ -6,15 +6,36 @@
 <meta http-equiv="imagetoolbar" content="no" />
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker.ko.min.js"></script>
 <script src="js/common.js"></script>
 
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css" />
 <link rel="stylesheet" type="text/css" href="css/style_new.css" />
+
+<script type="text/javascript">
+    jQuery(function($) {
+
+        $('.datepicker').datepicker({
+            format: "yyyy/mm/dd",
+            language: "ko",
+            forceParse: false,
+            autoclose: true,
+            todayHighlight: true,
+            orientation: 'bottom'
+        });
+
+        // 현재 날짜로 기본값 설정
+        $('.datepicker').datepicker('setDate', new Date());
+
+    });
+</script>
 </head>
 
 <body class="mss-iframe-body">
     <div class="title">
         <span>해외 근무자 현황</span>
-        <button type="" class="more">더보기</button>
+        <input type="text" class="datepicker" readonly="readonly">
     </div>
     <div class="dl-wrap">
         <dl class="type1">
