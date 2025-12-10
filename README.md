@@ -32,3 +32,9 @@ datepicker 적용
 - iframe/css/bootstrap-datepicker.css.map 추가
 - iframe/css/style_new.css 수정
 - iframe/images/icon_calendar.svg 추가
+
+25.12.10
+
+iframe 외부 클릭시 datepicker 닫히는 기능 추가
+- mss 부모창과 모든 iframe 페이지 내 script 수정
+- iframe/css/style_new.css 수정
