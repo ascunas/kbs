@@ -36,6 +36,38 @@
             this.contentWindow.postMessage({ type: "requestHeight" }, "*");
           });
         });
+
+        
+        
+        // -------------------------------
+        // datepicker 닫기 로직
+        // -------------------------------
+        $(document).ready(function () {
+          // 모든 iframe에 datepicker 닫기 지시
+          function closeAllIframeDatepickers() {
+            $("iframe").each(function () {
+              if (this.contentWindow) {
+                this.contentWindow.postMessage({ type: "closeDatepicker" }, "*");
+              }
+            });
+          }
+
+          // 부모창 아무 데나 클릭하면 → 모든 iframe에 닫기 신호만 보냄
+          $(document)
+            .off("click.closeDatepickerParent")
+            .on("click.closeDatepickerParent", function () {
+              closeAllIframeDatepickers();
+            });
+
+          // iframe에서 클릭됨을 한번더 체크하고 닫기
+          window.addEventListener("message", function (e) {
+            if (e.data && e.data.type === "iframeClicked") {
+              closeAllIframeDatepickers();
+            }
+          });
+        });
+
+
       });
     </script>
     <link rel="stylesheet" type="text/css" href="css/style_new.css" />
@@ -46,34 +78,19 @@
       <div class="left-side">
         <!--당월 시간외 현황-->
         <div class="divborder card" style="">
-          <iframe
-            width="544"
-            height="180"
-            class="iframe"
-            src="./mss_ot_new.html"
-          ></iframe>
+          <iframe width="544" height="180" class="iframe" src="./mss_ot_new.html"></iframe>
         </div>
         <!--비용전표 발생내역에서 주간 시간외 현황 정보로 변경 2018.12.14 문영미-->
 
         <div class="flex-wrap">
           <!--시간외 예산/실적-->
           <div class="divborder card">
-            <iframe
-              width="235"
-              height="180"
-              class="iframe"
-              src="./mss_ot_money_new.html"
-            ></iframe>
+            <iframe width="235" height="180" class="iframe" src="./mss_ot_money_new.html"></iframe>
           </div>
 
           <!--법인카드 사용통계-->
           <div class="divborder card">
-            <iframe
-              width="235"
-              height="200"
-              class="iframe"
-              src="./mss_bcard_year_new.html"
-            ></iframe>
+            <iframe width="235" height="200" class="iframe" src="./mss_bcard_year_new.html"></iframe>
           </div>
         </div>
       </div>
@@ -82,12 +99,7 @@
       <div class="right-side">
         <!--근무자 현황-->
         <div class="divborder card" style="">
-          <iframe
-            width="235"
-            height="200"
-            class="iframe"
-            src="./mss_hyunwon_new.html"
-          ></iframe>
+          <iframe width="235" height="200" class="iframe" src="./mss_hyunwon_new.html"></iframe>
         </div>
 
         <!--시간외 예산/실적-->
@@ -101,13 +113,8 @@
       </div> -->
 
         <!--해외 근무자 현황-->
-        <div class="divborder card">
-          <iframe
-            width="235"
-            height="200"
-            class="iframe"
-            src="./mss_overseas_new.html"
-          ></iframe>
+        <div class="divborder card overseas">
+          <iframe width="235" height="200" class="iframe" src="./mss_overseas_new.html"></iframe>
         </div>
       </div>
     </div>

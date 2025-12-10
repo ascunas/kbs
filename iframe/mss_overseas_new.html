@@ -16,17 +16,69 @@
 <script type="text/javascript">
     jQuery(function($) {
 
-        $('.datepicker').datepicker({
-            format: "yyyy/mm/dd",
-            language: "ko",
-            forceParse: false,
-            autoclose: true,
-            todayHighlight: true,
-            orientation: 'bottom'
+        /* -----------------------------
+        1) datepicker 초기화 함수
+        ------------------------------ */
+        function initDatepicker() {
+            $('.datepicker').datepicker({
+                format: "yyyy/mm/dd",
+                language: "ko",
+                forceParse: false,
+                autoclose: true,
+                todayHighlight: true,
+                orientation: 'bottom'
+            });
+
+            $('.datepicker').datepicker('setDate', new Date());
+        }
+
+        // 최초 초기화
+        initDatepicker();
+
+
+        /* -----------------------------
+        2) datepicker 완전 제거(destroy)
+        ------------------------------ */
+        function destroyDatepicker() {
+            try {
+                $('.datepicker').datepicker('destroy');
+            } catch (e) {
+                // destroy 중 오류 발생해도 무시
+            }
+
+            // datepicker가 생성했던 dropdown DOM 확실히 제거
+            $('.datepicker-dropdown').remove();
+        }
+
+
+        /* -----------------------------
+        3) 부모가 보내는 메시지 처리
+        ------------------------------ */
+        window.addEventListener("message", function(e) {
+            var data = e.data;
+
+            if (data && data.type === "closeDatepicker") {
+
+                destroyDatepicker();
+                initDatepicker(); // 다시 생성
+            }
         });
 
-        // 현재 날짜로 기본값 설정
-        $('.datepicker').datepicker('setDate', new Date());
+
+        /* -----------------------------
+        4) iframe 내부 클릭 시 datepicker 닫기
+        ------------------------------ */
+        $(document).on("click", function(e) {
+            var isInput = $(e.target).closest(".datepicker").length > 0;
+
+            // 입력창 클릭이면 datepicker 유지
+            if (isInput) return;
+
+            // datepicker가 열려 있을 경우 닫기 (destroy → init)
+            destroyDatepicker();
+            initDatepicker();
+        });
+
 
     });
 </script>
@@ -44,11 +96,11 @@
         </dl>
         <dl class="type1">
             <dt>출장자</dt>
-            <dd>11</dd>
+            <dd class="mss-link-hyunwon">11</dd>
         </dl>
         <dl class="type1">
             <dt>특파원</dt>
-            <dd>15</dd>
+            <dd class="mss-link-hyunwon">15</dd>
         </dl>
     </div>
     <div class="tripanel flex mt20 pt20 border-top">
