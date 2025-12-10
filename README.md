@@ -18,3 +18,17 @@
 - common.js iframe 높이계산 관련 수정
 - 로그인 추가
 - 근무자 현황 mss-link-hyunwon 클릭 이벤트 스타일 추가 style_new.css 수정
+
+25.12.09
+
+근무자현황과 해외근무자현황을 가로로 배치하는 별도 레이아웃
+- /iframe/mss_main_new2.html
+
+datepicker 적용
+- iframe/mss_overseas_new.html (해외근무자현황)
+- iframe/js/bootstrap-datepicker.min.js 추가
+- iframe/js/bootstrap-datepicker.ko.min.js 추가
+- iframe/css/bootstrap-datepicker.css 추가
+- iframe/css/bootstrap-datepicker.css.map 추가
+- iframe/css/style_new.css 수정
+- iframe/images/icon_calendar.svg 추가
