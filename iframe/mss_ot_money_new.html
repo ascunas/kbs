@@ -1,53 +1,34 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title></title>
-<meta http-equiv="imagetoolbar" content="no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
 <script src="js/common.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/style_new.css" />
-<script>
-    window.addEventListener("DOMContentLoaded", function () {
 
-        // iframe 내부 클릭 시 → 부모창에 알림
-        document.addEventListener("click", function () {
-            if (window.parent) {
-                window.parent.postMessage({ type: "iframeClicked" }, "*");
-            }
-        });
-
-        // 부모창에서 내려보낸 "closeDatepicker" 메시지 처리
-        window.addEventListener("message", function (e) {
-            if (e.data && e.data.type === "closeDatepicker") {
-                if (typeof $ !== "undefined" && $(".datepicker").length > 0) {
-                    $(".datepicker").datepicker("hide");
-                }
-            }
-        });
-
-    });
-</script>
 </head>
 
 <body class="mss-iframe-body">
-    <div class="title">
-        <span>시간외 예산/실적 (연간)</span>
-        <button type="" class="more">더보기</button>
+    <div id="iframe-wrap">
+        <div class="title">
+            <span>시간외 예산/실적 (연간)</span>
+            <button type="" class="more">더보기</button>
+        </div>
+        <dl class="type1 mtauto">
+            <dt>전체예산</dt>
+            <dd>5,402,000</dd>
+        </dl>
+        <dl class="type1">
+            <dt>누적실적</dt>
+            <dd>11,671,800</dd>
+        </dl>
+        <dl class="type1">
+            <dt>누적차이</dt>
+            <dd class="blue">-6,269,800</dd>
+        </dl>
     </div>
-    <dl class="type1 mtauto">
-        <dt>전체예산</dt>
-        <dd>5,402,000</dd>
-    </dl>
-    <dl class="type1">
-        <dt>누적실적</dt>
-        <dd>11,671,800</dd>
-    </dl>
-    <dl class="type1">
-        <dt>누적차이</dt>
-        <dd class="blue">-6,269,800</dd>
-    </dl>
 </body>
 </html>

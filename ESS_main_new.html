@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<!-- saved from url=(0083)http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_ess/ess_list.htm -->
-<html>
-
+<html lang="ko">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ESS Main</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ESS Main</title>
 
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
 
-    <link rel="stylesheet" href="iframe/style.css">
-    <link rel="stylesheet" href="iframe/css/style_new.css">
+<link rel="stylesheet" href="iframe/style.css"><!-- jstree -->
+<link rel="stylesheet" href="iframe/css/style_new.css">
+<style>
+    html{height: 100%!important}
+    body {
+        width:100%;
+        height: calc(100% - 60px) !important;
+    }
+</style>
 </head>
 
 <body>
@@ -21,11 +27,11 @@
             <div class="inline">이름: <span id="ename">정광본</span></div>
         </div>
     </div>
-    <div style="min-width:1350px;">
-        <div style="display: inline;">
+    <div class="ess-main-wrap">
+        <div class="content-wrap">
             <div id="tablelist" class="table list">
                 <div class="esshead">
-                    <img src="images/icon_ess02.svg" width="26">ESS
+                    <img src="images/icon_ess02.jpg">ESS
                 </div>
                 <!--레벨1용 템플릿-->
                 <ul class="ullist1" style="display:none;">
@@ -60,8 +66,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="table detail">
-                <iframe id="essFrame" src="iframe/ess_main_new.html" frameborder="0" width="100%" style="max-width: 100%;width:100%"></iframe>
+            <div class="table detail ess-iframe-wrap">
+                <iframe id="essFrame" src="iframe/ess_main_new.html" frameborder="0" scrolling="yes" style="width:1400px;height:100%;"></iframe>
             </div>
         </div>
     </div>

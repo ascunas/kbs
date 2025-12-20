@@ -95,7 +95,7 @@ input[type="text"] + input[type="text"] {margin-left: 6px;}
 .center {text-align: center!important;}
 .right {text-align: right!important;}
 
-.mtauto {margin-top: 46px}
+.mtauto {margin-top: 54px}
 .mt10 {margin-top: 10px}
 .mt20 {margin-top: 20px}
 .mt30 {margin-top: 30px}
@@ -137,6 +137,18 @@ body {
         text-overflow: ellipsis;
     }
 
+    .header {position: absolute;top:0;left:0;right:0;height:60px;z-index: 9;}
+    .ess-main-wrap, .mss-main-wrap {width:100%;height: 100%;}
+    .content-wrap {position: relative;top: 60px;height: 100%;z-index: 1;}
+    .ess-iframe-wrap {height:100%;}
+
+
+
+
+
+
+
+
     /* 메인 레이아웃 */
     .layout {
         display: flex;
@@ -147,7 +159,7 @@ body {
     }
 
     .left-side { flex: 1; min-width: 0; }
-    .right-side { width: 440px; flex-shrink: 0; }
+    .right-side { width: 440px; flex-shrink: 0; _margin-left: 20px; }
 
     /* 카드 */
     .card {
@@ -225,8 +237,11 @@ body {
     /* 3열 패널 */
     .tripanel {
         display: flex;
+        -ms-display: flex;
         justify-content: space-evenly;
+        -ms-justify-content: space-evenly;
         gap: 10px;
+        -ms-gap: 10px;
     }
     .tripanel.flex .panel-item{
         flex: 1;
@@ -300,6 +315,11 @@ body {
 
     .ess-main-body, .mss-main-body { margin: 0; padding: 20px; background-color: #f3f3f3}
     .ess-iframe-body, .mss-iframe-body {background-color: #fff;}
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100% !important;
+    }
 
     /* 시간외 정보 new flex box version */
     .time-box-row {
@@ -382,6 +402,15 @@ body {
         align-items: center;
         gap: 20px;
         flex-wrap: wrap;
+    }    
+    .xflex-wrap:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        display: inline-block;
+        width: 1px;
+        height: 100%;
+        background-color: #f0f0f0;
     }
     .flex-wrap.type1 {
         flex-direction: row;
@@ -391,6 +420,8 @@ body {
         gap: 0px;
         flex-direction: column;
         align-items: inherit;
+        _margin-left:40px;
+        _float: right;
     }
     .flex-wrap > div {
         flex: 1;
@@ -412,6 +443,7 @@ body {
     .more {
         display: flex;
         align-items: center;
+        padding-right: 0;
         appearance: none;
         border: 0;
         background-color: transparent;
@@ -491,6 +523,14 @@ body {
     iframe {
         width: 100%!important;
     }
+    iframe.iframe {
+        width: 100%;
+        border: 0;
+        min-height: 0;
+    }
+    body {
+        overflow-x: auto;
+    }
 
     .jstree-default .jstree-anchor {
         font-size: 14px;;
@@ -511,21 +551,13 @@ body {
         z-index: 9;
     }
 
+
     .detail {
         height: 92vh;
-        width: 85%;
-        padding-left: 10px;
-        position: fixed;
-        left: 200px;
-    }
-    .detail {
-        height: 92vh;
-        height: calc(100% - 60px);
-        width: 85%;
+        height: calc(100% - 0px);
         width: calc(100% - 250px);
-        /* min-width: 1024px; */
         padding-left: 0;
-        position: fixed;
+        position: absolute;
         left: 250px;
     }
     .esshead {
@@ -539,11 +571,14 @@ body {
         padding-left: 15px;
     }
     .esshead img, .msshead img {
-        margin-right: 10px
+        margin-right: 10px;
+        margin-top: 17px;
+        width: 26px;
+        height: 25px;
     }
     iframe {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
     }
     
     .esshead {
@@ -761,76 +796,177 @@ body {
         height: 28px;
     }
 
+    
     /* -----------------------------
-       반응형 스타일 (모바일 최적화)
-    ------------------------------ */
-    @media (max-width: 1200px) {
-        .right-side { width: 360px; }
-    }
+        ie
+        ------------------------------ */
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
-    @media (max-width: 1024px) {
-        .layout { flex-direction: column; }
-        .left-side { width: 100%; }
-        .right-side { width: 100%; }
-        table thead { font-size: 14px; }
-        tbody td { font-size: 14px; }
-        
-        .flex-wrap > div + div:before {
-            display: none;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .tabs { gap: 6px; }
-        .tab-btn { padding: 7px 12px; font-size: 13px; }
-
-        /* .tripanel { flex-direction: column; gap: 14px; } */
-        .panel-item { text-align: center; }
-        .counter { font-size: 26px; }
-
-        /* .title { font-size: 16px; } */
-        .subtitle { font-size: 14px; }
-
-        .side-number { font-size: 28px; }
-
-        .time-box-row {
-            flex-wrap: wrap;
-        }
-
-        .time-box {
-            flex: 0 0 calc(50% - 8px);
-        }
-        
-        .flex-wrap.type1 {
-            flex-direction: column;
-        }
-
-        /* 표 가로 스크롤 */
-        /* .table-wrapper {
+        .ess-main-body, .mss-main-body {
+            min-width: 1500px;
+            height: 100%;
             overflow-x: auto;
-        } */
-        /* table { min-width: 600px; } */
-    }
+        }
+        .detail {
+            position: static;
+            float: right;
+            height: 100%;
+            margin-left: 250px;
+            padding-left: 250px;
+            overflow-x: auto;
+        }
 
-    @media (max-width: 480px) {
-        .container { padding: 14px; }
-        .card { padding: 18px; }
-
-        .tab-btn { font-size: 12px; padding: 6px 10px; }
-        /* .tripanel { flex-direction: column; gap: 14px; } */
-
-        /* .title { font-size: 15px; } */
-        .subtitle { font-size: 12px; }
-
-        .counter { font-size: 24px; }
-
-        .side-number { font-size: 24px; }
-
+        .right-side {
+            margin-left: 20px;
+        }
+        .table.detail {
+            min-width: 100%;
+            overflow-x: auto;
+        }
+        .tripanel {
+            display: block;
+        }
+        .panel-item {
+            display: inline-block;
+            width: 32%;
+        }
+        .tripanel.fc .panel-item {
+            width: 24%;
+        }
+        .tripanel.flex .panel-item {
+            xmargin-right: 20px;
+        }
+        .time-box-row {
+            display: block;
+            width: 100%;
+        }
         .time-box {
-            flex: 0 0 100%;
+            width: 24%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .flex-wrap > div {
+            text-align: center;
+        }
+        .flex-wrap > div + div:before {
+            content: "";
+            position: absolute;
+            left: 0%;
+            display: inline-block;
+            width: 1px;
+            height: 100%;
+            background-color: #f0f0f0;
+        }
+        .custom-select {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+        .info-box .info {
+            margin-left: 20px;;
+        }
+        .grid {
+            display: table;
+            width: 100%;
+        }
+        .grid > div {
+            display: table-cell;
+            min-width: 200px;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .link-wrap a + a {
+            margin-top: 10px
+        }
+        
+        .mss-main-body .flex-wrap {
+            display: block;
+        }
+        .mss-main-body .flex-wrap .card {
+            display: table-cell;
+            float: left;
+            width: 49.4%;
+        }
+        .mss-main-body .flex-wrap .card + .card {
+            xmargin-left: 20px;
+            float: right;
         }
     }
 
+
+
+    
+    @supports (display: grid) {
+        /* -----------------------------
+        반응형 스타일 (모바일 최적화)
+        ------------------------------ */
+        @media (max-width: 1200px) {
+            .right-side { width: 360px; }
+        }
+
+        @media (max-width: 1024px) {
+            .layout { flex-direction: column; }
+            .left-side { width: 100%; }
+            .right-side { width: 100%; }
+            table thead { font-size: 14px; }
+            tbody td { font-size: 14px; }
+            
+            .flex-wrap > div + div:before {
+                /* display: none; */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tabs { gap: 6px; }
+            .tab-btn { padding: 7px 12px; font-size: 13px; }
+
+            /* .tripanel { flex-direction: column; gap: 14px; } */
+            .panel-item { text-align: center; }
+            .counter { font-size: 26px; }
+
+            /* .title { font-size: 16px; } */
+            .subtitle { font-size: 14px; }
+
+            .side-number { font-size: 28px; }
+
+            .time-box-row {
+                flex-wrap: wrap;
+            }
+
+            .time-box {
+                flex: 0 0 calc(50% - 8px);
+            }
+            
+            .flex-wrap.type1 {
+                flex-direction: column;
+            }
+
+            /* 표 가로 스크롤 */
+            /* .table-wrapper {
+                overflow-x: auto;
+            } */
+            /* table { min-width: 600px; } */
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 14px; }
+            .card { padding: 18px; }
+
+            .tab-btn { font-size: 12px; padding: 6px 10px; }
+            /* .tripanel { flex-direction: column; gap: 14px; } */
+
+            /* .title { font-size: 15px; } */
+            .subtitle { font-size: 12px; }
+
+            .counter { font-size: 24px; }
+
+            .side-number { font-size: 24px; }
+
+            .time-box {
+                flex: 0 0 100%;
+            }
+        }
+    }
 
 
 

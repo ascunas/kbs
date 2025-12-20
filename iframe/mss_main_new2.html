@@ -1,45 +1,48 @@
 <!DOCTYPE html>
-<!-- saved from url=(0079)https://erpdev.kbs.co.kr/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_mss/mss_main.htm -->
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>MSS 메뉴</title>
 
-    <script>
-      $(function () {
-        // iframe → 부모 : 높이 전달
-        $(window).on("message", function (e) {
-          var ev = e.originalEvent;
-          var data = ev.data;
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"> -->
 
-          if (!data || data.type !== "iframeHeight") return;
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+/* -----------------------------
+iframe 높이 자동조절
+------------------------------ */
+window.addEventListener("message", function (e) {
+    var data = e.data;
+    if (!data || data.type !== "IFRAME_HEIGHT") return;
 
-          // 메시지를 보낸 iframe만 높이 적용
-          $("iframe").each(function () {
-            if (this.contentWindow === ev.source) {
-              $(this).height(data.height);
-            }
-          });
-        });
+    var iframes = document.querySelectorAll("iframe.iframe");
+    for (var i = 0; i < iframes.length; i++) {
+        if (iframes[i].contentWindow === e.source) {
+            iframes[i].style.height = data.height + "px";
+            break;
+        }
+    }
+});
 
-        // 부모 창이 resize되면 모든 iframe에게 다시 보내기
-        $(window).on("resize", function () {
-          $("iframe").each(function () {
-            this.contentWindow.postMessage({ type: "requestHeight" }, "*");
-          });
-        });
+/* 부모 클릭 → 모든 iframe에 닫기 요청 */
+document.addEventListener("mousedown", function () {
+    var iframes = document.querySelectorAll("iframe.iframe");
+    for (var i = 0; i < iframes.length; i++) {
+        try {
+            iframes[i].contentWindow.postMessage(
+                { type: "CLOSE_DATEPICKER" },
+                "*"
+            );
+        } catch (e) {}
+    }
+});
+</script>
 
-        // 초기 로딩 후 1회 강제 높이 요청(일부 브라우저 최초 계산용)
-        $(window).on("load", function () {
-          $("iframe").each(function () {
-            this.contentWindow.postMessage({ type: "requestHeight" }, "*");
-          });
-        });
-      });
-    </script>
-    <link rel="stylesheet" type="text/css" href="css/style_new.css" />
-  </head>
+<link rel="stylesheet" type="text/css" href="css/style_new.css">
+    
+</head>
   <body class="mss-main-body">
 
     <div class="layout">

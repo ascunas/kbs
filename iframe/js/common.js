@@ -1,89 +1,56 @@
-/* ----------------------------
-    성능 최적화 전역 변수
------------------------------ */
-let resizeScheduled = false;
+(function () {
+  "use strict";
 
-/* ----------------------------
-    최종 높이 계산
------------------------------ */
-function calculateHeight() {
-    requestAnimationFrame(() => {
-        const height = document.documentElement.getBoundingClientRect().height;
+  if (!window.parent || !window.parent.postMessage) return;
 
-        parent.postMessage({
-            type: "iframeHeight",
-            height: height
-        }, "*");
+  var wrap;
 
-        resizeScheduled = false;
+  function sendHeight() {
+    if (!wrap) return;
+
+    var height = wrap.offsetHeight;
+
+    window.parent.postMessage(
+      {
+        type: "IFRAME_HEIGHT",
+        height: height
+      },
+      "*"
+    );
+  }
+
+  function init() {
+    wrap = document.getElementById("iframe-wrap");
+    if (!wrap) return;
+
+    // 최초 로드
+    sendHeight();
+
+    // 브라우저 리사이즈 시 재계산
+    window.addEventListener("resize", function () {
+      setTimeout(sendHeight, 50);
     });
-}
+  }
 
-/* ----------------------------
-    idle 시간에 실행 예약
------------------------------ */
-function scheduleHeightUpdate() {
-    if (resizeScheduled) return;
-    resizeScheduled = true;
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setTimeout(init, 0);
+  } else {
+    document.addEventListener("DOMContentLoaded", init);
+  }
 
-    if (window.requestIdleCallback) {
-        requestIdleCallback(calculateHeight, { timeout: 150 });
-    } else {
-        setTimeout(calculateHeight, 50);
-    }
-}
-
-/* ----------------------------
-    jQuery DOM 준비 완료
------------------------------ */
-$(function () {
-    // 초기 업데이트
-    scheduleHeightUpdate();
-
-    // DOM 변경 감지
-    const target = document.body;
-    if (target) {
-        const mo = new MutationObserver(() => {
-            scheduleHeightUpdate();
-        });
-
-        mo.observe(target, {
-            childList: true,
-            subtree: true,
-            attributes: true
-        });
-    }
-});
-
-/* ----------------------------
-    window load 이벤트
------------------------------ */
-$(window).on("load", function () {
-    scheduleHeightUpdate();
-});
-
-/* ----------------------------
-    부모 메시지 수신
------------------------------ */
-$(window).on("message", function (e) {
-    const data = e.originalEvent.data;
-    if (data && data.type === "requestHeight") {
-        scheduleHeightUpdate();
-    }
-});
-
+})();
 
 
 /* ----------------------------
     탭
 ----------------------------- */
-$(function () {
+jQuery(function ($) {
     $(".tab-btn").on("click", function () {
 
         $(".tab-btn").removeClass("active");
         $(this).addClass("active");
 
-        const target = $(this).data("target");
+        var target = $(this).data("target");
 
         $(".tab-content").hide();
         $(target).fadeIn(150);

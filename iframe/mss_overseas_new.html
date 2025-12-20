@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title></title>
-<meta http-equiv="imagetoolbar" content="no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
 <script src="js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker.ko.min.js"></script>
 <script src="js/common.js"></script>
@@ -13,129 +12,103 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css" />
 <link rel="stylesheet" type="text/css" href="css/style_new.css" />
 
-<script type="text/javascript">
-    jQuery(function($) {
+<script>
+$(function () {
 
-        /* -----------------------------
-        1) datepicker 초기화 함수
-        ------------------------------ */
-        function initDatepicker() {
-            $('.datepicker').datepicker({
-                format: "yyyy/mm/dd",
-                language: "ko",
-                forceParse: false,
-                autoclose: true,
-                todayHighlight: true,
-                orientation: 'bottom'
-            });
+    var $dp = $('.datepicker');
 
-            $('.datepicker').datepicker('setDate', new Date());
-        }
+    /* datepicker 초기화 */
+    $dp.datepicker({
+        format: "yyyy/mm/dd",
+        language: "ko",
+        autoclose: true,
+        todayHighlight: true,
+        orientation: 'bottom'
+    }).datepicker('setDate', new Date());
 
-        // 최초 초기화
-        initDatepicker();
-
-
-        /* -----------------------------
-        2) datepicker 완전 제거(destroy)
-        ------------------------------ */
-        function destroyDatepicker() {
-            try {
-                $('.datepicker').datepicker('destroy');
-            } catch (e) {
-                // destroy 중 오류 발생해도 무시
-            }
-
-            // datepicker가 생성했던 dropdown DOM 확실히 제거
-            $('.datepicker-dropdown').remove();
-        }
-
-
-        /* -----------------------------
-        3) 부모가 보내는 메시지 처리
-        ------------------------------ */
-        window.addEventListener("message", function(e) {
-            var data = e.data;
-
-            if (data && data.type === "closeDatepicker") {
-
-                destroyDatepicker();
-                initDatepicker(); // 다시 생성
+    /* 부모에서 닫기 요청 */
+    if (window.addEventListener) {
+        window.addEventListener("message", function (e) {
+            if (e.data && e.data.type === "CLOSE_DATEPICKER") {
+                $dp.datepicker('hide');
             }
         });
-
-
-        /* -----------------------------
-        4) iframe 내부 클릭 시 datepicker 닫기
-        ------------------------------ */
-        $(document).on("click", function(e) {
-            var isInput = $(e.target).closest(".datepicker").length > 0;
-
-            // 입력창 클릭이면 datepicker 유지
-            if (isInput) return;
-
-            // datepicker가 열려 있을 경우 닫기 (destroy → init)
-            destroyDatepicker();
-            initDatepicker();
+    } else {
+        // IE8~10
+        window.attachEvent("onmessage", function (e) {
+            if (e.data && e.data.type === "CLOSE_DATEPICKER") {
+                $dp.datepicker('hide');
+            }
         });
+    }
 
-
+    /* 포커스 잃으면 닫기 (iframe 이동 포함) */
+    $dp.on('blur', function () {
+        setTimeout(function () {
+            $dp.datepicker('hide');
+        }, 150);
     });
+
+});
 </script>
+
+
 </head>
 
 <body class="mss-iframe-body">
-    <div class="title">
-        <span>해외 근무자 현황</span>
-        <input type="text" class="datepicker" readonly="readonly">
-    </div>
-    <div class="dl-wrap">
-        <dl class="type1">
-            <dt>총 해외 근무 인원</dt>
-            <dd>26</dd>
-        </dl>
-        <dl class="type1">
-            <dt>출장자</dt>
-            <dd class="mss-link-hyunwon">11</dd>
-        </dl>
-        <dl class="type1">
-            <dt>특파원</dt>
-            <dd class="mss-link-hyunwon">15</dd>
-        </dl>
-    </div>
-    <div class="tripanel flex mt20 pt20 border-top">
-        <div class="panel-item">
-            <i class="icon icon-global"></i>
+    <div id="iframe-wrap">
+        <div class="title">
+            <span>해외 근무자 현황</span>
+            <input type="text" class="datepicker" readonly="readonly">
         </div>
-        <div class="panel-item">
-            <span class="counter gray">25</span>
-            <span class="label">유럽</span>
+        <div class="dl-wrap">
+            <dl class="type1">
+                <dt>총 해외 근무 인원</dt>
+                <dd>26</dd>
+            </dl>
+            <dl class="type1">
+                <dt>출장자</dt>
+                <dd class="mss-link-hyunwon">11</dd>
+            </dl>
+            <dl class="type1">
+                <dt>특파원</dt>
+                <dd class="mss-link-hyunwon">15</dd>
+            </dl>
         </div>
-        <div class="panel-item">
-            <span class="counter gray">20</span>
-            <span class="label">아시아</span>
+        <div class="tripanel flex fc mt20 pt20 border-top">
+            <div class="panel-item">
+                <i class="icon icon-global"></i>
+            </div>
+            <div class="panel-item">
+                <span class="counter gray">25</span>
+                <span class="label">유럽</span>
+            </div>
+            <div class="panel-item">
+                <span class="counter gray">20</span>
+                <span class="label">아시아</span>
+            </div>
+            <div class="panel-item">
+                <span class="counter gray">20</span>
+                <span class="label">북아메리카</span>
+            </div>
         </div>
-        <div class="panel-item">
-            <span class="counter gray">20</span>
-            <span class="label">북아메리카</span>
-        </div>
-    </div>
-    <div class="tripanel flex">
-        <div class="panel-item">
-            <span class="counter gray">22</span>
-            <span class="label">아프리카</span>
-        </div>
-        <div class="panel-item">
-            <span class="counter gray">25</span>
-            <span class="label">오스트레일리아</span>
-        </div>
-        <div class="panel-item">
-            <span class="counter gray">20</span>
-            <span class="label">남아메리카</span>
-        </div>
-        <div class="panel-item">
-            <span class="counter gray">20</span>
-            <span class="label">기타</span>
+        <div class="tripanel flex fc">
+            <div class="panel-item">
+                <span class="counter gray">22</span>
+                <span class="label">아프리카</span>
+            </div>
+            <div class="panel-item">
+                <span class="counter gray">25</span>
+                <span class="label">오스트레일리아</span>
+            </div>
+            <div class="panel-item">
+                <span class="counter gray">20</span>
+                <span class="label">남아메리카</span>
+            </div>
+            <div class="panel-item">
+                <span class="counter gray">20</span>
+                <span class="label">기타</span>
+            </div>
         </div>
     </div>
 </body>

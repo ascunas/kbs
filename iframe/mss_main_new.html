@@ -1,122 +1,94 @@
 <!DOCTYPE html>
-<!-- saved from url=(0079)https://erpdev.kbs.co.kr/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_mss/mss_main.htm -->
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>MSS 메뉴</title>
 
-    <script>
-      $(function () {
-        // iframe → 부모 : 높이 전달
-        $(window).on("message", function (e) {
-          var ev = e.originalEvent;
-          var data = ev.data;
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"> -->
 
-          if (!data || data.type !== "iframeHeight") return;
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+/* ===============================
+iframe 높이 자동조절
+=============================== */
+window.addEventListener("message", function (e) {
+    var data = e.data;
+    if (!data || data.type !== "IFRAME_HEIGHT") return;
 
-          // 메시지를 보낸 iframe만 높이 적용
-          $("iframe").each(function () {
-            if (this.contentWindow === ev.source) {
-              $(this).height(data.height);
-            }
-          });
-        });
+    var iframes = document.querySelectorAll("iframe.iframe");
+    for (var i = 0; i < iframes.length; i++) {
+        if (iframes[i].contentWindow === e.source) {
+            iframes[i].style.height = data.height + "px";
+            break;
+        }
+    }
+});
 
-        // 부모 창이 resize되면 모든 iframe에게 다시 보내기
-        $(window).on("resize", function () {
-          $("iframe").each(function () {
-            this.contentWindow.postMessage({ type: "requestHeight" }, "*");
-          });
-        });
+/* 부모 클릭 → 모든 iframe에 닫기 요청 */
+document.addEventListener("mousedown", function () {
+    var iframes = document.querySelectorAll("iframe.iframe");
+    for (var i = 0; i < iframes.length; i++) {
+        try {
+            iframes[i].contentWindow.postMessage(
+                { type: "CLOSE_DATEPICKER" },
+                "*"
+            );
+        } catch (e) {}
+    }
+});
+</script>
 
-        // 초기 로딩 후 1회 강제 높이 요청(일부 브라우저 최초 계산용)
-        $(window).on("load", function () {
-          $("iframe").each(function () {
-            this.contentWindow.postMessage({ type: "requestHeight" }, "*");
-          });
-        });
+<link rel="stylesheet" type="text/css" href="css/style_new.css">
+    
+</head>
 
-        
-        
-        // -------------------------------
-        // datepicker 닫기 로직
-        // -------------------------------
-        $(document).ready(function () {
-          // 모든 iframe에 datepicker 닫기 지시
-          function closeAllIframeDatepickers() {
-            $("iframe").each(function () {
-              if (this.contentWindow) {
-                this.contentWindow.postMessage({ type: "closeDatepicker" }, "*");
-              }
-            });
-          }
-
-          // 부모창 아무 데나 클릭하면 → 모든 iframe에 닫기 신호만 보냄
-          $(document)
-            .off("click.closeDatepickerParent")
-            .on("click.closeDatepickerParent", function () {
-              closeAllIframeDatepickers();
-            });
-
-          // iframe에서 클릭됨을 한번더 체크하고 닫기
-          window.addEventListener("message", function (e) {
-            if (e.data && e.data.type === "iframeClicked") {
-              closeAllIframeDatepickers();
-            }
-          });
-        });
-
-
-      });
-    </script>
-    <link rel="stylesheet" type="text/css" href="css/style_new.css" />
-  </head>
-  <body class="mss-main-body">
-    <div class="layout">
-      <!-- 좌측영역 -->
-      <div class="left-side">
-        <!--당월 시간외 현황-->
-        <div class="divborder card" style="">
-          <iframe width="544" height="180" class="iframe" src="./mss_ot_new.html"></iframe>
-        </div>
-        <!--비용전표 발생내역에서 주간 시간외 현황 정보로 변경 2018.12.14 문영미-->
-
-        <div class="flex-wrap">
-          <!--시간외 예산/실적-->
-          <div class="divborder card">
-            <iframe width="235" height="180" class="iframe" src="./mss_ot_money_new.html"></iframe>
-          </div>
-
-          <!--법인카드 사용통계-->
-          <div class="divborder card">
-            <iframe width="235" height="200" class="iframe" src="./mss_bcard_year_new.html"></iframe>
-          </div>
-        </div>
+<body class="mss-main-body">
+  <div class="layout">
+    <!-- 좌측영역 -->
+    <div class="left-side">
+      <!--당월 시간외 현황-->
+      <div class="divborder card">
+        <iframe width="544" height="180" class="iframe" src="./mss_ot_new.html"></iframe>
       </div>
+      <!--비용전표 발생내역에서 주간 시간외 현황 정보로 변경 2018.12.14 문영미-->
 
-      <!-- 우측영역 -->
-      <div class="right-side">
-        <!--근무자 현황-->
-        <div class="divborder card" style="">
-          <iframe width="235" height="200" class="iframe" src="./mss_hyunwon_new.html"></iframe>
-        </div>
-
+      <div class="flex-wrap">
         <!--시간외 예산/실적-->
-        <!-- <div class="divborder card">
-        <iframe width="235" height="180" class="iframe" src="./mss_ot_money_new.html"></iframe>
-      </div> -->
+        <div class="divborder card">
+          <iframe width="235" height="180" class="iframe" src="./mss_ot_money_new.html"></iframe>
+        </div>
 
         <!--법인카드 사용통계-->
-        <!-- <div class="divborder card">
-        <iframe width="235" height="200" class="iframe" src="./mss_bcard_year_new.html"></iframe>
-      </div> -->
-
-        <!--해외 근무자 현황-->
-        <div class="divborder card overseas">
-          <iframe width="235" height="200" class="iframe" src="./mss_overseas_new.html"></iframe>
+        <div class="divborder card">
+          <iframe width="235" height="200" class="iframe" src="./mss_bcard_year_new.html"></iframe>
         </div>
       </div>
     </div>
-  </body>
+
+    <!-- 우측영역 -->
+    <div class="right-side">
+      <!--근무자 현황-->
+      <div class="divborder card">
+        <iframe width="235" height="200" class="iframe" src="./mss_hyunwon_new.html"></iframe>
+      </div>
+
+      <!--시간외 예산/실적-->
+      <!-- <div class="divborder card">
+      <iframe width="235" height="180" class="iframe" src="./mss_ot_money_new.html"></iframe>
+    </div> -->
+
+      <!--법인카드 사용통계-->
+      <!-- <div class="divborder card">
+      <iframe width="235" height="200" class="iframe" src="./mss_bcard_year_new.html"></iframe>
+    </div> -->
+
+      <!--해외 근무자 현황-->
+      <div class="divborder card overseas">
+        <iframe width="235" height="200" class="iframe" src="./mss_overseas_new.html"></iframe>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

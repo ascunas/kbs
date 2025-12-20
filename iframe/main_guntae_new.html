@@ -1,160 +1,161 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>근태</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
     
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="js/common.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/common.js"></script>
 
-	<link rel="stylesheet" href="css/style_new.css">
+<link rel="stylesheet" href="css/style_new.css">
 
 </head>
 
 <body class="ess-iframe-body">
+	<div id="iframe-wrap">
 
-	<!-- Tabs -->
-	<div class="tabs">
-		<div class="tab-btn active" data-target="#annual">연차</div>
-		<div class="tab-btn disabled" data-target="#alt">대체휴가</div><!-- 25.12.05 pointer-events: none; 처리 -->
-		<div class="tab-btn" data-target="#long">장기근속휴가</div>
-	</div>
-
-	<!-- 연차 -->
-	<div class="tab-content" id="annual">
-		<div class="flex-wrap">
-			<div class="">
-				<div class="subtitle">2025년 08월 01일 ~ 2025년 08월 01일</div>
-				<div class="tripanel">
-					<div class="panel-item">
-						<span class="counter green">22</span>
-						<span class="label">발생일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter orange">7</span>
-						<span class="label">사용일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter blue">15</span>
-						<span class="label">잔여일수</span>
-					</div>
-				</div>
-			</div>
-			<div class="">
-				<div class="subtitle">2025년 08월 01일 ~ 2025년 08월 01일</div>
-				<div class="tripanel">
-					<div class="panel-item">
-						<span class="counter green">22</span>
-						<span class="label">발생일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter orange">7</span>
-						<span class="label">사용일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter blue">15</span>
-						<span class="label">잔여일수</span>
-					</div>
-				</div>
-			</div>
+		<!-- Tabs -->
+		<div class="tabs">
+			<div class="tab-btn active" data-target="#annual">연차</div>
+			<div class="tab-btn disabled" data-target="#alt">대체휴가</div><!-- 25.12.05 pointer-events: none; 처리 -->
+			<div class="tab-btn" data-target="#long">장기근속휴가</div>
 		</div>
-	</div>
 
-	<!-- 대체휴가 -->
-	<div class="tab-content" id="alt" style="display:none;">
-		<div class="flex-wrap">
-			<div class="">
-				<div class="subtitle">2025년 12월 31일 까지 사용</div>
-				<div class="tripanel">
-					<div class="panel-item">
-						<span class="counter green">10</span>
-						<span class="label">발생일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter orange">3</span>
-						<span class="label">사용일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter blue">7</span>
-						<span class="label">잔여일수</span>
-					</div>
-				</div>
-			</div>
+		<!-- 연차 -->
+		<div class="tab-content" id="annual">
+			<div class="flex-wrap">
 				<div class="">
-				<div class="subtitle">2026년 6월 31일 까지 사용</div>
-				<div class="tripanel">
-					<div class="panel-item">
-						<span class="counter green">6</span>
-						<span class="label">발생일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter orange">0</span>
-						<span class="label">사용일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter blue">6</span>
-						<span class="label">잔여일수</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 장기근속 -->
-	<div class="tab-content" id="long" style="display:none;">
-		<div class="flex-wrap">
-			<div class="">
-				<div class="subtitle">15년 (2019년 9월 04일부터)</div>
-				<div class="tripanel">
-					<div class="panel-item">
-						<span class="counter green">10</span>
-						<span class="label">발생일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter orange">2</span>
-						<span class="label">사용일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter blue">8</span>
-						<span class="label">잔여일수</span>
+					<div class="subtitle">2025년 08월 01일 ~ 2025년 08월 01일</div>
+					<div class="tripanel">
+						<div class="panel-item">
+							<span class="counter green">22</span>
+							<span class="label">발생일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter orange">7</span>
+							<span class="label">사용일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter blue">15</span>
+							<span class="label">잔여일수</span>
+						</div>
 					</div>
 				</div>
-			</div>
 				<div class="">
-				<div class="subtitle">15년 (2019년 9월 04일부터)</div>
-				<div class="tripanel">
-					<div class="panel-item">
-						<span class="counter green">10</span>
-						<span class="label">발생일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter orange">0</span>
-						<span class="label">사용일수</span>
-					</div>
-					<div class="panel-item">
-						<span class="counter blue">10</span>
-						<span class="label">잔여일수</span>
+					<div class="subtitle">2025년 08월 01일 ~ 2025년 08월 01일</div>
+					<div class="tripanel">
+						<div class="panel-item">
+							<span class="counter green">22</span>
+							<span class="label">발생일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter orange">7</span>
+							<span class="label">사용일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter blue">15</span>
+							<span class="label">잔여일수</span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="flex-wrap info-box">
-		<div class="left">
-			<div class="info">
-				<em>2025년 11월 20일 기준</em>
-				<span>장기근속 사용연차수 0.00 미도래 연차일수: 0.00</span>
+		<!-- 대체휴가 -->
+		<div class="tab-content" id="alt" style="display:none;">
+			<div class="flex-wrap">
+				<div class="">
+					<div class="subtitle">2025년 12월 31일 까지 사용</div>
+					<div class="tripanel">
+						<div class="panel-item">
+							<span class="counter green">10</span>
+							<span class="label">발생일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter orange">3</span>
+							<span class="label">사용일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter blue">7</span>
+							<span class="label">잔여일수</span>
+						</div>
+					</div>
+				</div>
+					<div class="">
+					<div class="subtitle">2026년 6월 31일 까지 사용</div>
+					<div class="tripanel">
+						<div class="panel-item">
+							<span class="counter green">6</span>
+							<span class="label">발생일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter orange">0</span>
+							<span class="label">사용일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter blue">6</span>
+							<span class="label">잔여일수</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="right">
-			<div class="info">
-				<em>연차사용 촉진안내</em>                                
-				<span>미사용 연차일수: 총 17일 (의무사용 6일 + 사용촉진 11일)</span>
+
+		<!-- 장기근속 -->
+		<div class="tab-content" id="long" style="display:none;">
+			<div class="flex-wrap">
+				<div class="">
+					<div class="subtitle">15년 (2019년 9월 04일부터)</div>
+					<div class="tripanel">
+						<div class="panel-item">
+							<span class="counter green">10</span>
+							<span class="label">발생일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter orange">2</span>
+							<span class="label">사용일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter blue">8</span>
+							<span class="label">잔여일수</span>
+						</div>
+					</div>
+				</div>
+					<div class="">
+					<div class="subtitle">15년 (2019년 9월 04일부터)</div>
+					<div class="tripanel">
+						<div class="panel-item">
+							<span class="counter green">10</span>
+							<span class="label">발생일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter orange">0</span>
+							<span class="label">사용일수</span>
+						</div>
+						<div class="panel-item">
+							<span class="counter blue">10</span>
+							<span class="label">잔여일수</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div> 
+
+		<div class="flex-wrap info-box">
+			<div class="left">
+				<div class="info">
+					<em>2025년 11월 20일 기준</em>
+					<span>장기근속 사용연차수 0.00 미도래 연차일수: 0.00</span>
+				</div>
+			</div>
+			<div class="right">
+				<div class="info">
+					<em>연차사용 촉진안내</em>                                
+					<span>미사용 연차일수: 총 17일 (의무사용 6일 + 사용촉진 11일)</span>
+				</div>
+			</div>
+		</div> 
+	</div>
 	
 </body>
 
