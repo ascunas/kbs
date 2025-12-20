@@ -24,9 +24,8 @@ body{
 .container{
     width: 100%;
     min-height: 500px;
-    display: flex;
-    flex-direction: row;
     background: #fff;
+    text-align: right;
 }
 
 /* ---------------- PC Layout ---------------- */
@@ -44,12 +43,13 @@ body{
 }
 
 .login-section{
-    width: 650px;
-    padding: 40px 50px;
+    width: 500px;
+    padding: 80px 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    float: right;
 }
 
 .logo{
@@ -76,10 +76,11 @@ h2.title:before{
     width: 125px;
     height: 42px;
     display: flex;
-    background-image: url(../images/login_logo.svg);
+    background-image: url(../images/login_logo.png);
     background-repeat: no-repeat;
     background-position: center;
     margin-bottom: 10px;
+    background-size: 122px 40.22px;
 }
 
 
@@ -95,14 +96,18 @@ h2.title:before{
     font-size: 16px;
 }
 .input-group input.user-id{
-    background-image: url(../images/login_id.svg);
+    background-image: url(../images/login_id.jpg);
     background-repeat: no-repeat;
     background-position: 20px center;
+    background-size: 19.2px 19px;
+    outline: 0;
 }
 .input-group input.user-pw{
-    background-image: url(../images/login_pw.svg);
+    background-image: url(../images/login_pw.jpg);
     background-repeat: no-repeat;
     background-position: 20px center;
+    background-size: 15px 20px;
+    outline: 0;
 }
 .input-group input::placeholder {
   color: #999; 
@@ -127,7 +132,7 @@ h2.title:before{
 }
 
 .notice{
-    margin-top: 20px;
+    margin: 20px 20px;
     font-size: 13px;
     text-align: left;
     padding: 0 20px;
@@ -135,19 +140,13 @@ h2.title:before{
     display: flex;
     align-items: flex-start;
     line-height: 1.4;
-}
-.notice:before{
-    content: "";
-    width: 23px;
-    height: 42px;
-    margin-right: 3px;
-    margin-top: 1px;
-    display: flex;
-    align-items: flex-start;
-    background-image: url(../images/icon_notice.svg);
+    
+    background-image: url(../images/icon_notice.jpg);
     background-repeat: no-repeat;
-    background-position: left top;
+    background-position: left 1px;
+    background-size: 15px 15px;
 }
+
 
 .icon{
     margin-right: 6px;
@@ -158,7 +157,7 @@ h2.title:before{
 /* PC 버전 박스 형태 적용 */
 @media (min-width: 769px) {
     body{
-        background: #f3f3f3; /* 바깥 배경 */
+        background: #f3f3f3;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -168,21 +167,17 @@ h2.title:before{
     .container{
         width: 950px;
         height: 500px;
-        border: 0px solid #d4d7e0;  /* 박스 border */
-        border-radius: 18px;        /* 둥근 모서리 */
-        box-shadow: 0 6px 20px rgba(0,0,0,0.08); /* 박스 그림자 */
+        border: 0px solid #d4d7e0; 
+        border-radius: 18px; 
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         overflow: hidden;
         background: white;
-    }
-    .container:before{
-        content: "";
-        width: 100%;
-        height: 502px;
-        background-image: url(../images/login_bg.svg);
+        background-image: url(../images/login_bg.png);
         background-repeat: no-repeat;
-        background-position: -22px bottom;
-        background-size: 101%;
+        background-position: -118px center;
+        background-size: 64%;
     }
+
 }
 
 
@@ -212,6 +207,15 @@ h2.title:before{
     .illu-img{
         width: 90%;
     }
+    h2.title {
+        font-size: 28px;
+        margin-bottom: 0px;
+        font-weight: 700;
+        color: #0090d4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     .login-section{
         width: 100%;
@@ -225,10 +229,10 @@ h2.title:before{
         width: 100%;
         height: 160px;
         display: flex;
-        background-image: url(../images/login_bg.svg);
+        background-image: url(../images/login_bg.png);
         background-repeat: no-repeat;
-        background-position: center bottom -20px;
-        background-size: 226px;
+        background-position: center bottom -40px;
+        background-size: 230px;
     }
 
     .input-group input{
