@@ -1,6 +1,6 @@
 수정 내역
 
-25.12.05
+<b>25.12.05</b>
 - style_new.css
 - /images, iframe/images 이미지들
 - main_guntae_new.html <!-- 25.12.05 pointer-events: none; 처리 --> 주석 참조
@@ -9,7 +9,7 @@
 - main_jikup_new.html <!-- 25.12.05 추가 말줄임 처리 class="ellipsis" --> 주석 참조
 - main_daechul_new.html <!-- 25.12.05 복지안내 바로가기 버튼 추가 --> 주석 참조
 
-25.12.08
+<b>25.12.08</b>
 - style_new.css 수정
 - /images/icon_ess01.svg, /images/icon_ess02.svg, /images/icon_mss02.svg 추가
 - /iframe/images/icon_global.svg 추가, iframe/images/icon_member.svg 추가
@@ -19,7 +19,7 @@
 - 로그인 추가
 - 근무자 현황 mss-link-hyunwon 클릭 이벤트 스타일 추가 style_new.css 수정
 
-25.12.09
+<b>25.12.09</b>
 
 근무자현황과 해외근무자현황을 가로로 배치하는 별도 레이아웃
 - /iframe/mss_main_new2.html
@@ -33,9 +33,39 @@ datepicker 적용
 - iframe/css/style_new.css 수정
 - iframe/images/icon_calendar.svg 추가
 
-25.12.10
+<b>25.12.10</b>
 
 iframe 외부 클릭시 datepicker 닫히는 기능 추가
 - mss 부모창과 모든 iframe 페이지 내 관련 script 추가
 - iframe/css/style_new.css 수정
 - 출장자 특파원 hover 스타일 추가 (mss-link-hyunwon 추가)
+
+
+<b>25.12.20</b>
+
+로그인 ie모드 대응
+- 이미지 추가<br>
+login/images/icon_notice.jpg<br>
+login/images/login_bg.png<br>
+login/images/login_bg.jpg<br>
+login/images/login_id.jpg<br>
+login/images/login_pw.jpg<br>
+login/images/login_logo.png
+- css 수정
+login/css/login.css
+
+ess_main_new.html / mss_main_new.html ie모드 대응
+- head tag 내부 소스 변경
+- js/jquery-3.6.0.js 추가
+- iframe에 scrolling="no" 추가
+images/icon_ess02.jpg 추가
+
+iframe내 모든 페이지 ie모드 대응
+- head tag 내부 소스 변경 (모든 페이지 통일)
+- body 안에 소스 전부 [div id="iframe-wrap"></div] 감싸줌 (모든 페이지 통일)
+- iframe/css/style.css 수정
+- iframe/js/common.js 수정
+
+복지지원금 화면 수정
+- bokji_point_benepia.html
+- bokji_point_benepia_onerror.html
