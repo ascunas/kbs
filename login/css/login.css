@@ -222,6 +222,8 @@ h2.title:before{
         max-width: 400px;
         padding: 80px 20px;
         text-align: center;
+        margin: 0 auto;
+        float: none;
     }
 
     .input-group:first-child:before {
