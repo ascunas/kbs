@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>KBS ESS Mobile</title>
+
+    <script src="../js/jquery-1.8.0.min.js"></script>
+    <script src="../js/common.js"></script>
+    
+    <link rel="stylesheet" href="../css/style_new.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <header class="app-header">
+            <button class="icon-button home" type="button" aria-label="홈 이동">
+            <!-- <button class="icon-button prev" type="button" aria-label="이전페이지 이동"></button> -->
+            </button>
+            <div class="title">KBS ESS Mobile</div>
+            <button class="icon-button menu" type="button" aria-label="메뉴 열기" data-menu-toggle>
+            </button>
+        </header>
+
+        <main class="content">
+            <section class="quick-actions" aria-label="빠른 메뉴">
+                <button class="action-card atten" type="button">
+                    <span class="action-label">근태</span>
+                </button>
+                <button class="action-card trip" type="button">
+                    <span class="action-label">출장</span>
+                </button>
+                <button class="action-card overtime" type="button">
+                    <span class="action-label">시간외</span>
+                </button>
+                <button class="action-card event" type="button">
+                    <span class="action-label">경조금</span>
+                </button>
+            </section>
+
+            <section class="card-list" aria-label="최근 신청 현황">
+                <article class="info-card">
+                    <div class="card-header">
+                        <h2>근태</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-row">
+                            <span class="chip success">승인</span>
+                            <div class="card-title">연차 1일</div>
+                        </div>
+                        <div class="card-meta">2025/09/22~2025/09/22</div>
+                        <button class="more" type="button" aria-label="근태 더보기"></button>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-header">
+                        <h2>출장</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-row">
+                            <span class="chip pending">신청</span>
+                            <div class="card-title">여의도 본관 출장 (erp 협의)</div>
+                        </div>
+                        <div class="card-meta">2025/09/22~2025/09/22</div>
+                        <button class="more" type="button" aria-label="출장 더보기"></button>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-header">
+                        <h2>시간외 근무</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-row">
+                            <span class="chip waiting">대기</span>
+                            <div class="card-title">2025.05.20</div>
+                        </div>
+                        <div class="card-meta">
+                            <span>통상근무 09:00 ~ 18:00</span>
+                            <span>총휴계시간 01:00</span>
+                            <br>실비 33,600
+                        </div>
+                        <button class="more" type="button" aria-label="시간외 근무 더보기"></button>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-header">
+                        <h2>경조금</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-empty">최근 1년간 내용이 없습니다.</div>
+                        <button class="more" type="button" aria-label="경조금 더보기"></button>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-header">
+                        <h2>복무관리 FAQ</h2>
+                        <button class="more" type="button" aria-label="복무관리 FAQ 더보기"></button>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-header">
+                        <h2>복무관리 FAQ</h2>
+                        <button class="more" type="button" aria-label="복무관리 FAQ 더보기"></button>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <aside class="menu-panel" aria-label="전체 메뉴" role="dialog" aria-modal="true">
+            <div class="menu-hero">
+                <div class="menu-hero-content">
+                    <p class="menu-subtitle">ESS Mobile</p>
+                </div>
+                <button class="menu-close" type="button" aria-label="메뉴 닫기" data-menu-close></button>
+            </div>
+            <nav class="menu-body">
+                
+                <ul class="menu-list">
+                    <li>
+                        <a class="menu-item home active" href="#" aria-current="page">
+                            <span class="menu-label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item atten" href="#">
+                            <span class="menu-label">근태 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item trip" href="#">
+                            <span class="menu-label">출장 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item overtime" href="#">
+                            <span class="menu-label">시간외 근무내역</span>
+                        </a>
+                        <ul class="menu-children">
+                            <li><a class="menu-item" href="#">시간외 신청</a></li>
+                            <li><a class="menu-item" href="#">선택근로 실적 입력</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-item event" href="#">
+                            <span class="menu-label">경조금</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item faq" href="#">
+                            <span class="menu-label">복무관리 FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</body>
+</html>

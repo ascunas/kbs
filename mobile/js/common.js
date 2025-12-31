@@ -1,58 +1,35 @@
-(function () {
-  "use strict";
+$(function () {
+    var $appShell = $('.app-shell');
+    var $openButtons = $('[data-menu-toggle]');
+    var $closeButtons = $('[data-menu-close]');
+    var $scrim = $('.menu-scrim');
+    var $closeButton = $('.menu-close');
 
-  if (!window.parent || !window.parent.postMessage) return;
+    function toggleMenu(isOpen) {
+        if (!$appShell.length) {
+            return;
+        }
+        $appShell.toggleClass('menu-open', !!isOpen);
+        if (isOpen && $closeButton.length) {
+            $closeButton.focus();
+        }
+    }
 
-  var wrap;
-
-  function sendHeight() {
-    if (!wrap) return;
-
-    var height = wrap.offsetHeight;
-
-    window.parent.postMessage(
-      {
-        type: "IFRAME_HEIGHT",
-        height: height
-      },
-      "*"
-    );
-  }
-
-  function init() {
-    wrap = document.getElementById("iframe-wrap");
-    if (!wrap) return;
-
-    // 최초 로드
-    sendHeight();
-
-    // 브라우저 리사이즈 시 재계산
-    window.addEventListener("resize", function () {
-      setTimeout(sendHeight, 50);
+    $openButtons.on('click', function () {
+        toggleMenu(true);
     });
-  }
 
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    setTimeout(init, 0);
-  } else {
-    document.addEventListener("DOMContentLoaded", init);
-  }
+    $closeButtons.on('click', function () {
+        toggleMenu(false);
+    });
 
-})();
+    $scrim.on('click', function () {
+        toggleMenu(false);
+    });
 
-
-/* ----------------------------
-    탭
------------------------------ */
-jQuery(function ($) {
-    $(".tab-btn").on("click", function () {
-
-        $(".tab-btn").removeClass("active");
-        $(this).addClass("active");
-
-        var target = $(this).data("target");
-
-        $(".tab-content").hide();
-        $(target).fadeIn(150);
+    $(document).on('keyup', function (event) {
+        if (event.keyCode === 27) {
+            toggleMenu(false);
+        }
     });
 });
