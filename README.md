@@ -69,3 +69,9 @@ iframe내 모든 페이지 ie모드 대응
 복지지원금 화면 수정
 - bokji_point_benepia.html
 - bokji_point_benepia_onerror.html
+
+<b>25.12.30</b>
+
+로그인 에러 페이지 추가 
+- login_error.html 추가
+- login.css 수정
