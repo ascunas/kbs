@@ -1,0 +1,30 @@
+
+#cap {
+	display:inline-block;margin:0;padding:0;
+	width:100%;height:35px;
+	background:#476096 url('https://mproxy.kbs.co.kr/m001/images/cap/cap_bg.gif') repeat-x left top;
+	/*background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#5e7ba8), to(#3b5690));*/
+}
+#cap > h1 {display:inline-block;margin-left:12px;width:70px;height:35px;color:#fff;text-indent:-5000px;background:url('https://mproxy.kbs.co.kr/m001/images/cap/cap_title.png') no-repeat 2px 9px;background-size:auto 15px;}
+#cap > ul {
+	list-style:none;margin:0;padding:0;
+	position:absolute;right:3.5%;top:7px;
+	padding-left:82px;height:20px;
+	display:inline-block;
+	overflow:hidden;
+}
+#cap > ul > li {float:left;display:inline;padding-left:15px;height:20px;vertical-align:middle}
+#cap > ul > li img {height:20px;width:auto;}
+
+
+@media only screen and (max-width :360px) {
+	#cap > h1 {margin-left:3%;}
+}
+
+#cap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}

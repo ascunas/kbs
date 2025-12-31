@@ -27,6 +27,14 @@ body {
     min-height: 100vh;
 }
 
+#cap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
 .app-shell {
     width: 100%;
     margin: 0 auto;
@@ -120,7 +128,7 @@ body {
 
 .app-header {
     position: fixed;
-    top: 0;
+    top: 35px;
     left: 0;
     right: 0;
     display: flex;
@@ -209,7 +217,7 @@ body {
     flex-direction: column;
     gap: 14px;
     position: relative;
-    top: 60px;
+    top: 95px;
 }
 
 .quick-actions {
@@ -426,7 +434,7 @@ body {
 
 .menu-panel {
     position: fixed;
-    top: 0;
+    top: 35px;
     right: 0;
     bottom: 0;
     width: 100%;
@@ -452,7 +460,7 @@ body {
     width: 300px;
     height: 300px;
     position: absolute;
-    top: -60px;
+    top: -52px;
     right: -26px;
     background-image: url(../images/bg_menu.svg);
     background-repeat: no-repeat;
@@ -489,10 +497,11 @@ body {
 
 .menu-close {
     position: absolute;
-    top: 40px;
+    top: 30px;
     right: 30px;
     width: 32px;
     height: 32px;
+    padding: 0;
     border-radius: 50%;
     border: 0px solid rgba(255, 255, 255, 0.4);
     background: rgba(255, 255, 255, 0.0);
