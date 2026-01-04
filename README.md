@@ -79,7 +79,7 @@ iframe내 모든 페이지 ie모드 대응
 <b>26.01.04</b>
 
 index.html
-- <header>수정
+- header 수정
 - 결재상태 class="chip" -> class="status" 수정
 
 근태내역, 신청, 상세 추가 / 출장내역, 신청 추가 / FAQ 추가
