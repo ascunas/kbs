@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FAQ</title>
+
+    <script src="../../js/jquery-1.8.0.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.ko.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/cap.js"></script>
+
+    <link rel="stylesheet" href="../../css/cap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../css/style_new.css">
+
+    <script>
+    jQuery(function ($) { 
+        // 페이지 로드 즉시 실행
+        if (typeof Loader !== 'undefined') {
+            Loader.start();
+            
+            // 테스트를 위해 2초 후 종료 시뮬레이션
+            setTimeout(function() {
+                Loader.complete();
+                console.log("로딩 완료 테스트");
+            }, 1000);
+        }
+    });
+    </script>
+
+
+</head>
+<body class="sub-page">
+    
+    <div class="app-shell">
+        <header class="app-header">
+            <button class="icon-button prev" type="button" aria-label="이전 페이지로 이동"></button>
+            <h1 class="title">복무관리 FAQ</h1>
+            <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
+        </header>
+
+        <main class="content fn-height faq-content">
+            <section class="faq-wrap" aria-label="복무관리 FAQ 목록">
+                <ul class="accordion-list fn-accordion">
+                    <li class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-ans-01" id="faq-que-01">
+                            <span class="icon-q" aria-hidden="true">Q</span>
+                            <span class="title">복무관리 실무집 상의 근태관리 적용범위는?</span>
+                        </button>
+                        <div id="faq-ans-01" class="accordion-content" role="region" aria-labelledby="faq-que-01">
+                            <div class="answer-box">
+                                <span class="icon-a" aria-hidden="true">A</span>
+                                <p>공사의 직원에게 적용됩니다.<br>전속 단체나 연봉계약직 등은 각각의 계약조건에 따라 근태관리를 하여야 합니다.</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="accordion-item">                        
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-ans-02" id="faq-que-02">
+                            <span class="icon-q" aria-hidden="true">Q</span>
+                            <span class="title">개근의 개념은?</span>
+                        </button>
+                        <div id="faq-ans-02" class="accordion-content" role="region" aria-labelledby="faq-que-02">
+                            <div class="answer-box">
+                                <span class="icon-a" aria-hidden="true">A</span>
+                                <p>시스템을 통해 신청 후 승인 절차를 거칩니다.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item">            
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-ans-03" id="faq-que-03">
+                            <span class="icon-q" aria-hidden="true">Q</span>
+                            <span class="title">근태처리 절차?</span>
+                        </button>
+                        <div id="faq-ans-03" class="accordion-content" role="region" aria-labelledby="faq-que-03">
+                            <div class="answer-box">
+                                <span class="icon-a" aria-hidden="true">A</span>
+                                <p>시스템을 통해 신청 후 승인 절차를 거칩니다.</p>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-ans-04" id="faq-que-04">
+                            <span class="icon-q" aria-hidden="true">Q</span>
+                            <span class="title">근태처리를 언제 해야 하는지?</span>
+                        </button>
+                        <div id="faq-ans-04" class="accordion-content" role="region" aria-labelledby="faq-que-04">
+                            <div class="answer-box">
+                                <span class="icon-a" aria-hidden="true">A</span>
+                                <p>시스템을 통해 신청 후 승인 절차를 거칩니다.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false" aria-controls="faq-ans-05" id="faq-que-05">
+                            <span class="icon-q" aria-hidden="true">Q</span>
+                            <span class="title">답변 내용에 table이 있을때는 어떻게?</span>
+                        </button>
+                        <div id="faq-ans-05" class="accordion-content" role="region" aria-labelledby="faq-que-05">
+                            <div class="answer-box">
+                                <span class="icon-a" aria-hidden="true">A</span>
+                                <div class="table-container">
+                                    <p class="table-desc">근속 기간별 휴가 기간 안내입니다.</p>
+                                    <div class="table-wrap">
+                                        <table class="info-table" style="width: 400px;"><!-- table의 width가 커서 가로 스크롤이 필요할 때 width값을 넣어준다 -->
+                                            <caption class="blind">근속 기간별 휴가 기간 안내 표</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th>구분</th>
+                                                    <th>대상자</th>
+                                                    <th>휴가기간</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1기</td>
+                                                    <td>10년 이상 15년 미만 근속자</td>
+                                                    <td>10일</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2기</td>
+                                                    <td>15년 이상 20년 미만 근속자</td>
+                                                    <td>10일</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3기</td>
+                                                    <td>20년 이상 근속자</td>
+                                                    <td>10일</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="footer-action" role="group" aria-label="하단 액션 메뉴">
+            <button class="action-button global" type="button">목록으로</button>
+        </div>
+
+        <aside class="menu-panel" id="main-menu" aria-label="전체 메뉴" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="menu-hero">
+                <div class="menu-hero-content">
+                    <p class="menu-subtitle">ESS Mobile</p>
+                </div>
+                <button class="menu-close" type="button" aria-label="메뉴 닫기" data-menu-close></button>
+            </div>
+            <nav class="menu-body">
+                <ul class="menu-list">
+                    <li>
+                        <a class="menu-item home" href="#">
+                            <span class="menu-label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item atten active" href="#" aria-current="page">
+                            <span class="menu-label">근태 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item trip" href="#">
+                            <span class="menu-label">출장 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item overtime" href="#">
+                            <span class="menu-label">시간외 근무내역</span>
+                        </a>
+                        <ul class="menu-children">
+                            <li><a class="menu-item" href="#">시간외 신청</a></li>
+                            <li><a class="menu-item" href="#">선택근로 실적 입력</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-item event" href="#">
+                            <span class="menu-label">경조금</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item faq" href="#">
+                            <span class="menu-label">복무관리 FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+    </div>
+</body>
+</html>

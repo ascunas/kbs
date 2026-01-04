@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>근태신청</title>
+
+    <script src="../../js/jquery-1.8.0.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.ko.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/cap.js"></script>
+
+    <link rel="stylesheet" href="../../css/cap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../css/style_new.css">
+
+    <script>
+    jQuery(function ($) { 
+        // 페이지 로드 즉시 실행
+        if (typeof Loader !== 'undefined') {
+            Loader.start();
+            
+            // 테스트를 위해 2초 후 종료 시뮬레이션
+            setTimeout(function() {
+                Loader.complete();
+                console.log("로딩 완료 테스트");
+            }, 1000);
+        }
+
+        $('.datepicker').datepicker({
+            format: "yyyy.mm.dd",
+            language: "ko",
+            autoclose: true,
+            todayHighlight: true,
+            orientation: 'bottom'
+        });
+    });
+    </script>
+</head>
+<body class="sub-page">
+    
+    <div class="app-shell">
+        <header class="app-header">
+            <button class="icon-button prev" type="button" aria-label="이전 페이지로 이동"></button>
+            <h1 class="title">근태신청</h1>
+            <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
+        </header>
+
+        <main class="content fn-height form-content">
+            <form class="apply-form">
+                <div class="form-row">
+                    <label class="form-label" for="att-group">근태그룹</label>
+                    <div class="input-wrap select">
+                        <select id="att-group" name="att-group">
+                            <option value="">선택하세요</option>
+                        </select>
+                        <span class="icon icon-caret" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="att-type">근태유형</label>
+                    <div class="input-wrap select">
+                        <select id="att-type" name="att-type" aria-label="근태유형 선택">
+                            <option value="">선택하세요</option>
+                        </select>
+                        <span class="icon icon-caret" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="att-kind">근무형태</label>
+                    <div class="input-wrap select">
+                        <select id="att-kind" name="att-kind" aria-label="근무형태 선택">
+                            <option value="">선택하세요</option>
+                        </select>
+                        <span class="icon icon-caret" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <span class="form-label" id="label-period">기간</span>
+                    <div class="date-row">
+                        <div class="input-wrap date">
+                            <input type="text" name="start-date" class="datepicker" aria-labelledby="label-period" aria-label="시작일" placeholder="YYYY.MM.DD" readonly="readonly" aria-haspopup="dialog">
+                        </div>
+                        <span class="date-tilde" aria-hidden="true">~</span>
+                        <div class="input-wrap date">
+                            <input type="text" name="end-date" class="datepicker" aria-labelledby="label-period" aria-label="종료일" placeholder="YYYY.MM.DD" readonly="readonly" aria-haspopup="dialog">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row approver-row">
+                    <label class="form-label" for="approver-display">결재자</label>
+                    <div class="approver-search">
+                        <div class="search-input-group">
+                            <div class="input-wrap text">
+                                <input id="approver-display" type="text" name="approver" value="나구열 팀장" readonly="readonly" aria-describedby="approver-help">
+                            </div>
+                            <button class="icon-button search fn-modal-open" type="button" aria-label="결재자 검색 팝업 열기" data-target="approverModal"></button>
+                        </div>
+                        <p id="approver-help" class="help-text">최근 결재자가 기본으로 표시됩니다.</p>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <div class="footer-action" role="group" aria-label="하단 액션 메뉴">
+            <button class="action-button global" type="button">결재상신</button>
+            <button class="action-button primary" type="button">저장</button>
+        </div>
+
+        <aside class="menu-panel" id="main-menu" aria-label="전체 메뉴" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="menu-hero">
+                <div class="menu-hero-content">
+                    <p class="menu-subtitle">ESS Mobile</p>
+                </div>
+                <button class="menu-close" type="button" aria-label="메뉴 닫기" data-menu-close></button>
+            </div>
+            <nav class="menu-body">
+                <ul class="menu-list">
+                    <li>
+                        <a class="menu-item home" href="#">
+                            <span class="menu-label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item atten active" href="#" aria-current="page">
+                            <span class="menu-label">근태 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item trip" href="#">
+                            <span class="menu-label">출장 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item overtime" href="#">
+                            <span class="menu-label">시간외 근무내역</span>
+                        </a>
+                        <ul class="menu-children">
+                            <li><a class="menu-item" href="#">시간외 신청</a></li>
+                            <li><a class="menu-item" href="#">선택근로 실적 입력</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-item event" href="#">
+                            <span class="menu-label">경조금</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item faq" href="#">
+                            <span class="menu-label">복무관리 FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div id="approverModal" class="modal approver-modal" role="dialog" aria-modal="true" aria-labelledby="approverModalTitle" aria-hidden="true">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="approverModalTitle">결재자 조회</h2>
+                    <button class="modal-close fn-modal-close" type="button" aria-label="결재자 조회 팝업 닫기"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="search-field">
+                        <div class="search-input-group">
+                            <div class="input-wrap text">
+                                <label for="approver-search" class="blind">검색할 결재자 이름</label>
+                                <input id="approver-search" type="text" placeholder="이름으로 검색하세요" autofocus>
+                            </div>
+                            <button class="icon-button search" type="button" aria-label="검색 실행"></button>
+                        </div>
+                    </div>
+                    <p class="note" aria-live="polite">총 3건이 검색되었습니다.</p>
+                    <ul class="search-result">
+                        <li>
+                            <a href="#" class="search-result-item fn-modal-close" aria-label="나구열 팀장 선택">
+                                <span class="number">0987654</span>
+                                <span class="name">나구열 팀장</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="search-result-item fn-modal-close" aria-label="홍길동 차장 선택">
+                                <span class="number">0987654</span>
+                                <span class="name">홍길동 차장</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="search-result-item fn-modal-close" aria-label="이민수 과장 선택">
+                                <span class="number">0987654</span>
+                                <span class="name">이민수 과장</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

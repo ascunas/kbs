@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FAQ</title>
+
+    <script src="../../js/jquery-1.8.0.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.ko.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/cap.js"></script>
+
+    <link rel="stylesheet" href="../../css/cap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../css/style_new.css">
+
+    <script>
+    jQuery(function ($) { 
+        // 페이지 로드 즉시 실행
+        if (typeof Loader !== 'undefined') {
+            Loader.start();
+            
+            // 테스트를 위해 2초 후 종료 시뮬레이션
+            setTimeout(function() {
+                Loader.complete();
+                console.log("로딩 완료 테스트");
+            }, 1000);
+        }
+    });
+    </script>
+
+
+</head>
+<body class="sub-page">
+    
+    <div class="app-shell">
+        <header class="app-header">
+            <button class="icon-button home" type="button" aria-label="메인 화면으로 이동"></button>
+            <h1 class="title">FAQ</h1>
+            <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
+        </header>
+
+        <main class="content fn-height faq-content">
+           <section class="faq-wrap" aria-label="FAQ 목록">
+                <h2 class="blind">질문 카테고리 선택</h2>
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="근태일반 카테고리 상세 보기">근태일반</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="연차휴가 카테고리 상세 보기">연차휴가</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="병가, 공상 카테고리 상세 보기">병가, 공상</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="청원휴가 카테고리 상세 보기">청원휴가</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="생리휴가, 산전/산후 휴가 카테고리 상세 보기">생리휴가, 산전/산후 휴가</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="장기근속휴가 카테고리 상세 보기">장기근속휴가</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="출장 카테고리 상세 보기">출장</a>
+                    </li>
+                    <li class="faq-item">
+                        <a href="javascript:void(0)" aria-label="휴직 카테고리 상세 보기">휴직</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <aside class="menu-panel" id="main-menu" aria-label="전체 메뉴" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="menu-hero">
+                <div class="menu-hero-content">
+                    <p class="menu-subtitle">ESS Mobile</p>
+                </div>
+                <button class="menu-close" type="button" aria-label="메뉴 닫기" data-menu-close></button>
+            </div>
+            <nav class="menu-body">
+                <ul class="menu-list">
+                    <li>
+                        <a class="menu-item home" href="#">
+                            <span class="menu-label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item atten active" href="#" aria-current="page">
+                            <span class="menu-label">근태 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item trip" href="#">
+                            <span class="menu-label">출장 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item overtime" href="#">
+                            <span class="menu-label">시간외 근무내역</span>
+                        </a>
+                        <ul class="menu-children">
+                            <li><a class="menu-item" href="#">시간외 신청</a></li>
+                            <li><a class="menu-item" href="#">선택근로 실적 입력</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-item event" href="#">
+                            <span class="menu-label">경조금</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item faq" href="#">
+                            <span class="menu-label">복무관리 FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</body>
+</html>

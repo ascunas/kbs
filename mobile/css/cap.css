@@ -20,11 +20,3 @@
 @media only screen and (max-width :360px) {
 	#cap > h1 {margin-left:3%;}
 }
-
-#cap {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-}

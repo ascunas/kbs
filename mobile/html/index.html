@@ -11,20 +11,33 @@
 
     <link rel="stylesheet" href="../css/cap.css">
     <link rel="stylesheet" href="../css/style_new.css">
+
+    <script>
+    jQuery(function ($) { 
+        // 페이지 로드 즉시 실행
+        if (typeof Loader !== 'undefined') {
+            Loader.start();
+            
+            // 테스트를 위해 2초 후 종료 시뮬레이션
+            setTimeout(function() {
+                Loader.complete();
+                console.log("로딩 완료 테스트");
+            }, 1000);
+        }
+    });
+    </script>
 </head>
 <body>
     <div class="app-shell">
 
         <header class="app-header">
-            <button class="icon-button home" type="button" aria-label="홈 이동">
+            <button class="icon-button home" type="button" aria-label="메인 화면으로 이동"></button>
             <!-- <button class="icon-button prev" type="button" aria-label="이전페이지 이동"></button> -->
-            </button>
-            <div class="title">KBS ESS Mobile</div>
-            <button class="icon-button menu" type="button" aria-label="메뉴 열기" data-menu-toggle>
-            </button>
+            <h1 class="title">근태내역</h1>
+            <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
         </header>
 
-        <main class="content">
+        <main class="content fn-height">
             <section class="quick-actions" aria-label="빠른 메뉴">
                 <button class="action-card atten" type="button">
                     <span class="action-label">근태</span>
@@ -47,7 +60,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-row">
-                            <span class="chip success">승인</span>
+                            <span class="status success">승인</span>
                             <div class="card-title">연차 1일</div>
                         </div>
                         <div class="card-meta">2025/09/22~2025/09/22</div>
@@ -61,7 +74,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-row">
-                            <span class="chip pending">신청</span>
+                            <span class="status pending">신청</span>
                             <div class="card-title">여의도 본관 출장 (erp 협의)</div>
                         </div>
                         <div class="card-meta">2025/09/22~2025/09/22</div>
@@ -75,7 +88,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-row">
-                            <span class="chip waiting">대기</span>
+                            <span class="status waiting">대기</span>
                             <div class="card-title">2025.05.20</div>
                         </div>
                         <div class="card-meta">
@@ -113,7 +126,7 @@
             </section>
         </main>
 
-        <aside class="menu-panel" aria-label="전체 메뉴" role="dialog" aria-modal="true">
+        <aside class="menu-panel" id="main-menu" aria-label="전체 메뉴" role="dialog" aria-modal="true" aria-hidden="true">
             <div class="menu-hero">
                 <div class="menu-hero-content">
                     <p class="menu-subtitle">ESS Mobile</p>
