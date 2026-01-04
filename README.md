@@ -80,6 +80,7 @@ iframe내 모든 페이지 ie모드 대응
 
 index.html
 - header 수정
+- menu aside 태그에  aria-hidden="true" 속성 추가
 - 결재상태 class="chip" -> class="status" 수정
 
 근태내역, 신청, 상세 추가 / 출장내역, 신청 추가 / FAQ 추가
