@@ -537,18 +537,20 @@ body {
     }
 
     .list {
-        vertical-align: top;
-        border-right: 1px solid #DDD;
-        width: 250px;
-        min-width: 250px;
-        height: 100vh;            
-        background: #fff;
-        position: fixed;
-        left: 0;
-        overflow-y: auto;
-        overflow-x: hidden;
-        box-shadow: 2px 4px 6px rgb(0, 0, 50, 10%);
-        z-index: 9;
+    vertical-align: top;
+    border-right: 1px solid #DDD;
+    width: 250px;
+    min-width: 250px;
+    height: 100vh;
+    height: calc(100% - 120px);
+    background: #fff;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 2px 4px 6px rgb(0, 0, 50, 10%);
+    margin-top: 60px;
+    z-index: 9;
     }
 
 
@@ -590,6 +592,10 @@ body {
         font-weight: bold;
         font-size: 32px;
         padding-left: 15px;
+        position: fixed;
+        top: 60px;
+        width: 250px;
+        background: #fff;
     }
     .msshead {
         display: flex;
@@ -890,6 +896,9 @@ body {
         .mss-main-body .flex-wrap .card + .card {
             xmargin-left: 20px;
             float: right;
+        }
+        .list {
+        padding-bottom: 60px;
         }
     }
 
