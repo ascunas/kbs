@@ -84,3 +84,8 @@ index.html
 - 결재상태 class="chip" -> class="status" 수정
 
 근태내역, 신청, 상세 추가 / 출장내역, 신청 추가 / FAQ 추가
+
+<b>26.01.05</b>
+
+ess 좌측 트리메뉴 하단 짤림 방지
+- iframe/css/style_new.css 수정
