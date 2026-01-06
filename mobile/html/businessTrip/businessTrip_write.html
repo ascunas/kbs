@@ -8,7 +8,7 @@
     <script src="../../js/jquery-1.8.0.min.js"></script>
     <script src="../../js/bootstrap-datepicker.min.js"></script>
     <script src="../../js/bootstrap-datepicker.ko.min.js"></script>
-    <script src="../../js/common.js"></script>
+    <script src="../../js/common_new.js"></script>
     <script src="../../js/cap.js"></script>
 
     <link rel="stylesheet" href="../../css/cap.css">
@@ -105,7 +105,7 @@
                             <div class="input-wrap text">
                                 <input id="cost-code-input" type="text" name="code" aria-label="선택된 비용 코드" placeholder="코드를 검색하세요" readonly>
                             </div>
-                            <button class="icon-button search fn-modal-open" type="button" aria-label="비용 코드 검색 창 열기" data-target="costCode"></button>
+                            <button class="icon-button search fn-modal-open" type="button" aria-label="비용 코드 검색 창 열기" data-target="costCodeModal"></button>
                         </div>
                         <span class="text result">코드명 : <em><span class="blind">선택된 코드 번호:</span>00348568</em></span>
                     </div>
@@ -251,169 +251,170 @@
             </nav>
         </aside>
 
-        <div id="costCode" class="modal" role="dialog" aria-modal="true" aria-labelledby="costCodeTitle" aria-hidden="true">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="costCodeTitle">비용(WBS) 코드 조회</h2>
-                    <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="search-field">
-                        <div class="search-input-group">
-                            <label class="form-label" for="search-category">검색구분</label>
-                            <div class="input-wrap select">
-                                <select id="search-category" aria-label="검색구분" autofocus>
-                                    <option value="">1.자산-부서로 검색</option>
-                                </select>
-                                <span class="icon icon-caret" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="search-input-group">
-                            <label class="form-label" for="dept">부서검색</label>
-                            <div class="input-wrap text">
-                                <input id="dept" type="text" name="approver" aria-label="부서" placeholder="부서를 검색하세요" readonly>
-                            </div>
-                            <button class="icon-button search fn-modal-open" type="button" aria-label="부서 검색" data-target="deptModal"></button>
-                        </div>
-                        <button class="btn search" type="button" aria-label="조회">조회</button>
-                    </div>
+    </div>
 
-                    <p class="note">총 3건이 검색되었습니다.</p>
-                    <ul class="search-result flex-colum">
-                        <li>
-                            <a href="javascript:void(0)" class="search-result-item fn-modal-close">
-                                <span class="number">000037463269</span>
-                                <span class="name">모바일코비스개선 / IT개발운영팀</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="search-result-item fn-modal-close">
-                                <span class="number">000037463269</span>
-                                <span class="name">SW개발비 / 2024편성제작정보시스템기능개선사업 IT개발운영팀</span>
-                            </a>
-                        </li>
-                    </ul>
+    <div id="costCodeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="costCodeModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="costCodeModalTitle">비용(WBS) 코드 조회</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-field">
+                    <div class="search-input-group">
+                        <label class="form-label" for="search-category">검색구분</label>
+                        <div class="input-wrap select">
+                            <select id="search-category" aria-label="검색구분" autofocus>
+                                <option value="">1.자산-부서로 검색</option>
+                            </select>
+                            <span class="icon icon-caret" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="search-input-group">
+                        <label class="form-label" for="dept">부서검색</label>
+                        <div class="input-wrap text">
+                            <input id="dept" type="text" name="approver" aria-label="부서" placeholder="부서를 검색하세요" readonly>
+                        </div>
+                        <button class="icon-button search fn-modal-open" type="button" aria-label="부서 검색" data-target="deptModal"></button>
+                    </div>
+                    <button class="btn search" type="button" aria-label="조회">조회</button>
+                </div>
+
+                <p class="note">총 3건이 검색되었습니다.</p>
+                <ul class="search-result flex-colum">
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">000037463269</span>
+                            <span class="name">모바일코비스개선 / IT개발운영팀</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">000037463269</span>
+                            <span class="name">SW개발비 / 2024편성제작정보시스템기능개선사업 IT개발운영팀</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="infoModalTitle">관련사항 안내</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="info-list-wrap">
+                    <dl class="info-list-item">
+                        <dt>지근거리 출장</dt>
+                        <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음 (단, 실비 정산 가능)</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>자기차량이용</dt>
+                        <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>집행기관 수행</dt>
+                        <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>공사차량 이용</dt>
+                        <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>이동숙박</dt>
+                        <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>운전여비 지급</dt>
+                        <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
+                    </dl>
+                    <p class="info-text">전체일수가 아닌 특정일수 만큼 위의 내용이 적용되는 경우 기타비용으로 가감 (예, 5일 중 3일만 이동숙박)</p>
                 </div>
             </div>
         </div>
-
-        <div id="infoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-hidden="true">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="infoModalTitle">관련사항 안내</h2>
-                    <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="info-list-wrap">
-                        <dl class="info-list-item">
-                            <dt>지근거리 출장</dt>
-                            <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음 (단, 실비 정산 가능)</dd>
-                        </dl>
-                        <dl class="info-list-item">
-                            <dt>자기차량이용</dt>
-                            <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
-                        </dl>
-                        <dl class="info-list-item">
-                            <dt>집행기관 수행</dt>
-                            <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
-                        </dl>
-                        <dl class="info-list-item">
-                            <dt>공사차량 이용</dt>
-                            <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
-                        </dl>
-                        <dl class="info-list-item">
-                            <dt>이동숙박</dt>
-                            <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
-                        </dl>
-                        <dl class="info-list-item">
-                            <dt>운전여비 지급</dt>
-                            <dd>(왕복 2km이내) 관내출장에 따른 여비(일비, 식비, 숙박비 등)을 지급하지 않음</dd>
-                        </dl>
-                        <p class="info-text">전체일수가 아닌 특정일수 만큼 위의 내용이 적용되는 경우 기타비용으로 가감 (예, 5일 중 3일만 이동숙박)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
         
 
-        <div id="approverModal" class="modal approver-modal" role="dialog" aria-modal="true" aria-labelledby="approverModalTitle" aria-hidden="true">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="approverModalTitle">결재자 조회</h2>
-                    <button class="modal-close fn-modal-close" type="button" aria-label="결재자 조회 팝업 닫기"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="search-field">
-                        <div class="search-input-group">
-                            <div class="input-wrap text">
-                                <label for="approver-search" class="blind">검색할 결재자 이름</label>
-                                <input id="approver-search" type="text" placeholder="이름으로 검색하세요" autofocus>
-                            </div>
-                            <button class="icon-button search" type="button" aria-label="검색 실행"></button>
+    <div id="approverModal" class="modal approver-modal" role="dialog" aria-modal="true" aria-labelledby="approverModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="approverModalTitle">결재자 조회</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="결재자 조회 팝업 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-field">
+                    <div class="search-input-group">
+                        <div class="input-wrap text">
+                            <label for="approver-search" class="blind">검색할 결재자 이름</label>
+                            <input id="approver-search" type="text" placeholder="이름으로 검색하세요" autofocus>
                         </div>
+                        <button class="icon-button search" type="button" aria-label="검색 실행"></button>
                     </div>
-                    <p class="note" aria-live="polite">총 3건이 검색되었습니다.</p>
-                    <ul class="search-result">
-                        <li>
-                            <a href="#" class="search-result-item fn-modal-close" aria-label="나구열 팀장 선택">
-                                <span class="number">0987654</span>
-                                <span class="name">나구열 팀장</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="search-result-item fn-modal-close" aria-label="홍길동 차장 선택">
-                                <span class="number">0987654</span>
-                                <span class="name">홍길동 차장</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="search-result-item fn-modal-close" aria-label="이민수 과장 선택">
-                                <span class="number">0987654</span>
-                                <span class="name">이민수 과장</span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
+                <p class="note" aria-live="polite">총 3건이 검색되었습니다.</p>
+                <ul class="search-result">
+                    <li>
+                        <a href="#" class="search-result-item fn-modal-close" aria-label="나구열 팀장 선택">
+                            <span class="number">0987654</span>
+                            <span class="name">나구열 팀장</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="search-result-item fn-modal-close" aria-label="홍길동 차장 선택">
+                            <span class="number">0987654</span>
+                            <span class="name">홍길동 차장</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="search-result-item fn-modal-close" aria-label="이민수 과장 선택">
+                            <span class="number">0987654</span>
+                            <span class="name">이민수 과장</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
 
-        <div id="deptModal" class="modal approver-modal" role="dialog" aria-modal="true" aria-labelledby="deptModalTitle" aria-hidden="true">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="deptModalTitle">부서 조회</h2>
-                    <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="search-field">
-                        <div class="search-input-group">
-                            <div class="input-wrap text">
-                                <input type="text" name="dept" aria-label="부서" placeholder="부서명을 검색하세요" autofocus>
-                            </div>
-                            <button class="icon-button search" type="button" aria-label="부서 검색"></button>
+    <div id="deptModal" class="modal approver-modal" role="dialog" aria-modal="true" aria-labelledby="deptModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="deptModalTitle">부서 조회</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-field">
+                    <div class="search-input-group">
+                        <div class="input-wrap text">
+                            <input type="text" name="dept" aria-label="부서" placeholder="부서명을 검색하세요" autofocus>
                         </div>
+                        <button class="icon-button search" type="button" aria-label="부서 검색"></button>
                     </div>
-                    <p class="note">총 3건이 검색되었습니다.</p>
-                    <ul class="search-result">
-                        <li>
-                            <a href="javascript:void(0)" class="search-result-item fn-modal-close">
-                                <span class="number">0987654</span>
-                                <span class="name">경영정보부</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="search-result-item fn-modal-close">
-                                <span class="number">0987654</span>
-                                <span class="name">홍길동 차장</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="search-result-item fn-modal-close">
-                                <span class="number">0987654</span>
-                                <span class="name">이민수 과장</span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
+                <p class="note">총 3건이 검색되었습니다.</p>
+                <ul class="search-result">
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">0987654</span>
+                            <span class="name">경영정보부</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">0987654</span>
+                            <span class="name">홍길동 차장</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">0987654</span>
+                            <span class="name">이민수 과장</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

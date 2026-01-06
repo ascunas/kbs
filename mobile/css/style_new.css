@@ -265,6 +265,14 @@ body {
     height: 45px;
     border-radius: 12px;
 }
+.app-header .icon-button.home, .app-header .icon-button.prev {
+    position: absolute;
+    left: 16px;
+}
+.app-header .icon-button.menu {
+    position: absolute;
+    right: 16px;
+}
 .app-header.is-scrolled {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
@@ -273,6 +281,7 @@ h1.title {
     font-size: 20px;
     font-weight: 700;
     color: #140661;
+    margin: 0 auto;
 }
 
 .icon-button {
