@@ -27,7 +27,7 @@
  *
  * 6) 아코디언:
  *    - .fn-accordion .accordion-item
- *      - .accordion-header + .accordion-content
+ *    - .accordion-header + .accordion-content
  *
  * 7) 툴팁:
  *    - .tooltip-target[data-tooltip="내용"]
@@ -35,7 +35,7 @@
  * 8) 드롭다운:
  *    - .fn-dropdown .dropdown-toggle + .dropdown-menu
  *
- * 9) 동적 DOM(ajax/탭전환/append 등) 후에는 이것 1줄이면 끝:
+ * 9) 동적 DOM(ajax/탭전환/append 등) 후
  *    - UI.refresh();   // 레이아웃/스크롤바인딩/플러그인 재초기화
  *
  * =========================
@@ -50,9 +50,7 @@
 (function ($, window, document) {
   'use strict';
 
-  /* -------------------------
-   * 유틸
-   * ------------------------- */
+  /* ---------- 유틸 ---------- */
   function raf(fn) {
     if (window.requestAnimationFrame) return window.requestAnimationFrame(fn);
     return window.setTimeout(fn, 16);
@@ -62,10 +60,10 @@
     var last = 0, timer = null;
     return function () {
       var now = +new Date();
-      var remaining = wait - (now - last);
+      var remain = wait - (now - last);
       var ctx = this, args = arguments;
 
-      if (remaining <= 0) {
+      if (remain <= 0) {
         if (timer) { clearTimeout(timer); timer = null; }
         last = now;
         fn.apply(ctx, args);
@@ -74,7 +72,7 @@
           last = +new Date();
           timer = null;
           fn.apply(ctx, args);
-        }, remaining);
+        }, remain);
       }
     };
   }
@@ -90,9 +88,7 @@
       .filter(function () { return $(this).attr('tabindex') !== '-1'; });
   }
 
-  /* -------------------------
-   * DOM 캐시 (cap.js document.write 대응)
-   * ------------------------- */
+  /* ---------- DOM 캐시(cap.js document.write 대응) ---------- */
   var $window = $(window);
   var $document = $(document);
 
@@ -106,11 +102,9 @@
     $footer = $('.footer-action');
   }
 
-  /* -------------------------
-   * 플러그인(탭/툴팁/아코디언/드롭다운)
-   * - 중복 초기화 방지(data 플래그)
-   * ------------------------- */
+  /* ---------- UI 플러그인 ---------- */
   (function definePlugins() {
+    // 탭
     $.fn.tabPlugin = function () {
       return this.each(function () {
         var $container = $(this);
@@ -123,7 +117,6 @@
 
         $container.on('click', '.tab-button', function (e) {
           e.preventDefault();
-
           var $btn = $(this);
           var id = $btn.data('tab');
           var $target = $contents.filter('[data-tab-content="' + id + '"]');
@@ -136,12 +129,11 @@
 
           $target.stop(true, true).fadeIn(150, function () {
             $target.addClass('active').attr('aria-hidden', 'false');
-            // 탭 전환 후 DOM 상태 변했음을 공통에게 알림(스크롤바인딩/플러그인 재적용)
             $document.trigger('dom:contentChanged.ui');
           });
         });
 
-        // 초기 활성 탭 보정
+        // 초기 탭 보정
         if (!$buttons.filter('.active').length && $buttons.length) {
           $buttons.first().addClass('active').attr('aria-selected', 'true');
         }
@@ -151,12 +143,57 @@
 
         $contents.hide().attr('aria-hidden', 'true').removeClass('active');
         if (activeId !== undefined) {
-          $contents.filter('[data-tab-content="' + activeId + '"]').show()
-            .attr('aria-hidden', 'false').addClass('active');
+          $contents.filter('[data-tab-content="' + activeId + '"]')
+            .show().attr('aria-hidden', 'false').addClass('active');
         }
       });
     };
 
+    // 아코디언
+    $.fn.accordionPlugin = function (options) {
+      var settings = $.extend({ oneOpen: true, speed: 300 }, options);
+
+      return this.each(function () {
+        var $acc = $(this);
+        if ($acc.data('accInit')) return;
+        $acc.data('accInit', true);
+
+        $acc.on('click', '.accordion-header', function (e) {
+          e.preventDefault();
+
+          var $h = $(this);
+          var $item = $h.closest('.accordion-item');
+          var $content = $h.next('.accordion-content');
+          if (!$content.length) return;
+
+          if (settings.oneOpen) {
+            $acc.find('.accordion-item').not($item).removeClass('active')
+              .find('.accordion-content').stop(true, true).slideUp(settings.speed);
+          }
+
+          if ($item.hasClass('active')) {
+            $item.removeClass('active');
+            $content.stop(true, true).slideUp(settings.speed);
+          } else {
+            $item.addClass('active');
+            $content.stop(true, true).slideDown(settings.speed);
+          }
+
+          $document.trigger('dom:contentChanged.ui');
+        });
+
+        // 초기 상태(active만 열기)
+        $acc.find('.accordion-item').each(function () {
+          var $it = $(this);
+          var $ct = $it.find('.accordion-content').first();
+          if (!$ct.length) return;
+          if ($it.hasClass('active')) $ct.show();
+          else $ct.hide();
+        });
+      });
+    };
+
+    // 툴팁
     $.fn.tooltipPlugin = function () {
       var $tooltip = $('#__ui_tooltip__');
       if (!$tooltip.length) $tooltip = $('<div id="__ui_tooltip__" class="tooltip-box"></div>').appendTo('body');
@@ -176,49 +213,7 @@
       });
     };
 
-    $.fn.accordionPlugin = function (options) {
-      var settings = $.extend({ oneOpen: true, speed: 300 }, options);
-
-      return this.each(function () {
-        var $acc = $(this);
-        if ($acc.data('accInit')) return;
-        $acc.data('accInit', true);
-
-        $acc.on('click', '.accordion-header', function (e) {
-          e.preventDefault();
-
-          var $header = $(this);
-          var $item = $header.closest('.accordion-item');
-          var $content = $header.next('.accordion-content');
-          if (!$content.length) return;
-
-          if (settings.oneOpen) {
-            $acc.find('.accordion-item').not($item).removeClass('active')
-              .find('.accordion-content').stop(true, true).slideUp(settings.speed);
-          }
-
-          if ($item.hasClass('active')) {
-            $item.removeClass('active');
-            $content.stop(true, true).slideUp(settings.speed);
-          } else {
-            $item.addClass('active');
-            $content.stop(true, true).slideDown(settings.speed);
-          }
-
-          $document.trigger('dom:contentChanged.ui');
-        });
-
-        // 초기 표시(active만 열기)
-        $acc.find('.accordion-item').each(function () {
-          var $it = $(this);
-          var $ct = $it.find('.accordion-content').first();
-          if (!$ct.length) return;
-          if ($it.hasClass('active')) $ct.show();
-          else $ct.hide();
-        });
-      });
-    };
-
+    // 드롭다운
     $.fn.dropdownPlugin = function () {
       return this.each(function () {
         var $dd = $(this);
@@ -248,9 +243,7 @@
     $('.fn-dropdown').dropdownPlugin();
   }
 
-  /* -------------------------
-   * 레이아웃/헤더 스크롤
-   * ------------------------- */
+  /* ---------- 레이아웃/헤더 스크롤 ---------- */
   var SELECTOR_SCROLLABLE = '.fn-height';
   var HEADER_SCROLLED_CLASS = 'is-scrolled';
 
@@ -269,7 +262,6 @@
       var available = viewport - capHeight - headerHeight - footerHeight;
       if (available < 0) available = 0;
 
-      // 내부 스크롤을 강제
       $targets.css({
         height: available + 'px',
         overflowY: 'auto',
@@ -300,9 +292,7 @@
     $header.toggleClass(HEADER_SCROLLED_CLASS, isScrolled);
   }
 
-  /* -------------------------
-   * 메뉴
-   * ------------------------- */
+  /* ---------- 메뉴 ---------- */
   var MENU_ANIM = 300;
 
   function ensureMenuScrim() {
@@ -313,7 +303,7 @@
     var $container = ($appShell && $appShell.length) ? $appShell : $('body');
 
     $scrim = $('<div class="menu-scrim" aria-hidden="true"></div>').appendTo($container);
-    if ($scrim.length && $scrim[0]) $scrim[0].offsetWidth; // 트랜지션용
+    if ($scrim.length && $scrim[0]) $scrim[0].offsetWidth; // 트랜지션용 리플로우
     return $scrim;
   }
 
@@ -327,8 +317,7 @@
     var $menuPanel = $('.menu-panel');
     var $menuBtn = $('[data-menu-toggle]');
 
-    var $scrim = ensureMenuScrim();
-    $scrim.addClass('show');
+    ensureMenuScrim().addClass('show');
 
     $appShell.addClass('menu-open');
     $menuBtn.attr('aria-expanded', 'true');
@@ -347,7 +336,7 @@
     var $menuBtn = $('[data-menu-toggle]');
     var $scrim = $('.menu-scrim');
 
-    // aria-hidden 전에 포커스부터 밖으로(경고 방지)
+    // aria-hidden 적용 전, 포커스를 먼저 밖으로
     var activeEl = document.activeElement;
     if (activeEl && $(activeEl).closest('.menu-panel').length) {
       $menuBtn.first().focus();
@@ -366,9 +355,7 @@
     }, MENU_ANIM);
   }
 
-  /* -------------------------
-   * 모달(중첩 + 접근성 + aria-hidden 경고 방지)
-   * ------------------------- */
+  /* ---------- 모달(중첩 + a11y 경고 해결) ---------- */
   var Modal = (function () {
     var SUPPORT_INERT = hasNativeInert();
     var z = 1000;
@@ -402,7 +389,7 @@
       }
     }
 
-    // 모달 열림 시 배경을 aria-hidden/inert 처리(포커스는 반드시 모달 안에 있어야 함)
+    // 배경(.app-shell 자식들) a11y 처리: 모달 있을 때만 숨김
     function updateBackgroundA11y() {
       refreshCache();
       if (!$appShell.length) return;
@@ -417,6 +404,7 @@
         // 열린 모달은 제외
         if ($openModals.filter($child).length) {
           setInert($child, false);
+          $child.attr('aria-hidden', 'false');
           return;
         }
 
@@ -440,15 +428,14 @@
 
       z += 1;
       $modal.css({ display: 'flex', 'z-index': z }).addClass('show');
-
-      setInert($modal, false);
       $modal.attr('aria-hidden', 'false');
+      setInert($modal, false);
 
       $('body').css('overflow', 'hidden');
 
       stack.push($modal[0]);
 
-      // 모달에 포커스를 먼저 넣고 → 배경 aria-hidden 처리(경고 방지)
+      // 모달에 포커스 먼저 → 배경 aria-hidden
       setTimeout(function () {
         var $auto = $modal.find('[autofocus]').filter(':visible').first();
         if ($auto.length) $auto.focus();
@@ -458,55 +445,63 @@
       }, 0);
     }
 
-    function moveFocusOutOfTop() {
-      var $modal = get$TopModal();
-      if (!$modal.length) return;
-
-      var $trigger = $modal.data('return-focus');
-      if ($trigger && $trigger.length) $trigger.focus();
-      else safeFocusFallback();
-    }
-
+    // 닫기 순서
     function closeTop() {
       var $modal = get$TopModal();
       if (!$modal.length) return;
 
-      // 포커스를 먼저 밖으로 → 그 다음 aria-hidden
-      moveFocusOutOfTop();
+      var $trigger = $modal.data('return-focus');
 
+      // 1) 스택에서 먼저 제거
+      stack.pop();
+
+      // 2) 배경 a11y를 먼저 복구(포커스 복귀 성공 보장)
+      updateBackgroundA11y();
+
+      // 3) 포커스 복귀
+      if ($trigger && $trigger.length) $trigger.focus();
+      else safeFocusFallback();
+
+      // 시각적 닫힘
       $modal.removeClass('show');
 
       setTimeout(function () {
+        // 4) 마지막에 모달을 숨김 처리(포커스는 이미 밖)
+        var activeEl = document.activeElement;
+        if (activeEl && $modal.has(activeEl).length) {
+          try { activeEl.blur(); } catch (err) {}
+        }
+
         $modal.css({ display: '', 'z-index': '' });
         $modal.attr('aria-hidden', 'true');
         setInert($modal, true);
 
         $modal.removeData('return-focus');
 
-        stack.pop();
-        updateBackgroundA11y();
-
-        if (!stack.length && !isMenuOpen()) $('body').css('overflow', '');
-
+        // 중첩 모달이면 다음 top에 포커스 유지
         var $newTop = get$TopModal();
-        if ($newTop.length) focusFirst($newTop);
+        if ($newTop.length) {
+          focusFirst($newTop);
+          $('body').css('overflow', 'hidden');
+        } else {
+          if (!isMenuOpen()) $('body').css('overflow', '');
+        }
       }, 300);
     }
 
     function bind() {
-      // 모달 열기 (이벤트 위임)
+      // 열기
       $document.off('click.uiModalOpen').on('click.uiModalOpen', '.fn-modal-open', function (e) {
         e.preventDefault();
         openById($(this).data('target'), $(this));
       });
 
-      // 닫기 버튼 클릭 직전에 포커스 먼저 이동(클릭 포커스 고정 방지)
-      $document.off('mousedown.uiModalPreClose').on('mousedown.uiModalPreClose', '.fn-modal-close', function () {
-        if (!isAnyOpen()) return;
-        moveFocusOutOfTop();
+      // 닫기 버튼: 클릭 시 포커스가 버튼에 붙는 것을 사전에 방지(마우스만)
+      $document.off('mousedown.uiModalPreClose').on('mousedown.uiModalPreClose', '.fn-modal-close', function (e) {
+        e.preventDefault();
       });
 
-      // 모달 닫기
+      // 닫기
       $document.off('click.uiModalClose').on('click.uiModalClose', '.fn-modal-close', function (e) {
         e.preventDefault();
         closeTop();
@@ -516,12 +511,11 @@
       $document.off('click.uiModalOutside').on('click.uiModalOutside', '.modal', function (e) {
         if (!isAnyOpen()) return;
         if (e.target !== this) return;
-
         var $top = get$TopModal();
         if ($top.length && $top[0] === this) closeTop();
       });
 
-      // ESC 닫기
+      // ESC: 모달 > 메뉴 순
       $document.off('keydown.uiModalEsc').on('keydown.uiModalEsc', function (e) {
         if (e.keyCode !== 27) return;
         if (isAnyOpen()) closeTop();
@@ -568,9 +562,7 @@
     };
   })();
 
-  /* -------------------------
-   * is-scrolled용 스크롤 바인딩(직접 바인딩)
-   * ------------------------- */
+  /* ---------- is-scrolled용 스크롤 바인딩(직접 바인딩) ---------- */
   var _tHeader = null;
 
   function bindScrollableScroll() {
@@ -580,9 +572,7 @@
     });
   }
 
-  /* -------------------------
-   * Loader (필요 시만 사용)
-   * ------------------------- */
+  /* ---------- Loader ---------- */
   window.Loader = window.Loader || {
     id: '#loading-modal',
     statusId: '#loading-status',
@@ -628,9 +618,7 @@
     }
   };
 
-  /* -------------------------
-   * 전역 바인딩
-   * ------------------------- */
+  /* ---------- 전역 바인딩 + 개발자 API ---------- */
   function bindGlobal() {
     _tHeader = throttle(checkHeaderStatus, 50);
     var tResize = throttle(updateLayout, 100);
@@ -638,7 +626,7 @@
     $window.off('scroll.ui').on('scroll.ui', _tHeader);
     $window.off('resize.ui').on('resize.ui', tResize);
 
-    // 메뉴 이벤트
+    // 메뉴
     $document
       .off('click.menu')
       .on('click.menu', '[data-menu-toggle]', function (e) {
@@ -654,7 +642,7 @@
         if (e.target === this) closeMenu();
       });
 
-    // DOM 변경 후(탭 전환/동적 렌더링 등) 한 번에 재정리
+    // DOM 변경 후(탭 전환/동적 렌더 등) 재정리
     $document.off('dom:contentChanged.ui').on('dom:contentChanged.ui', function () {
       updateLayout();
       bindScrollableScroll();
@@ -663,25 +651,16 @@
     });
   }
 
-  /* -------------------------
-   * 공통 API
-   * ------------------------- */
+  // 개발자용 API
   window.UI = window.UI || {};
-  window.UI.refresh = function () {
-    $document.trigger('dom:contentChanged.ui');
-  };
+  window.UI.refresh = function () { $document.trigger('dom:contentChanged.ui'); };
   window.UI.modal = {
     open: function (id, $trigger) { Modal.openById(id, $trigger); },
     close: function () { Modal.closeTop(); }
   };
-  window.UI.menu = {
-    open: function () { openMenu(); },
-    close: function () { closeMenu(); }
-  };
+  window.UI.menu = { open: openMenu, close: closeMenu };
 
-  /* -------------------------
-   * 초기화
-   * ------------------------- */
+  /* ---------- 초기화 ---------- */
   $(function () {
     refreshCache();
 
@@ -692,7 +671,7 @@
     checkHeaderStatus();
     bindScrollableScroll();
 
-    // datepicker가 있을 때만
+    // datepicker가 있을 때만 초기화
     if ($.fn.datepicker) {
       $('.datepicker').datepicker({
         format: 'yyyy.mm.dd',

@@ -258,7 +258,7 @@ body {
     height: 60px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.00);
     transition: box-shadow 0.5s ease, background-color 0.5s ease;
-    z-index: 1;
+    z-index: 10;
 }
 .app-header .icon-button {
     width: 45px;
@@ -666,6 +666,7 @@ h1.title {
     background: #fff;
     padding: 6px 20px 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    z-index: 1;
 }
 
 .fn-tabs {
@@ -755,6 +756,135 @@ h1.title {
     color: #999;
     text-align: center;
 }
+
+
+
+
+
+.summary-wrap.overtime-summary {
+    padding: 12px 16px 12px;
+}
+
+.overtime-summary .summary-card {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.overtime-summary .summary-icon {
+    width: 80px;
+    height: 60px;
+    background: url('../images/icon_overtime.svg') center/60px no-repeat;
+    flex-shrink: 0;
+}
+
+.overtime-summary .summary-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+}
+.overtime-summary .summary-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1b1f24;
+    margin: 0 0 4px;
+}
+
+.overtime-summary .summary-heading {
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+.overtime-summary .summary-meta {
+    margin: 0;
+    font-size: 14px;
+}
+
+.overtime-summary .summary-meta strong {
+    color: #0b92d2;
+    font-weight: 700;
+}
+
+.overtime-summary .summary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 16px;
+    border: 1px solid #cde7ff;
+    background: #eaf6ff;
+    color: #0b92d2;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.icon-calendar-blue {
+    background: url('../images/icon_calendar_blue.svg') center/16px no-repeat;
+    width: 16px;
+    height: 16px;
+        background-size: 14px;
+}
+
+.filter-panel {
+    margin: 0px 10px 0px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: #E7F1F5;
+    border: 1px solid #4BAACE;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-label {
+    min-width: 64px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-row .input-wrap.select {
+    flex: 1;
+}
+
+.filter-search {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #cbd2db;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overtime-list .text-divider {
+    margin-left: 6px;
+    padding-left: 6px;
+    border-left: 1px solid #e2e6eb;
+}
+
+
+
+
+
+
+
 
 .note {
     font-size: 14px;
@@ -1590,7 +1720,7 @@ h1.title {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .form-row {
@@ -1617,6 +1747,171 @@ h1.title {
     font-weight: 500;
 }
 
+
+.overtime-form .form-row {
+    gap: 8px;
+}
+
+.overtime-day {
+    font-weight: 600;
+    font-size: 14px;
+    color: #2f3a46;
+}
+
+.overtime-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 12px;
+    border: 1px solid #b9c7d6;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2f3a46;
+    min-width: 54px;
+}
+
+.time-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) 16px repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    align-items: center;
+    flex: 1;
+}
+
+.time-tilde {
+    text-align: center;
+    font-weight: 700;
+    color: #4a4f57;
+}
+
+.overtime-check {
+    justify-content: flex-start;
+}
+
+.overtime-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2f3a46;
+}
+
+.overtime-checkbox input {
+    width: 18px;
+    height: 18px;
+    accent-color: #0b92d2;
+}
+
+.overtime-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin: 4px 0 6px;
+}
+
+.overtime-tab {
+    border: 1px solid #d9e4f0;
+    background: #f8fbff;
+    border-radius: 10px;
+    padding: 8px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #7b8794;
+}
+
+.overtime-tab.active {
+    border-color: #2f8dd8;
+    color: #2f8dd8;
+    background: #e8f5ff;
+}
+
+.overtime-summary-card {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #d9edf5;
+    background: #eef8fb;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.overtime-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.overtime-summary-grid + .overtime-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.summary-metric {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+    border: 1px solid #e1eef5;
+}
+
+.summary-metric .label {
+    display: block;
+    font-size: 12px;
+    color: #6c737f;
+    margin-bottom: 4px;
+}
+
+.summary-metric .value {
+    font-weight: 700;
+    font-size: 14px;
+    color: #0b92d2;
+}
+
+.overtime-summary-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.overtime-summary-note {
+    font-size: 12px;
+    color: #6c737f;
+    margin: 0;
+}
+
+.overtime-summary-button {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #b9c7d6;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2f3a46;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .input-wrap {
     position: relative;
     display: flex;
@@ -1640,7 +1935,7 @@ h1.title {
     border: 1px solid var(--field-border);
     background-color: var(--field-bg);
     font-size: 14px;
-    padding: 0 14px;
+    padding: 0 10px;
     color: #222;
 }
 
@@ -1918,7 +2213,7 @@ input.datepicker {
 
 .accordion-header {
     width: 100%;
-    padding: 14px 50px 14px 20px;
+    padding: 14px 50px 14px 14px;
     display: flex;
     align-items: flex-start;
     cursor: pointer;
@@ -1966,7 +2261,7 @@ input.datepicker {
 
 .answer-box {
     display: flex;
-    padding: 14px 20px;
+    padding: 14px 14px;
     gap: 12px;
     font-size: 14px;
 }
@@ -2011,6 +2306,12 @@ input.datepicker {
     font-size: 14px;
     color: #333;
 }
+.table-desc.bottom {
+    margin-bottom: 0;    
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
 
 /* 테이블 본체 */
 .info-table {
@@ -2031,12 +2332,19 @@ input.datepicker {
 }
 
 /* 테이블 바디 셀 */
-.info-table tbody td {
+.info-table tbody td, .info-table tbody th {
     border: 1px solid #dcdcdc;
     padding: 8px 5px;
     color: #333;
     background-color: #fff;
-    line-height: 1.4;
+}
+
+.info-table.overtime-modal-table tbody td {
+    border: 1px solid #dcdcdc;
+    padding: 6px 4px;
+    color: #333;
+    background-color: #fff;
+    text-align: right;
 }
 
 
@@ -2102,6 +2410,46 @@ input.datepicker {
     max-height: 500px;
     overflow-y: auto;
     position: relative;
+}
+
+.overtime-modal .modal-body {
+    gap: 14px;
+}
+
+.overtime-modal-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #eef7f9;
+    border: 1px solid #d5e5ea;
+}
+
+.overtime-modal-toolbar .form-label {
+    min-width: 70px;
+    font-size: 14px;
+}
+
+.overtime-modal-table thead th {
+    font-size: 13px;
+}
+
+.overtime-total-row td {
+    font-weight: 700;
+    background: #f7f7f7;
+}
+
+.overtime-note-list {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0;
+    color: #6a6f77;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 

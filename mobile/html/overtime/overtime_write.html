@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>시간외 신청</title>
+
+    <script src="../../js/jquery-1.8.0.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.ko.min.js"></script>
+    <script src="../../js/common_new.js"></script>
+    <script src="../../js/cap.js"></script>
+
+    <link rel="stylesheet" href="../../css/cap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../css/style_new.css">
+
+    <script>
+    jQuery(function ($) { 
+        if (typeof Loader !== 'undefined') {
+            Loader.start();
+            setTimeout(function() {
+                Loader.complete();
+                console.log("로딩 완료 테스트");
+            }, 1000);
+        }
+    });
+    </script>
+</head>
+<body class="sub-page">
+    <div class="app-shell">
+
+        <header class="app-header">
+            <button class="icon-button home" type="button" aria-label="메인 화면으로 이동"></button>
+            <h1 class="title">시간외 근무내역</h1>
+            <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
+        </header>
+
+        <main class="content fn-height list-content">
+
+            <section class="summary-wrap overtime-summary" aria-labelledby="overtime-summary-title">
+                <h2 id="overtime-summary-title" class="blind">주간 시간외 현황</h2>
+                <div class="summary-card">
+                    <div class="summary-icon" aria-hidden="true"></div>
+                    <div class="summary-body">
+                            <span class="summary-heading">주간 시간외 현황</span>
+                            <span class="summary-meta">대상기간 : 2025.11.03 ~ 2025.11.09</span>
+                            <span class="summary-meta">연장합계 : <strong>00:00</strong></span>
+                            <button class="summary-action fn-modal-open" type="button" aria-haspopup="dialog" data-target="overtimeMonthlyModal">
+                                <span class="icon icon-calendar-blue" aria-hidden="true"></span>
+                                <span>월지급현황</span>
+                            </button>
+                    </div>
+                </div>
+            </section>
+
+            <form class="apply-form form-content overtime-form">
+                <div class="form-row">
+                    <label class="form-label" for="overtime-date">근무일자</label>
+                    <div class="input-wrap">
+                        <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog">
+                    </div>
+                    <span class="overtime-day">화</span>
+                    <span class="overtime-badge">IAM</span>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label" for="work-type">근무형태</label>
+                    <div class="input-wrap select">
+                        <select id="work-type" aria-label="근무형태 선택">
+                            <option selected>선택하세요</option>
+                            <option>재택</option>
+                            <option>외근</option>
+                        </select>
+                        <span class="icon icon-caret" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <span class="form-label">근무시간</span>
+                    <div class="time-row">
+                        <div class="input-wrap select">
+                            <select aria-label="근무 시작 시">
+                                <option selected>08</option>
+                                <option>09</option>
+                                <option>10</option>
+                            </select>
+                            <span class="icon icon-caret" aria-hidden="true"></span>
+                        </div>
+                        <div class="input-wrap select">
+                            <select aria-label="근무 시작 분">
+                                <option selected>00</option>
+                                <option>30</option>
+                            </select>
+                            <span class="icon icon-caret" aria-hidden="true"></span>
+                        </div>
+                        <span class="time-tilde">~</span>
+                        <div class="input-wrap select">
+                            <select aria-label="근무 종료 시">
+                                <option>17</option>
+                                <option selected>18</option>
+                                <option>19</option>
+                            </select>
+                            <span class="icon icon-caret" aria-hidden="true"></span>
+                        </div>
+                        <div class="input-wrap select">
+                            <select aria-label="근무 종료 분">
+                                <option selected>00</option>
+                                <option>30</option>
+                            </select>
+                            <span class="icon icon-caret" aria-hidden="true"></span>
+                        </div>
+                        <label class="overtime-checkbox">
+                            <input type="checkbox" checked>
+                            <span>익일</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row divider">
+                    <div class="pill-check-group " role="group" aria-label="시간외 유형 다중 선택">
+                        <label class="pill-check">
+                            <input type="checkbox" name="overtime-type" checked="">
+                            <span class="pill-check-label">퇴출</span>
+                        </label>
+                        <label class="pill-check">
+                            <input type="checkbox" name="overtime-type">
+                            <span class="pill-check-label">익휴</span>
+                        </label>
+                        <label class="pill-check">
+                            <input type="checkbox" name="overtime-type">
+                            <span class="pill-check-label">대휴(대휴수:0)</span>
+                        </label>
+                        <label class="pill-check">
+                            <input type="checkbox" name="overtime-type" disabled>
+                            <span class="pill-check-label">특별연장근로</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row divider">
+                    <section class="overtime-summary-card" aria-label="시간외 요약">
+                        <div class="overtime-summary-grid">
+                            <div class="summary-metric">
+                                <span class="label">총근무시간</span>
+                                <span class="value">01:00</span>
+                            </div>
+                            <div class="summary-metric">
+                                <span class="label">총휴게시간</span>
+                                <span class="value">01:00</span>
+                            </div>
+                            <div class="summary-metric">
+                                <span class="label">의무휴게시간</span>
+                                <span class="value">01:00</span>
+                            </div>
+                        </div>
+                        <div class="overtime-summary-grid">
+                            <div class="summary-metric">
+                                <span class="label">연장시간</span>
+                                <span class="value">00:00</span>
+                            </div>
+                            <div class="summary-metric">
+                                <span class="label">실비금액</span>
+                                <span class="value">0</span>
+                            </div>
+                        </div>
+                        <div class="overtime-summary-footer">
+                            <p class="overtime-summary-note">* 근무시간 4시간 30분의 휴게시간 입력 필요</p>
+                            <button class="overtime-summary-button" type="button">휴게시간변경</button>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="form-row divider">
+                    <label class="form-label" for="overtime-detail">업무내용</label>
+                    <div class="input-wrap text">
+                        <input id="overtime-detail" type="text" placeholder="내용을 입력하세요">
+                    </div>
+                </div>
+
+                <div class="form-row divider">
+                    <label class="form-label" for="overtime-approver">결재자</label>
+                    <div class="input-wrap select">
+                        <select aria-label="결재타입 선택">
+                            <option value="">결재</option>
+                        </select>
+                        <span class="icon icon-caret" aria-hidden="true"></span>
+                    </div>
+                    <div class="input-wrap text">
+                        <input id="overtime-approver" type="text" placeholder="결재자를 선택하세요" readonly="readonly">
+                    </div>
+                    <button class="icon-button search fn-modal-open" type="button" aria-label="결재자 검색" data-target="approverModal"></button>
+                </div>
+            </form>
+        </main>
+
+        <div class="footer-action" role="group" aria-label="하단 액션 메뉴">
+            <button class="action-button primary" type="button">시간외 신청</button>
+        </div>
+
+        <aside class="menu-panel" id="main-menu" aria-label="전체 메뉴" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="menu-hero">
+                <div class="menu-hero-content">
+                    <p class="menu-subtitle">ESS Mobile</p>
+                </div>
+                <button class="menu-close" type="button" aria-label="메뉴 닫기" data-menu-close></button>
+            </div>
+            <nav class="menu-body">
+                <ul class="menu-list">
+                    <li>
+                        <a class="menu-item home" href="#">
+                            <span class="menu-label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item atten" href="#">
+                            <span class="menu-label">근태 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item trip" href="#">
+                            <span class="menu-label">출장 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item overtime active" href="#" aria-current="page">
+                            <span class="menu-label">시간외 근무내역</span>
+                        </a>
+                        <ul class="menu-children">
+                            <li><a class="menu-item" href="#">시간외 신청</a></li>
+                            <li><a class="menu-item" href="#">선택근로 실적 입력</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-item event" href="#">
+                            <span class="menu-label">경조금</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item faq" href="#">
+                            <span class="menu-label">복무관리 FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <div id="overtimeMonthlyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="overtimeMonthlyModalTitle" aria-hidden="true">
+        <div class="modal-content overtime-modal">
+            <div class="modal-header">
+                <h2 id="overtimeMonthlyModalTitle">월별 지급 현황</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="overtime-modal-toolbar">
+                    <label class="form-label" for="overtime-year">지급년도</label>
+                    <div class="input-wrap select">
+                        <select id="overtime-year" aria-label="지급년도">
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+                        <span class="icon icon-caret" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <table class="info-table overtime-modal-table">
+                    <colgroup>
+                        <col style="width: 50px;">
+                        <col style="width: auto">
+                        <col style="width: auto">
+                        <col style="width: auto">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">지급월</th>
+                            <th scope="col">시간외실비</th>
+                            <th scope="col">기타</th>
+                            <th scope="col">총지급액</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>01</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>02</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>03</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>04</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>05</th>
+                            <td>33,600</td>
+                            <td>33,600</td>
+                            <td>33,600</td>
+                        </tr>
+                        <tr>
+                            <th>06</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>07</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>08</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>09</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>11</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>12</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="overtime-total-row">
+                            <th>합계</th>
+                            <td>33,600</td>
+                            <td></td>
+                            <td>33,600</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <ul class="overtime-note-list">
+                    <li>시간외실비 : 당월 시간외실비 발생분</li>
+                    <li>대휴정산실비 및 대휴정산개수 : 지급월에 발생한 대휴에 대한 정산 실비 및 정산 받은 대휴 개수</li>
+                    <li>기타 : 누락분</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
