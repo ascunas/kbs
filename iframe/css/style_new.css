@@ -318,7 +318,7 @@ body {
     html, body {
         margin: 0;
         padding: 0;
-        height: 100% !important;
+        height: 100%;
     }
 
     /* 시간외 정보 new flex box version */
@@ -786,7 +786,7 @@ body {
         background-image: url(../../images/32px.png)!important;
     }
     .jstree-icon.jstree-themeicon.jstree-themeicon-custom {
-        background-image: url(../../images/folder.svg)!important;
+        background-image: url(../../images/folder.svg);
         margin-left: -6px!important;
         margin-right: 0!important;
     }
@@ -809,7 +809,7 @@ body {
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
         .ess-main-body, .mss-main-body {
-            min-width: 1500px;
+            min-width: 1300 px;
             height: 100%;
             overflow-x: auto;
         }
