@@ -106,9 +106,9 @@ body {
     justify-content: center;
     padding: 4px 6px;
     border-radius: 4px;
-    border: 1px dashed #d7dfe7;
+    border: 1px dashed #b9b9b9;
     background: #f9fafb;
-    color: #9e9e9e;
+    color: #6b6b6b;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -122,6 +122,11 @@ body {
     border: 1px solid #3caee1;
     color: #0b77b3;
     box-shadow: inset 0 0 0 1px rgba(60, 174, 225, 0.15);
+}
+.pill-radio input[type="radio"]:disabled + .pill-radio-label,
+.pill-check input[type="checkbox"]:disabled + .pill-check-label {
+    background-color: #f6f6f6;
+    opacity: 0.5;
 }
 .pill-check input[type="checkbox"]:checked + .pill-check-label::before {
     content: "";
@@ -672,24 +677,47 @@ h1.title {
 .fn-tabs {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 10px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.fn-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.fn-tabs.has-overflow {
+    padding-right: 16px;
+    justify-content: flex-start;
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 30px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 30px), transparent 100%);
 }
 
 .tab-button {
     display: flex;
     flex: auto;
     align-items: center;
+    gap: 10px;
     justify-content: space-between;
     background: #eeeeee;
     border: 1px solid #eee;
     border-radius: 10px;
-    padding: 12px 10px;
+    padding: 10px 12px;
     font-size: 16px;
     font-weight: 700;
+    white-space:nowrap;
     color: #2f4a64;
     cursor: pointer;
     transition: all 0.18s ease;
+}
+.fn-tabs.has-overflow .tab-button {
+    flex: 0 0 auto;
 }
 
 .tab-button .value {
@@ -2162,16 +2190,15 @@ input.datepicker {
 }
 
 .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     list-style: none;
     padding: 0;
     margin: 12px auto;
 }
-.faq-list li + li {
-    margin-top: 8px;
-}
 
 .faq-item {
-    padding: 12px 50px 12px 20px;
     align-items: center;
     cursor: pointer;
     background-color: #fff;
@@ -2189,6 +2216,8 @@ input.datepicker {
     color: #000;
     font-size: 15px;
     font-weight: 600;
+    padding: 12px 50px 12px 20px;
+    display: block;
 }
 
 .accordion-list {
@@ -2306,6 +2335,9 @@ input.datepicker {
     font-size: 14px;
     color: #333;
 }
+.table-desc.small {
+    font-size: 13px;
+}
 .table-desc.bottom {
     margin-bottom: 0;    
     margin-top: 10px;
@@ -2326,6 +2358,7 @@ input.datepicker {
 .info-table thead th {
     background-color: #ecf3f5;
     border: 1px solid #dcdcdc;
+    border-bottom: 0;
     padding: 8px 5px;
     font-weight: 500;
     color: #000;
@@ -2337,6 +2370,9 @@ input.datepicker {
     padding: 8px 5px;
     color: #333;
     background-color: #fff;
+}
+.info-table tbody th {
+    background-color: #ecf3f5;
 }
 
 .info-table.overtime-modal-table tbody td {

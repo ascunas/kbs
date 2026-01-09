@@ -77,6 +77,57 @@
     };
   }
 
+  function animateScrollLeft(container, targetLeft) {
+    var start = container.scrollLeft;
+    var change = targetLeft - start;
+    if (!change) return;
+    var duration = 250;
+    var startTime = +new Date();
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function step() {
+      var now = +new Date();
+      var elapsed = now - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      container.scrollLeft = start + (change * easeInOutQuad(progress));
+      if (progress < 1) raf(step);
+    }
+
+    raf(step);
+  }
+
+  // active tab 가운데로 보내기
+  function centerTabInView($container, $btn) {
+    var container = $container[0];
+    var button = $btn[0];
+    if (!container || !button) return;
+    var containerWidth = container.clientWidth;
+    var scrollWidth = container.scrollWidth;
+    if (scrollWidth <= containerWidth) return;
+
+    var targetLeft = button.offsetLeft + (button.offsetWidth / 2) - (containerWidth / 2);
+    var maxScroll = scrollWidth - containerWidth;
+    if (targetLeft < 0) targetLeft = 0;
+    if (targetLeft > maxScroll) targetLeft = maxScroll;
+
+    animateScrollLeft(container, targetLeft);
+  }
+
+  // tab Overflow 감지
+  function updateTabOverflow($container) {
+    var container = $container[0];
+    if (!container) return false;
+    var hasOverflow = container.scrollWidth > container.clientWidth + 1;
+    $container.toggleClass('has-overflow', hasOverflow);
+    if (!hasOverflow) {
+      container.scrollLeft = 0;
+    }
+    return hasOverflow;
+  }
+
   function hasNativeInert() {
     return 'inert' in document.createElement('div');
   }
@@ -126,6 +177,11 @@
           $contents.removeClass('active').attr('aria-hidden', 'true').hide();
 
           $btn.addClass('active').attr('aria-selected', 'true');
+          raf(function () {
+            if (updateTabOverflow($container)) {
+              centerTabInView($container, $btn);
+            }
+          });
 
           $target.stop(true, true).fadeIn(150, function () {
             $target.addClass('active').attr('aria-hidden', 'false');
@@ -146,6 +202,20 @@
           $contents.filter('[data-tab-content="' + activeId + '"]')
             .show().attr('aria-hidden', 'false').addClass('active');
         }
+
+        raf(function () {
+          if (updateTabOverflow($container)) {
+            centerTabInView($container, $active);
+          }
+        });
+
+        $window.on('resize.tabOverflow', throttle(function () {
+          updateTabOverflow($container);
+        }, 150));
+
+        $document.on('dom:contentChanged.ui', function () {
+          updateTabOverflow($container);
+        });
       });
     };
 
