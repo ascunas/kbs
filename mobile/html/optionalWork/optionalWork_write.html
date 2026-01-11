@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>시간외 신청</title>
+    <title>선택근로 신청</title>
 
     <script src="../../js/jquery-1.8.0.min.js"></script>
     <script src="../../js/bootstrap-datepicker.min.js"></script>
@@ -32,24 +32,47 @@
 
         <header class="app-header">
             <button class="icon-button home" type="button" aria-label="메인 화면으로 이동"></button>
-            <h1 class="title">시간외 근무내역</h1>
+            <h1 class="title">선택근로 신청</h1>
             <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
         </header>
 
         <main class="content fn-height form-content">
 
-            <section class="summary-wrap overtime-summary" aria-labelledby="overtime-summary-title">
-                <h2 id="overtime-summary-title" class="blind">주간 시간외 현황</h2>
+            <section class="summary-wrap optional-work-summary" aria-labelledby="optional-work-summary">
+                <h2 id="optional-work-summary" class="blind">선택근로 요약</h2>
                 <div class="summary-card">
-                    <div class="summary-icon" aria-hidden="true"></div>
                     <div class="summary-body">
-                            <span class="summary-heading">주간 시간외 현황</span>
-                            <span class="summary-meta">대상기간 : 2025.11.03 ~ 2025.11.09</span>
-                            <span class="summary-meta">연장합계 : <strong>00:00</strong></span>
-                            <button class="summary-action fn-modal-open" type="button" aria-haspopup="dialog" data-target="overtimeMonthlyModal">
-                                <span class="icon icon-calendar-blue" aria-hidden="true"></span>
-                                <span>월지급현황</span>
-                            </button>
+                        <span class="summary-meta">대상기간 : 2025.11.03 ~ 2025.11.09</span>
+                        
+                        <div class="summary-stats-header">근로시간별 합계
+                            <button class="icon-button sm info fn-modal-open" type="button" aria-label="근로시간 항목 안내" aria-haspopup="dialog" data-target="infoModal"></button>
+                        </div>
+                        <div class="summary-stats" aria-label="근로시간 합계">
+                            <div class="summary-stat">
+                                <div class="counter blue">0</div>
+                                <div class="summary-label">소정시간</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="counter blue">0</div>
+                                <div class="summary-label">최대시간</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="counter purple">0:00</div>
+                                <div class="summary-label">누적시간</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="counter blue">0</div>
+                                <div class="summary-label">법정시간</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="counter blue">0</div>
+                                <div class="summary-label">평일시간</div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="counter blue">0</div>
+                                <div class="summary-label">휴일시간</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -118,19 +141,19 @@
                     <div class="pill-check-group " role="group" aria-label="시간외 유형 다중 선택">
                         <label class="pill-check">
                             <input type="checkbox" name="work-type" checked="">
+                            <span class="pill-check-label">시차근무</span>
+                        </label>
+                        <label class="pill-check">
+                            <input type="checkbox" name="work-type">
                             <span class="pill-check-label">퇴출</span>
                         </label>
                         <label class="pill-check">
                             <input type="checkbox" name="work-type">
-                            <span class="pill-check-label">익휴</span>
-                        </label>
-                        <label class="pill-check">
-                            <input type="checkbox" name="work-type">
-                            <span class="pill-check-label">대휴(대휴수:0)</span>
+                            <span class="pill-check-label">특별연장근로</span>
                         </label>
                         <label class="pill-check">
                             <input type="checkbox" name="work-type" disabled>
-                            <span class="pill-check-label">특별연장근로</span>
+                            <span class="pill-check-label">당번특근(철야)</span>
                         </label>
                     </div>
                 </div>
@@ -567,6 +590,43 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="infoModalTitle">근로시간 항목 안내</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="info-list-wrap">
+                    <dl class="info-list-item">
+                        <dt>소정근로시간</dt>
+                        <dd>주 소정근로 40시간 X 4wn = 160시간<br>(단, 주중 공휴일/휴가가 있ㅎ는 경우 8시간 차감)</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>최대근로시간</dt>
+                        <dd>소정근로시간 + 연장근로시간(48시간)</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>누적근로시간</dt>
+                        <dd>4주동안 나의 실 근로시간</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>법정최대근로시간</dt>
+                        <dd>선택근로 기간에 근무할 수 있는 최대근로시간</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>평일근로시간</dt>
+                        <dd>4주동안 평일의 총 실 근로시간</dd>
+                    </dl>
+                    <dl class="info-list-item">
+                        <dt>휴일근로시간</dt>
+                        <dd>4주동안 휴일의 총 실 근로시간</dd>
+                    </dl>
+                </div>
             </div>
         </div>
     </div>

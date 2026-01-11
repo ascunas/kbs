@@ -276,9 +276,50 @@
         $t.on('mouseenter.tooltip mousemove.tooltip', function (e) {
           var text = $t.data('tooltip') || '';
           if (!text) return;
-          $tooltip.text(text).show().css({ top: e.pageY + 10, left: e.pageX + 10 });
+
+          var direction = 'tooltip-bottom';
+          if ($t.hasClass('tooltip-top')) direction = 'tooltip-top';
+          else if ($t.hasClass('tooltip-right')) direction = 'tooltip-right';
+          else if ($t.hasClass('tooltip-left')) direction = 'tooltip-left';
+
+          $tooltip
+            .text(text)
+            .show()
+            .removeClass('tooltip-top tooltip-right tooltip-left tooltip-bottom')
+            .addClass(direction)
+            .css({ top: 0, left: 0 });
+
+          var offset = 10;
+          var $win = $(window);
+          var tooltipWidth = $tooltip.outerWidth();
+          var tooltipHeight = $tooltip.outerHeight();
+          var rect = $t[0].getBoundingClientRect();
+          var left = rect.left;
+          var top = rect.top;
+
+          if (direction === 'tooltip-top') {
+            left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+            top = rect.top - tooltipHeight - offset;
+          } else if (direction === 'tooltip-bottom') {
+            left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+            top = rect.bottom + offset;
+          } else if (direction === 'tooltip-left') {
+            left = rect.left - tooltipWidth - offset;
+            top = rect.top + (rect.height / 2) - (tooltipHeight / 2);
+          } else if (direction === 'tooltip-right') {
+            left = rect.right + offset;
+            top = rect.top + (rect.height / 2) - (tooltipHeight / 2);
+          }
+
+          var maxLeft = $win.width() - tooltipWidth - offset;
+          var maxTop = $win.height() - tooltipHeight - offset;
+          left = Math.min(Math.max(offset, left), Math.max(offset, maxLeft));
+          top = Math.min(Math.max(offset, top), Math.max(offset, maxTop));
+
+          $tooltip.css({ top: top, left: left });
+          $tooltip.addClass('is-visible');
         }).on('mouseleave.tooltip', function () {
-          $tooltip.hide();
+          $tooltip.removeClass('is-visible').hide();
         });
       });
     };
@@ -711,6 +752,55 @@
       .on('click.menu', '.menu-panel', function (e) {
         if (e.target === this) closeMenu();
       });
+
+
+    // row 추가 삭제
+    $document
+      .off('click.rowControl')
+      .on('click.rowControl', '.fn-remove', function (e) {
+        var $row = $(this).closest('.fn-row');
+        if (!$row.length) return;
+        e.preventDefault();
+        $row.stop(true, true).slideUp(200, function () {
+          $row.remove();
+          $document.trigger('dom:contentChanged.ui');
+        });
+      })
+      .on('click.rowControl', '.fn-add', function (e) {
+        var $trigger = $(this);
+        var targetSelector = $trigger.data('rowTarget');
+        var $rows = targetSelector ? $(targetSelector) : $trigger.closest('.fn-row');
+        if (!$rows.length) return;
+
+        e.preventDefault();
+
+        var $clone = $rows.last().clone();
+        $clone.find('[id]').removeAttr('id');
+        $clone.find('input').each(function () {
+          var $input = $(this);
+          var type = ($input.attr('type') || '').toLowerCase();
+          if (type === 'checkbox' || type === 'radio') $input.prop('checked', false);
+          else $input.val('');
+        });
+        $clone.find('select').each(function () {
+          $(this).prop('selectedIndex', 0);
+        });
+        $clone.find('textarea').val('');
+
+        $clone.find('.fn-add').each(function () {
+          $(this).removeClass('fn-add').addClass('fn-remove');
+        });
+        $clone.find('.icon-button.add').each(function () {
+          $(this).removeClass('add').addClass('remove');
+        });
+
+        $clone.hide();
+        $clone.insertAfter($rows.last());
+        $clone.stop(true, true).slideDown(200, function () {
+          $document.trigger('dom:contentChanged.ui');
+        });
+      });
+
 
     // DOM 변경 후(탭 전환/동적 렌더 등) 재정리
     $document.off('dom:contentChanged.ui').on('dom:contentChanged.ui', function () {

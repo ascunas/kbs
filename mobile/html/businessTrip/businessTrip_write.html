@@ -47,7 +47,6 @@
                         <select id="trip-group" name="trip-group" aria-label="출장유형 선택">
                             <option value="">선택하세요</option>
                         </select>
-                        <span class="icon icon-caret" aria-hidden="true"></span>
                     </div>
                 </div>
 
@@ -57,7 +56,6 @@
                         <select id="trip-cate" name="trip-cate" aria-label="출장구분 선택">
                             <option value="">선택하세요</option>
                         </select>
-                        <span class="icon icon-caret" aria-hidden="true"></span>
                     </div>
                 </div>
 
@@ -102,7 +100,7 @@
                             </label>
                         </div>
                         <div class="search-input-group">
-                            <div class="input-wrap text">
+                            <div class="input-wrap">
                                 <input id="cost-code-input" type="text" name="code" aria-label="선택된 비용 코드" placeholder="코드를 검색하세요" readonly>
                             </div>
                             <button class="icon-button search fn-modal-open" type="button" aria-label="비용 코드 검색 창 열기" data-target="costCodeModal"></button>
@@ -133,16 +131,17 @@
                             <input type="checkbox" name="trip-type">
                             <span class="pill-check-label">이동숙박</span>
                         </label>
-                        <label class="pill-check if-check">
-                            <input type="checkbox" name="trip-type">
-                            <span class="pill-check-label">운전여비지급</span>
-                            <div class="input-wrap select checked">
+                        <div class="form-group pill-check">
+                            <label class="pill-check if-check">
+                                <input type="checkbox" name="trip-type">
+                                <span class="pill-check-label">운전여비지급</span>
+                            </label>                        
+                            <div class="input-wrap select checked" style="display:none;">
                                 <select id="allowance" name="allowance" aria-label="운전여비지급 상세선택">
                                     <option value="">선택하세요</option>
                                 </select>
-                                <span class="icon icon-caret" aria-hidden="true"></span>
                             </div>
-                        </label>
+                        </div>
                     </div>
                 </div>
 
@@ -168,26 +167,36 @@
                                     <select aria-label="결재타입 선택">
                                         <option value="">입력/상신</option>
                                     </select>
-                                    <span class="icon icon-caret" aria-hidden="true"></span>
                                 </div>
-                                <div class="input-wrap text">
+                                <div class="input-wrap">
                                     <input id="submit" type="text" name="submit" aria-label="상신자" value="정광본" readonly="readonly">
                                 </div>
                             </div>
 
-                            <div class="grid-row row-2">
-                                
+                            <div class="grid-row row-2 fn-row">                                
+                                <div class="input-wrap select">
+                                    <select aria-label="결재타입 선택">
+                                        <option value="">선택하세요</option>
+                                        <option value="">결재</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrap">
+                                    <input id="approver" type="text" name="approver" aria-label="결재자" placeholder="결재자를 선택하세요" value="나구열 팀장" readonly="readonly">
+                                </div>
+                                <button class="icon-button search fn-modal-open" type="button" aria-label="결재자 검색" data-target="approverModal"></button>
+                                <button class="icon-button add fn-add" type="button" aria-label="결재자 삭제"></button>
+                            </div>
+                            <div class="grid-row row-2 fn-row">                                
                                 <div class="input-wrap select">
                                     <select aria-label="결재타입 선택">
                                         <option value="">결재</option>
                                     </select>
-                                    <span class="icon icon-caret" aria-hidden="true"></span>
                                 </div>
-                                <div class="input-wrap text">
+                                <div class="input-wrap">
                                     <input id="approver" type="text" name="approver" aria-label="결재자" value="나구열 팀장" readonly="readonly">
                                 </div>
                                 <button class="icon-button search fn-modal-open" type="button" aria-label="결재자 검색" data-target="approverModal"></button>
-                                <button class="icon-button remove" type="button" aria-label="결재자 삭제"></button>
+                                <button class="icon-button remove fn-remove" type="button" aria-label="결재자 삭제"></button>
                             </div>
                         </div>
                         <p class="help-text">최근 결재자가 기본으로 표시됩니다.</p>
@@ -267,17 +276,16 @@
                             <select id="search-category" aria-label="검색구분" autofocus>
                                 <option value="">1.자산-부서로 검색</option>
                             </select>
-                            <span class="icon icon-caret" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="search-input-group">
                         <label class="form-label" for="dept">부서검색</label>
-                        <div class="input-wrap text">
+                        <div class="input-wrap">
                             <input id="dept" type="text" name="approver" aria-label="부서" placeholder="부서를 검색하세요" readonly>
                         </div>
                         <button class="icon-button search fn-modal-open" type="button" aria-label="부서 검색" data-target="deptModal"></button>
                     </div>
-                    <button class="btn search" type="button" aria-label="조회">조회</button>
+                    <button class="button search" type="button" aria-label="조회">조회</button>
                 </div>
 
                 <p class="note">총 3건이 검색되었습니다.</p>
@@ -347,7 +355,7 @@
             <div class="modal-body">
                 <div class="search-field">
                     <div class="search-input-group">
-                        <div class="input-wrap text">
+                        <div class="input-wrap">
                             <label for="approver-search" class="blind">검색할 결재자 이름</label>
                             <input id="approver-search" type="text" placeholder="이름으로 검색하세요" autofocus>
                         </div>
@@ -388,7 +396,7 @@
             <div class="modal-body">
                 <div class="search-field">
                     <div class="search-input-group">
-                        <div class="input-wrap text">
+                        <div class="input-wrap">
                             <input type="text" name="dept" aria-label="부서" placeholder="부서명을 검색하세요" autofocus>
                         </div>
                         <button class="icon-button search" type="button" aria-label="부서 검색"></button>
