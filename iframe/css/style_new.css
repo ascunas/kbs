@@ -539,8 +539,8 @@ body {
     .list {
     vertical-align: top;
     border-right: 1px solid #DDD;
-    width: 250px;
-    min-width: 250px;
+    width: 300px;
+    min-width: 300px;
     height: 100vh;
     height: calc(100% - 120px);
     background: #fff;
@@ -557,10 +557,10 @@ body {
     .detail {
         height: 92vh;
         height: calc(100% - 0px);
-        width: calc(100% - 250px);
+        width: calc(100% - 300px);
         padding-left: 0;
         position: absolute;
-        left: 250px;
+        left: 300px;
     }
     .esshead {
         display: flex;
@@ -586,6 +586,7 @@ body {
     .esshead {
         display: flex;
         border-bottom: 1px solid #DDD;
+        border-right: 1px solid #ddd;
         height: 60px;
         line-height: 60px;
         color: #140661;
@@ -594,7 +595,7 @@ body {
         padding-left: 15px;
         position: fixed;
         top: 60px;
-        width: 250px;
+        width: 300px;
         background: #fff;
     }
     .msshead {
