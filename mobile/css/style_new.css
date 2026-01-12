@@ -828,6 +828,19 @@ h1.title {
     box-shadow: var(--shadow);
     position: relative;
 }
+.info-card.type-nobody {
+    padding: 0px;
+}
+.info-card.type-nobody a {
+    display: block;
+    padding: 18px 20px;
+    background-image: url(../images/icon_arrow.svg);
+    background-position: center right 20px;
+    background-repeat: no-repeat;
+}
+.info-card.type-nobody a .card-header{
+    margin-bottom:0;
+}
 
 .card-header {
     display: flex;
@@ -875,6 +888,12 @@ h1.title {
     padding-top: 16px;
     margin-top: 10px;
     border-top: 1px solid #EDEDED;
+}
+.card-body a {
+    display: block;
+    background-image: url(../images/icon_arrow.svg);
+    background-position: center right 0px;
+    background-repeat: no-repeat;
 }
 
 .card-row {
@@ -1659,7 +1678,7 @@ h1.title {
     bottom: 0;
     width: 100%;
     background: #ffffff;
-    box-shadow: -14px 0 30px rgba(0, 0, 0, 0.12);
+    /* box-shadow: -14px 0 30px rgba(0, 0, 0, 0.12); */
     transform: translateX(100%);
     transition: transform 0.3s ease;
     display: flex;
