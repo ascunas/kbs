@@ -575,7 +575,7 @@ input:read-only {
 
 
 
-.fn-tabs {
+.fn-tabs, .tabs {
     display: flex;
     justify-content: space-between;
     gap: 8px;
@@ -589,11 +589,12 @@ input:read-only {
     -ms-overflow-style: none;
 }
 
-.fn-tabs::-webkit-scrollbar {
+.fn-tabs::-webkit-scrollbar,
+.tab-scroll::-webkit-scrollbar {
     display: none;
 }
 
-.fn-tabs.has-overflow {
+.fn-tabs.has-overflow, .tab-scroll.has-overflow {
     padding-right: 16px;
     justify-content: flex-start;
     -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 30px), transparent 100%);
@@ -617,7 +618,7 @@ input:read-only {
     cursor: pointer;
     transition: all 0.18s ease;
 }
-.fn-tabs.has-overflow .tab-button {
+.fn-tabs.has-overflow .tab-button, .tabs.has-overflow .tab-button {
     flex: 0 0 auto;
 }
 
@@ -648,7 +649,7 @@ input:read-only {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 1;
+    z-index: 31;
 }
 
 

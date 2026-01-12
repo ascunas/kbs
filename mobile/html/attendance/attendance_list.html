@@ -38,7 +38,7 @@
 
         <main class="content fn-height list-content">
 
-            <section class="summary-wrap attendance" aria-labelledby="attendance-summary-title">
+            <!-- <section class="summary-wrap attendance" aria-labelledby="attendance-summary-title">
                 <h2 id="attendance-summary-title" class="blind">연차 및 장기근속 휴가 현황</h2>
                 <div class="fn-tabs" role="tablist">
                     <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="panel-annual" data-tab="annual">
@@ -93,6 +93,54 @@
                         </div>
                         <div class="summary-stat">
                             <div class="counter green">8</div>
+                            <div class="summary-label">잔여</div>
+                        </div>
+                    </div>
+                    <p class="summary-subtext">휴가사용가능 기간: <time datetime="2025-08-01">2025/08/01</time> ~ <time datetime="2026-07-31">2026/07/31</time></p>
+                </div>
+            </section> -->
+
+            
+            <!-- tab-content 하나만 있고 내부 데이터만 바뀌는 구조 -->
+            <section class="summary-wrap attendance" aria-labelledby="attendance-summary-title" id="list_info2">
+                <h2 id="attendance-summary-title" class="blind">연차 및 장기근속 휴가 현황</h2>
+                <div class="tabs" role="tablist" id="list_tab2">
+                    <button class="tab-button active" type="button">
+                        <span>연차휴가</span>
+                        <span class="value">10.0 </span>
+                    </button>
+                    
+                    <button class="tab-button" type="button" >
+                        <span>장기근속(10년)</span>
+                        <span class="value">10.0 </span>
+                    </button>
+
+                    <button class="tab-button" type="button">
+                        <span>연차휴가</span>
+                        <span class="value">10.0 </span>
+                    </button>
+                    
+                    <button class="tab-button" type="button" >
+                        <span>장기근속(10년)</span>
+                        <span class="value">10.0 </span>
+                    </button>
+                </div>
+                <div class="tab-content active">
+                     <div class="summary-stats">
+                        <div class="summary-stat">
+                            <div class="counter blue">21</div>
+                            <div class="summary-label">발생일수</div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="counter blue">21.0</div>
+                            <div class="summary-label">미보상</div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="counter purple">11.0</div>
+                            <div class="summary-label">사용</div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="counter green">10.0</div>
                             <div class="summary-label">잔여</div>
                         </div>
                     </div>
@@ -243,5 +291,54 @@
             </nav>
         </aside>
     </div>
+    <script>
+    jQuery(function ($) {
+    // 1. 상태 업데이트 및 중앙 정렬 함수
+    function refreshTabScroll($btn, isClick) {
+        var $container = $btn.closest('.tab-scroll'); // 이미 클래스가 있는 경우
+        if (!$container.length) $container = $btn.parent(); // 없으면 직계 부모
+
+        var el = $container.get(0);
+        if (!el) return;
+
+        // 클래스 부여 및 오버플로우 체크
+        var hasOverflow = el.scrollWidth > el.clientWidth + 1;
+        $container.addClass('tab-scroll').toggleClass('has-overflow', hasOverflow);
+
+        // 클릭해서 호출된 경우에만 중앙 정렬 애니메이션 실행
+        if (isClick && hasOverflow) {
+            var targetLeft = $btn[0].offsetLeft + ($btn[0].offsetWidth / 2) - (el.clientWidth / 2);
+            var maxScroll = el.scrollWidth - el.clientWidth;
+            $container.stop().animate({ 
+                scrollLeft: Math.max(0, Math.min(targetLeft, maxScroll)) 
+            }, 250);
+        }
+    }
+
+    // 초기 로드 시: 모든 활성화된 탭에 대해 실행
+    $('.tab-button.active').each(function() {
+        if (!$(this).closest('.fn-tabs').length) {
+            refreshTabScroll($(this), false);
+        }
+    });
+
+    // 클릭 시: 클래스 변경 및 정렬
+    $(document).on('click', '.tab-button', function () {
+        var $btn = $(this);
+        if ($btn.closest('.fn-tabs').length) return;
+
+        $btn.addClass('active').siblings('.tab-button').removeClass('active');
+        refreshTabScroll($btn, true);
+    });
+
+    // 리사이즈 시: 오버플로우 다시 계산
+    $(window).on('resize', function() {
+        $('.tab-scroll').each(function() {
+            var hasOverflow = this.scrollWidth > this.clientWidth + 1;
+            $(this).toggleClass('has-overflow', hasOverflow);
+        });
+    });
+});
+    </script>
 </body>
 </html>
