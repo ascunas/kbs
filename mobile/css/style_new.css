@@ -957,7 +957,14 @@ h1.title {
     color: #fff;
 }
 
-.status.approved { background: #75b5ff; color: #fff; }
+.status.approved { 
+    background: #75b5ff; 
+    color: #fff; 
+}
+.status.change { 
+    background: #f7b875; 
+    color: #fff; 
+}
 
 
 
@@ -1323,6 +1330,14 @@ h1.title {
     margin-top: 8px;
     font-size: 14px;
     color: #868686;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-subtext time:first-child {margin-left: 6px;}
+.item-subtext time:last-child {margin-right: 6px;}
+.item-subtext.red {
+    color: #cf1d1d;
 }
 
 
