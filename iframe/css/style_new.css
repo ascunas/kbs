@@ -597,16 +597,23 @@ body {
         top: 60px;
         width: 300px;
         background: #fff;
+        box-shadow: 2px 4px 6px rgb(0, 0, 50, 10%);
     }
     .msshead {
         display: flex;
         border-bottom: 1px solid #DDD;
+        border-right: 1px solid #ddd;
         height: 60px;
         line-height: 60px;
         color: #140661;
-        font-weight: 600;
+        font-weight: bold;
         font-size: 24px;
         padding-left: 15px;
+        position: fixed;
+        top: 60px;
+        width: 300px;
+        background: #fff;
+        box-shadow: 2px 4px 6px rgb(0, 0, 50, 10%);
     }
 
     .glyphicon {
