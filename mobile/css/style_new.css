@@ -943,35 +943,62 @@ h1.title {
     letter-spacing: 0.01em;
 }
 
-.status.success {
+/* 승인 */
+.status.success, .status.approved {
     background: #40B19D;
     color: #fff;
 }
 
+/* 대기, 결재중 */
 .status.pending {
-    background: #D3D3D3;
+    background: #bad393;
     color: #fff;
 }
 
-.status.waiting {
+/* 대기 */
+.status.waiting  {
     background: #FFD240;
     color: #fff;
 }
 
+/* 결재 */
 .status.approved { 
     background: #75b5ff; 
     color: #fff; 
 }
+
+/* 변경 */
 .status.change { 
     background: #f7b875; 
     color: #fff; 
 }
 
+/* 미상신 */
+.status.draft {
+    background: #D3D3D3;
+    color: #fff;
+}
+
+/* 회수 */
+.status.recalled {
+    background: #8d8d8d;
+    color: #fff;
+}
+
+/* 반려 */
+.status.rejected {
+    background: #e98181;
+    color: #fff;
+}
+
+/* 미결 */
+.status.unprocessed {
+    background: #FFD240;
+    color: #fff;
+}
 
 
-
-
-
+/* 미상신 draft //결재중 pending //승인 approved //회수 recalled //반려 rejected //미결 unprocessed */
 
 
 
@@ -1230,7 +1257,7 @@ h1.title {
     flex-direction: column;
     gap: 10px;
     padding: 0 10px;
-    height: 100vh;
+    /* height: 100vh; */
 }
 .item-list {
     display: flex;
@@ -1289,7 +1316,7 @@ h1.title {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .item-left {
@@ -1328,7 +1355,7 @@ h1.title {
 }
 
 .item-subtext {
-    margin-top: 8px;
+    padding-top: 8px;
     font-size: 14px;
     color: #868686;
     white-space: nowrap;
@@ -2705,7 +2732,7 @@ input.datepicker {
     transition: background 0.3s ease; /* 배경색 부드럽게 */
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 10;
+    z-index: 41;
 }
 .modal.show {
     display: flex;
