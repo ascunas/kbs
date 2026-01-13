@@ -416,7 +416,7 @@ input:read-only {
     letter-spacing: -0.2px;
     color: var(--muted);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 4px;
 }
 
@@ -426,6 +426,7 @@ input:read-only {
     height: 14px;
     background: url('../images/icon_attention.svg') center/14px no-repeat;
     display: inline-block;
+    min-width: 14px;
 }
 
 
@@ -1334,8 +1335,8 @@ h1.title {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.item-subtext time:first-child {margin-left: 6px;}
-.item-subtext time:last-child {margin-right: 6px;}
+.item-subtext time:first-child {margin-left: 0px;}
+.item-subtext time:last-child {margin-right: 0px;}
 .item-subtext.red {
     color: #cf1d1d;
 }
@@ -1364,6 +1365,7 @@ h1.title {
     font-size: 16px;
     box-shadow: 0 10px 20px rgba(11, 146, 210, 0.15);
     cursor: pointer;
+    letter-spacing: -1px;
     flex: 1;
 }
 
@@ -1939,6 +1941,13 @@ h1.title {
     gap: 16px;
     padding: 10px 6px;
 }
+.detail-list form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0px 0px 10px;
+    padding-bottom: 16px;
+}
 
 .detail-row {
     display: flex;
@@ -1970,6 +1979,9 @@ h1.title {
     color: var(--text);
     text-align: left;
     flex: 1;
+}
+.detail-row .value.red {
+    color: #cf1d1d;
 }
 
 .badge {
@@ -2027,6 +2039,7 @@ h1.title {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    gap: 10px;
     width: 100%;
 }
 .form-row-caption {
@@ -2061,6 +2074,10 @@ h1.title {
     font-size: 14px;
     font-weight: 600;
 }
+.form-row .form-label {
+    /* margin-top: 12px; */
+}
+
 .form-row .text {
     display: flex;
     gap: 6px;
@@ -2105,6 +2122,13 @@ h1.title {
 .rest-row {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    align-items: center;
+    flex: 1;
+}
+.cost-row {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
     gap: 6px;
     align-items: center;
     flex: 1;
