@@ -2059,7 +2059,7 @@ h1.title {
 .form-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     gap: 6px;
 }
@@ -2068,14 +2068,15 @@ h1.title {
     border-top: 1px dashed #ccc;
 }
 
+
 .form-label {
     min-width: 60px;
     width: 60px;
     font-size: 14px;
     font-weight: 600;
 }
-.form-row .form-label {
-    /* margin-top: 12px; */
+.apply-form > .form-row > .form-label {
+    margin-top: 12px;
 }
 
 .form-row .text {
