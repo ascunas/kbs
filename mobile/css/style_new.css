@@ -2089,6 +2089,7 @@ h1.title {
     align-items: flex-start;
     flex-direction: row;
     gap: 6px;
+    width: 100%;
 }
 .form-row.divider {
     padding-top: 10px;
@@ -2110,7 +2111,7 @@ h1.title {
     display: flex;
     gap: 6px;
     width: 100%;
-    margin-top: 4px;
+    /* margin-top: 4px; */
     font-size: 14px;
     font-weight: 500;
 }
@@ -2311,11 +2312,15 @@ h1.title {
     align-items: center;
     flex: 1;
 }
+.input-wrap.flex-end {
+    justify-content: end;
+}
 
 .input-wrap.group {
     display: flex;
     gap: 6px;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .input-wrap select + em,
