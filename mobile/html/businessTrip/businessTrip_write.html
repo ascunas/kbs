@@ -16,17 +16,82 @@
     <link rel="stylesheet" href="../../css/style_new.css">
 
     <script>
-    jQuery(function ($) { 
-        // 페이지 로드 즉시 실행
+    jQuery(function ($) {
+
+        //페이지 로더 제어
         if (typeof Loader !== 'undefined') {
             Loader.start();
-            
-            // 테스트를 위해 2초 후 종료 시뮬레이션
             setTimeout(function() {
                 Loader.complete();
                 console.log("로딩 완료 테스트");
             }, 1000);
         }
+
+
+        // 검색 조건 전환 (Select 박스 기준)
+        $(document).on('change', '.fn-search-select', function() {
+            var $select = $(this);
+            var val = $select.val();
+            var $container = $select.closest('.fn-search-field'); 
+            
+            var $targets = $container.find('.fn-search-target');
+            $targets.hide();
+            $targets.filter('[data-view="' + val + '"]').show();
+        });
+
+
+        //비용집계대상 전환 (Radio 버튼 기준)
+        function refreshCostTarget() {
+            var $checked = $('input[name="cost-type"]').filter(':checked');
+            if (!$checked.length) return;
+
+            var targetVal = $checked.val();
+            var $container = $checked.closest('.form-row');
+
+            $container.find('.fn-modal-open').hide();
+            $container.find('.fn-modal-open[data-target="' + targetVal + '"]').show();
+        }
+
+        $(document).on('change', 'input[name="cost-type"]', function() {
+            refreshCostTarget();
+        });
+
+
+        // 운전여비지급 체크박스 토글 (공통)
+        function handleCheckToggle($trigger) {
+            var targetName = $trigger.attr('data-target-name');
+            var $parent = $trigger.closest('.form-group, .form-row');
+            var $target = $parent.find('.fn-check-target[data-target-name="' + targetName + '"]');
+
+            if ($trigger.is(':checked')) {
+                $target.show();
+            } else {
+                $target.hide();
+            }
+        }
+
+        $(document).on('change', '.fn-check-trigger', function() {
+            handleCheckToggle($(this));
+        });
+
+        /**
+         * [5] 초기 로드 시 상태 동기화 (Init)
+         */
+        function initUI() {
+            // select box검색 조건 초기화
+            $('.fn-search-select').trigger('change');
+            
+            // 비용 코드 버튼 초기화
+            refreshCostTarget();
+            
+            // 운전여비지급 체크박스 토글 초기화
+            $('.fn-check-trigger').each(function() {
+                handleCheckToggle($(this));
+            });
+        }
+
+        // 모든 정의가 끝난 후 초기화 실행
+        initUI();
     });
     </script>
 </head>
@@ -91,11 +156,11 @@
                     <div class="input-wrap group">
                         <div class="pill-radio-group" role="radiogroup" aria-label="비용집계대상 선택">
                             <label class="pill-radio">
-                                <input type="radio" name="cost-type" checked>
+                                <input type="radio" name="cost-type" value="costCodeModal" checked>
                                 <span class="pill-radio-label">비용(WBS)</span>
                             </label>
                             <label class="pill-radio">
-                                <input type="radio" name="cost-type">
+                                <input type="radio" name="cost-type" value="capitalCodeModal">
                                 <span class="pill-radio-label">자본</span>
                             </label>
                         </div>
@@ -104,6 +169,7 @@
                                 <input id="cost-code-input" type="text" name="code" aria-label="선택된 비용 코드" placeholder="코드를 검색하세요" readonly>
                             </div>
                             <button class="icon-button search fn-modal-open" type="button" aria-label="비용 코드 검색 창 열기" data-target="costCodeModal"></button>
+                            <button class="icon-button search fn-modal-open" type="button" aria-label="자본 코드 검색 창 열기" data-target="capitalCodeModal"></button>
                         </div>
                         <span class="text result">코드명 : <em><span class="blind">선택된 코드 번호:</span>00348568</em></span>
                     </div>
@@ -133,10 +199,10 @@
                         </label>
                         <div class="form-group pill-check">
                             <label class="pill-check if-check">
-                                <input type="checkbox" name="trip-type">
+                                <input type="checkbox" name="trip-type" class="fn-check-trigger" data-target-name="travel-expenses">
                                 <span class="pill-check-label">운전여비지급</span>
                             </label>                        
-                            <div class="input-wrap select checked" style="display:none;">
+                            <div class="input-wrap select fn-check-target" data-target-name="travel-expenses" style="display: none;">
                                 <select id="allowance" name="allowance" aria-label="운전여비지급 상세선택">
                                     <option value="">선택하세요</option>
                                 </select>
@@ -309,22 +375,111 @@
                 <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
             </div>
             <div class="modal-body">
-                <div class="search-field">
+                <div class="search-field fn-search-field">
+                    
                     <div class="search-input-group">
-                        <label class="form-label" for="search-category">검색구분</label>
+                        <label class="form-label" for="search-category-cost">검색구분</label>
                         <div class="input-wrap select">
-                            <select id="search-category" aria-label="검색구분" autofocus>
-                                <option value="">1.자산-부서로 검색</option>
+                            <select id="search-category-cost" class="fn-search-select" aria-label="검색구분" autofocus>
+                                <option value="category-dept">1.세분류사업명-부서로 검색</option>
+                                <option  value="category-project">2.세분류사업명-이름으로 검색</option>
+                                <option value="category-program">3.프로그램명 검색</option>
                             </select>
                         </div>
                     </div>
-                    <div class="search-input-group">
+
+                    <div class="search-input-group fn-search-target" data-view="category-dept">
                         <label class="form-label" for="dept">부서검색</label>
                         <div class="input-wrap">
-                            <input id="dept" type="text" name="approver" aria-label="부서" placeholder="부서를 검색하세요" readonly>
+                            <input id="dept" type="text" aria-label="부서" placeholder="부서를 검색하세요" readonly>
                         </div>
                         <button class="icon-button search fn-modal-open" type="button" aria-label="부서 검색" data-target="deptModal"></button>
                     </div>
+
+                    <div class="search-input-group fn-search-target" data-view="category-project">
+                        <label class="form-label" for="project">세분류사업명</label>
+                        <div class="input-wrap">
+                            <input id="project" type="text" ria-label="세분류사업명" placeholder="세분류사업명을 입력하세요">
+                        </div>
+                    </div>
+
+                    <div class="input-wrap group fn-search-target" data-view="category-program">
+                        <div class="search-input-group">
+                            <label class="form-label">방송(예정)일</label>
+                            <div class="input-wrap">
+                                <div class="input-wrap date">
+                                    <input type="text" name="start-date" class="datepicker" aria-label="시작일" placeholder="YYYY.MM.DD" readonly="readonly">
+                                </div>
+                                <span class="date-tilde" aria-hidden="true">~</span>
+                                <div class="input-wrap date">
+                                    <input type="text" name="end-date" class="datepicker" aria-label="종료일" placeholder="YYYY.MM.DD" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-input-group">
+                            <label class="form-label" for="program">프로그램명</label>
+                            <div class="input-wrap">
+                                <input id="program" type="text" aria-label="프로그램명" placeholder="프로그램명을 입력하세요">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="button search" type="button" aria-label="조회">조회</button>
+                </div>
+
+                <p class="note">총 3건이 검색되었습니다.</p>
+                <ul class="search-result flex-colum">
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">000037463269</span>
+                            <span class="name">모바일코비스개선 / IT개발운영팀</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="search-result-item fn-modal-close">
+                            <span class="number">000037463269</span>
+                            <span class="name">SW개발비 / 2024편성제작정보시스템기능개선사업 IT개발운영팀</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="capitalCodeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="capitalCodeModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="capitalCodeModalTitle">자본예산 코드 조회</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-field fn-search-field">
+                    
+                    <div class="search-input-group">
+                        <label class="form-label" for="search-category-capital">검색구분</label>
+                        <div class="input-wrap select">
+                            <select id="search-category-capital" class="fn-search-select" aria-label="검색구분" autofocus>
+                                <option value="category-dept">1.자산-부서로 검색</option>
+                                <option value="category-asset">2.자산-자산명으로 검색</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="search-input-group fn-search-target" data-view="category-dept">
+                        <label class="form-label" for="dept">부서검색</label>
+                        <div class="input-wrap">
+                            <input id="dept" type="text" aria-label="부서" placeholder="부서를 검색하세요" readonly>
+                        </div>
+                        <button class="icon-button search fn-modal-open" type="button" aria-label="부서 검색" data-target="deptModal"></button>
+                    </div>
+
+                    <div class="search-input-group fn-search-target" data-view="category-asset">
+                        <label class="form-label" for="asset">자산명</label>
+                        <div class="input-wrap">
+                            <input id="asset" type="text" aria-label="자산명" placeholder="자산명을 입력하세요">
+                        </div>
+                    </div>
+
                     <button class="button search" type="button" aria-label="조회">조회</button>
                 </div>
 
