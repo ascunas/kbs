@@ -95,6 +95,21 @@ input:read-only {
     border: 0;
 }
 
+.icon {
+    /* margin-right: 10px; */
+}
+.icon.icon-overtime {
+    width: 40px;
+    height: 40px;
+    background: url(../images/icon_overtime.svg) center / 20px no-repeat;
+    flex-shrink: 0;
+}
+.icon.icon-optional-works {
+    width: 40px;
+    height: 40px;
+    background: url(../images/icon_month.svg) center / 20px no-repeat;
+    flex-shrink: 0;
+}
 
 .form-check {
     display: inline-flex;
@@ -266,6 +281,23 @@ input:read-only {
     font-size: 12px;
     font-weight: 600;
     color: #2f3a46;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+.button.large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    border: 2px solid #08c;
+    width: auto;
+    background: #fff;
+    background-color: #ebf4f8;
+    color: #000;
+    padding: 0 8px;
     transition: background 0.2s ease, transform 0.15s ease;
 }
 
@@ -1012,6 +1044,9 @@ h1.title {
     margin: 0 -16px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     border-bottom: 0px solid #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     z-index: 1;
 }
 .form-content .summary-wrap {
@@ -1028,6 +1063,7 @@ h1.title {
     background-color: #dbe5e8;
     border-radius: 6px;
     padding: 4px;
+    margin-bottom: 8px;
     font-size: 14px;
     font-weight: 600;
 }
@@ -1083,7 +1119,7 @@ h1.title {
     padding: 12px 16px 12px;
 }
 
-.overtime-summary .summary-card {
+.overtime-summary .summary-card, .optional-work-summary .summary-card {
     display: flex;
     gap: 10px;
     align-items: flex-start;
@@ -1104,7 +1140,7 @@ h1.title {
     gap: 10px;
     position: relative;
 }
-.overtime-summary .summary-body {
+.overtime-summary .summary-body, .optional-work-summary .summary-body {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -1129,7 +1165,7 @@ h1.title {
     font-weight: 700;
 }
 
-.overtime-summary .summary-action {
+.summary-wrap .summary-action {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1146,7 +1182,12 @@ h1.title {
     top: 10px;
 }
 
-
+.optional-work-summary .summary-icon {
+    width: 60px;
+    height: 40px;
+    background: url(../images/icon_month.svg) center / 40px no-repeat;
+    flex-shrink: 0;
+}
 .optional-work-summary .summary-body {
     display: flex;
     flex-direction: column;
@@ -1157,13 +1198,15 @@ h1.title {
 }
 .optional-work-summary .summary-meta {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 6px;
+    gap: 2px;
     padding-bottom: 6px;
+    font-size: 14px;
+    letter-spacing: -0.5px;
 }
 .optional-work-summary .summary-meta::before {
-    content: "";
+    /* content: ""; */
     width: 30px;
     height: 30px;
     background-image: url(../images/icon_month.svg);
@@ -1236,8 +1279,12 @@ h1.title {
 }
 
 
-
-
+.btn-content { margin-top: 50px;}
+.btn-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 
 
@@ -1257,7 +1304,14 @@ h1.title {
     flex-direction: column;
     gap: 10px;
     padding: 0 10px;
-    /* height: 100vh; */
+    height: 100%;
+    position: relative;
+}
+.list-wrap::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
 }
 .item-list {
     display: flex;
@@ -1273,6 +1327,7 @@ h1.title {
     justify-content: center;
     /* min-height: 300px; */
     height: 100%;
+    /* height: calc(100vh - 35px - 60px - 74px); */
     background-color: transparent;
     background-image: none;
     border: 0;
@@ -1305,6 +1360,9 @@ h1.title {
     background-position: center right 18px;
     background-repeat: no-repeat;
 }
+.item-card:last-child {
+    margin-bottom: 10px;
+}
 .item-card a {
     display: block;
     padding: 18px 18px 18px;
@@ -1316,7 +1374,7 @@ h1.title {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 4px;
 }
 
 .item-left {
@@ -1355,7 +1413,7 @@ h1.title {
 }
 
 .item-subtext {
-    padding-top: 8px;
+    padding-top: 6px;
     font-size: 14px;
     color: #868686;
     white-space: nowrap;
@@ -1958,7 +2016,7 @@ h1.title {
 /* 상세보기 화면 */
 
 .detail-content {
-    padding: 10px 16px 0px;
+    padding: 10px 16px 16px;
     background-color: #fff;
 }
 

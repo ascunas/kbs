@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>월지급현황</title>
+
+    <script src="../../js/jquery-1.8.0.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.min.js"></script>
+    <script src="../../js/bootstrap-datepicker.ko.min.js"></script>
+    <script src="../../js/common_new.js"></script>
+    <script src="../../js/cap.js"></script>
+
+    <link rel="stylesheet" href="../../css/cap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../../css/style_new.css">
+
+    <script>
+    jQuery(function ($) { 
+        if (typeof Loader !== 'undefined') {
+            Loader.start();
+            setTimeout(function() {
+                Loader.complete();
+                console.log("로딩 완료 테스트");
+            }, 1000);
+        }
+    });
+    </script>
+</head>
+<body class="sub-page">
+    <div class="app-shell">
+
+        <header class="app-header">
+            <button class="icon-button prev" type="button" aria-label="이전 페이지로 이동"></button>
+            <h1 class="title">월지급 현황</h1>
+            <button class="icon-button menu" type="button" aria-label="전체 메뉴 열기" aria-haspopup="true" aria-expanded="false" aria-controls="main-menu" data-menu-toggle></button>
+        </header>
+
+        <main class="content fn-height detail-content">
+
+            <section class="filter-panel" aria-label="조회 조건">
+                <div class="filter-row">
+                    <span class="filter-label">지급연도</span>
+                    <div class="input-wrap select">
+                        <select id="overtime-year" aria-label="지급년도">
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <table class="info-table overtime-modal-table">
+                <colgroup>
+                    <col style="width: 50px;">
+                    <col style="width: auto">
+                    <col style="width: auto">
+                    <col style="width: auto">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">지급월</th>
+                        <th scope="col">시간외실비</th>
+                        <th scope="col">기타</th>
+                        <th scope="col">총지급액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>01</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>02</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>03</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>04</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>05</th>
+                        <td>33,600</td>
+                        <td>33,600</td>
+                        <td>33,600</td>
+                    </tr>
+                    <tr>
+                        <th>06</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>07</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>08</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>09</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>10</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>11</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>12</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="overtime-total-row">
+                        <th>합계</th>
+                        <td>33,600</td>
+                        <td></td>
+                        <td>33,600</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul class="note-list">
+                <li>시간외실비 : 당월 시간외실비 발생분</li>
+                <li>대휴정산실비 및 대휴정산개수 : 지급월에 발생한 대휴에 대한 정산 실비 및 정산 받은 대휴 개수</li>
+                <li>기타 : 누락분</li>
+            </ul>
+        </main>
+
+        <aside class="menu-panel" id="main-menu" aria-label="전체 메뉴" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="menu-hero">
+                <div class="menu-hero-content">
+                    <p class="menu-subtitle">ESS Mobile</p>
+                </div>
+                <button class="menu-close" type="button" aria-label="메뉴 닫기" data-menu-close></button>
+            </div>
+            <nav class="menu-body">
+                <ul class="menu-list">
+                    <li>
+                        <a class="menu-item home" href="#">
+                            <span class="menu-label">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item atten" href="#">
+                            <span class="menu-label">근태 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item trip" href="#">
+                            <span class="menu-label">출장 내역</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item overtime active" href="#" aria-current="page">
+                            <span class="menu-label">시간외 근무내역</span>
+                        </a>
+                        <ul class="menu-children">
+                            <li><a class="menu-item" href="#">시간외 신청</a></li>
+                            <li><a class="menu-item" href="#">선택근로 실적 입력</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="menu-item event" href="#">
+                            <span class="menu-label">경조금</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item faq" href="#">
+                            <span class="menu-label">복무관리 FAQ</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</body>
+</html>
