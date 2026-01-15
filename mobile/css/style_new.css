@@ -95,6 +95,10 @@ input:read-only {
     border: 0;
 }
 
+.left {text-align: left!important;}
+.center {text-align: center!important;}
+.right {text-align: right!important;}
+
 .icon {
     /* margin-right: 10px; */
 }
@@ -2717,6 +2721,17 @@ input.datepicker {
     text-align: center;
     flex-shrink: 0;
 }
+
+table.left td {
+    text-align: left!important;
+}
+table.center td {
+    text-align: center!important;
+}
+table.right td {
+    text-align: right!important;
+}
+
 /* 테이블 컨테이너 */
 .table-container {
     width: 100%;
