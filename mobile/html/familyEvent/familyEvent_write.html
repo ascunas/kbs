@@ -27,6 +27,26 @@
                 console.log("로딩 완료 테스트");
             }, 1000);
         }
+
+        // 검색 조건 전환 (Select 박스 기준)
+        $(document).on('change', '.fn-search-select', function() {
+            var $select = $(this);
+            var val = $select.val();
+            var $container = $select.closest('form'); 
+            
+            var $targets = $container.find('.fn-search-target');
+            $targets.hide();
+            $targets.filter('[data-view="' + val + '"]').show();
+        });
+
+        // 초기 로드 시 상태 동기화 (Init)
+        function initUI() {
+            // select box검색 조건 초기화
+            $('.fn-search-select').trigger('change');
+        }
+
+        // 초기화 실행
+        initUI();
     });
     </script>
 </head>
@@ -53,8 +73,9 @@
                 <div class="form-row">
                     <label class="form-label" for="event-cate">경조유형</label>
                     <div class="input-wrap select">
-                        <select id="event-cate" name="event-cate" aria-label="경조금 유형 선택">
-                            <option value="">선택하세요</option>
+                        <select id="event-cate" name="event-cate" class="fn-search-select" aria-label="경조금 유형 선택">
+                            <option value="family-type">조모 사망</option>
+                            <option value="family-type2">배우자 모사망</option>
                         </select>
                     </div>
                 </div>
@@ -80,10 +101,22 @@
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row fn-search-target" data-view="family-type"><!--조모 사망-->
                     <label class="form-label" for="family-name">가족성명</label>
                     <div class="input-wrap input">
-                        <input type="text" id="family-name" placeholder="가족성명">
+                        <input type="text" id="family-type" placeholder="가족성명">
+                    </div>
+                </div>
+
+                <div class="form-row fn-search-target" data-view="family-type2" style="display:none;"><!--배우자모 사망-->
+                    <label class="form-label" for="family-name">가족성명</label>
+                    <div class="input-wrap input">
+                        <select id="family-name" name="family-name" aria-label="가족성명">
+                            <option value="">문경자</option>
+                        </select>
+                    </div>
+                    <div class="input-wrap input">
+                        <input type="text" id="family-number" placeholder="가족주민번호" readonly>
                     </div>
                 </div>
 

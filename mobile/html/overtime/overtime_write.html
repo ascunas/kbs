@@ -24,6 +24,17 @@
                 console.log("로딩 완료 테스트");
             }, 1000);
         }
+
+        $(document).on('change', '.fn-check-modal', function() {
+            var $checkbox = $(this);
+            var targetId = $checkbox.attr('data-target');
+
+            if ($checkbox.is(':checked') && targetId) {
+                $checkbox.addClass('fn-modal-open'); 
+                $checkbox.trigger('click'); 
+                $checkbox.removeClass('fn-modal-open');
+            }
+        });
     });
     </script>
 </head>
@@ -58,8 +69,10 @@
                 <div class="form-row">
                     <label class="form-label" for="overtime-date">근무일자</label>
                     <div class="input-wrap">
-                        <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog">
-                        <em>화</em>
+                        <span>
+                            <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog" style="width: 110px;">
+                            <em>화</em><em class="blue">비번</em><em class="red">국외출장</em>
+                        </span>
                     </div>
                     <button class="icon-button me fn-modal-open" type="button" aria-label="나의 시간외 현황 팝업 열기" data-target="iamModal">
                         <span class="button-text">IAM</span>
@@ -129,7 +142,7 @@
                             <span class="pill-check-label">대휴(대휴수:0)</span>
                         </label>
                         <label class="pill-check">
-                            <input type="checkbox" name="work-type" disabled>
+                            <input type="checkbox" name="work-type" class="fn-check-modal" data-target="SpecialOvertimeWorkModal">
                             <span class="pill-check-label">특별연장근로</span>
                         </label>
                     </div>
@@ -144,7 +157,7 @@
                             </div>
                             <div class="summary-metric">
                                 <span class="label">총휴게시간</span>
-                                <span class="value">01:00</span>
+                                <span class="value red">01:00</span>
                             </div>
                             <div class="summary-metric">
                                 <span class="label">의무휴게시간</span>
@@ -162,8 +175,9 @@
                             </div>
                         </div>
                         <div class="overtime-summary-footer">
+                            <p class="help-text">해외출장자 기준시간 00:00</p>
                             <p class="help-text">근무시간 4시간 30분의 휴게시간 입력 필요</p>
-                            <!-- <button class="icon-button sm info tooltip-target tooltip-left" type="button" aria-label="휴게시간 변경 안내" data-tooltip="근무시간 4시간당 30분의 휴게시간 입력 필요"></button> -->
+                            <!-- <button class="icon-button sm info tooltip-target tooltip-bottom" type="button" aria-label="휴게시간 변경 안내" data-tooltip="근무시간 4시간당 30분의 휴게시간 입력 필요"></button> -->
                             <button class="button small fn-modal-open" type="button" data-target="breakTimeCngModal">휴게시간변경</button>
                         </div>
                     </section>
@@ -178,9 +192,9 @@
 
                 <div class="form-row divider">
                     <label class="form-label" for="overtime-approver">결재자</label>
-                    <!-- <div class="input-wrap input">
-                        <input id="overtime-approver" type="text" aria-label="결재자 이름" placeholder="결재자를 선택하세요" readonly="readonly">
-                    </div> -->
+                    <div class="input-wrap input name">
+                        <input id="overtime-approver" type="text" aria-label="결재자 이름" placeholder="이름">
+                    </div>
                     <div class="input-wrap">
                         <input id="overtime-approver" type="text" aria-label="결재자 이름" placeholder="결재자를 선택하세요" readonly="readonly">
                     </div>
@@ -377,7 +391,7 @@
             <div class="modal-body">
 
                 <div class="table-wrap">
-                    <table class="info-table">
+                    <table class="info-table center">
                         <colgroup>
                             <col style="width: 50px;">
                             <col style="width: auto">
@@ -401,7 +415,7 @@
                             <tr>
                                 <td>a</td>
                                 <td>a</td>
-                                <td>a</td>
+                                <td><span class="icon icon-check" aria-hidden="true"></span></td>
                                 <td>a</td>
                                 <td>a</td>
                             </tr>
@@ -465,7 +479,10 @@
                                     <span>익일</span>
                                 </label>
                             </div>
-                            <button class="icon-button add fn-add" type="button" aria-label="휴게시간 추가"></button>
+                            <div class="fn-btn-group">
+                                <button class="icon-button add fn-add" type="button" aria-label="휴게시간 추가"></button>
+                                <button class="icon-button remove fn-remove" type="button" aria-label="휴게시간 삭제"></button>
+                            </div>
                             
                         </div>
                     </div>
@@ -512,7 +529,10 @@
                                     <span>익일</span>
                                 </label>
                             </div>
-                            <button class="icon-button remove fn-remove" type="button" aria-label="휴게시간 삭제"></button>
+                            <div class="fn-btn-group">
+                                <button class="icon-button add fn-add" type="button" aria-label="휴게시간 추가"></button>
+                                <button class="icon-button remove fn-remove" type="button" aria-label="휴게시간 삭제"></button>
+                            </div>
                             
                         </div>
                     </div>
@@ -546,7 +566,7 @@
                         <button class="icon-button search" type="button" aria-label="검색 실행"></button>
                     </div>
                 </div>
-                <p class="note" aria-live="polite">총 3건이 검색되었습니다.</p>
+                <p class="note" aria-live="polite">총 <span class="red">3</span>건이 검색되었습니다.</span></p>
                 <ul class="search-result">
                     <li>
                         <a href="#" class="search-result-item fn-modal-close" aria-label="나구열 팀장 선택">
@@ -567,6 +587,24 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="SpecialOvertimeWorkModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="SpecialOvertimeWorkModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="SpecialOvertimeWorkModalTitle">특별 연장근로 동의</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <p class="info-paragraph">
+                    ※ 재난 방송 등 특별연장근로 사유에 해당하는 경우에만 체크하시기 바랍니다. 특별연장근로 사유에 해당하지 않는 경우 추후 시간외 실비 환수 등의 불이익이 있을 수 있습니다.<br><br>
+                    ※ 특별연장근로 대상자는 고용노동부 고시에 따라 국민건강보험법에 따른 건강검진(일반검진) 신청이 가능합니다. <br><br>
+                    (매년 실시하는 정기검진과는 별도/건강검진 관련 사항은 후생부 T.2481로 문의)
+
+
+                </p>
             </div>
         </div>
     </div>

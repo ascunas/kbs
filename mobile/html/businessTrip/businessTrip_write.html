@@ -216,25 +216,10 @@
                     <div class="input-wrap group">
                         <div class="input-wrap flex-end">
                             <span class="text result">합계 : <em>45,000원</em></span>
-                            <button class="icon-button add" type="button" aria-label="기타비용 추가"></button>
+                            <button class="icon-button add fn-add" type="button" data-row-target="#other-costs-rows" aria-label="기타비용 추가"></button>
                         </div>
                         
-                        <div class="form-row wrap fn-row">
-                            <div class="form-row-item">
-                                <div class="cost-row">
-                                    <span class="form-label">항목</span>
-                                    <div class="input-wrap">
-                                        <input id="" type="text" name="" aria-label="비용 항목" placeholder="항목을 입력하세요">
-                                    </div>
-                                    <span class="form-label">금액</span>
-                                    <div class="input-wrap">
-                                        <input id="" type="text" name="" aria-label="비용 금액" placeholder="금액을 입력하세요">
-                                    </div>
-                                </div>
-                                <button class="icon-button remove fn-remove" type="button" aria-label="기타비용 삭제"></button>                            
-                            </div>
-                        </div>
-                        <div class="form-row wrap fn-row">
+                        <div class="form-row wrap fn-row" id="other-costs-rows" style="display: none;">
                             <div class="form-row-item">
                                 <div class="cost-row">
                                     <span class="form-label">항목</span>

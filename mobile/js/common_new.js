@@ -787,12 +787,15 @@
         });
         $clone.find('textarea').val('');
 
-        $clone.find('.fn-add').each(function () {
-          $(this).removeClass('fn-add').addClass('fn-remove');
-        });
-        $clone.find('.icon-button.add').each(function () {
-          $(this).removeClass('add').addClass('remove');
-        });
+        if ($clone.find('.fn-remove').length === 0) {
+          $clone.find('.fn-add').each(function () {
+            $(this).removeClass('fn-add').addClass('fn-remove');
+          });
+          $clone.find('.icon-button.add').each(function () {
+            $(this).removeClass('add').addClass('remove');
+          });
+        }
+        //$clone.find('.fn-remove').not(':first').remove();
 
         $clone.hide();
         $clone.insertAfter($rows.last());
