@@ -68,11 +68,15 @@
             <form class="apply-form overtime-form">
                 <div class="form-row">
                     <label class="form-label" for="overtime-date">근무일자</label>
-                    <div class="input-wrap">
-                        <span>
-                            <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog" style="width: 110px;">
-                            <em>화</em><em class="blue">비번</em><em class="red">국외출장</em>
-                        </span>
+                    <div class="input-wrap group ">
+                        <div class="input-wrap">
+                            <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog">
+                            <span class="overtime-day">화</span>
+                        </div>
+                        <div class="date-info">                                
+                            <em class="type2">비번</em>
+                            <em class="type1">국외출장</em>
+                        </div>
                     </div>
                     <button class="icon-button me fn-modal-open" type="button" aria-label="나의 시간외 현황 팝업 열기" data-target="iamModal">
                         <span class="button-text">IAM</span>

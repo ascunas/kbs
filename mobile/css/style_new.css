@@ -33,6 +33,7 @@ body {
     line-height: 1.2;
     min-height: 100vh;
     color: #000;
+    font-size: 14px;
 }
 
 a {text-decoration: none;}
@@ -2049,6 +2050,13 @@ h1.title {
     gap: 16px;
     padding: 10px 6px;
 }
+.detail-list .sub-title {
+    font-size: 14px;
+    background-color: #f4f4f4;
+    font-weight: 600;
+    padding: 6px 10px;
+    text-align: center;
+}
 .detail-list form {
     display: flex;
     flex-direction: column;
@@ -2201,7 +2209,12 @@ h1.title {
 .overtime-form .form-row {
     gap: 8px;
 }
-
+.datepicker + .overtime-day {
+    font-weight: 600;
+    font-size: 14px;
+    color: #2f3a46;
+    padding-left: 10px;
+}
 .overtime-day {
     font-weight: 600;
     font-size: 14px;
@@ -2369,8 +2382,24 @@ h1.title {
     margin: 0;
 }
 
-
-
+.date-info {
+    display: flex;
+    gap: 6px;
+}
+.date-info .type1 {
+    padding: 4px 8px;
+    background-color: #e98181;
+    color: #fff;
+    border-radius: 14px;
+    font-size: 12px;
+}
+.date-info .type2 {
+    padding: 4px 8px;
+    background-color: #7dc2c9;
+    color: #fff;
+    border-radius: 14px;
+    font-size: 12px;
+}
 
 
 
@@ -2881,6 +2910,26 @@ table.right td {
     max-height: 70vh;
     overflow-y: auto;
     position: relative;
+}
+.modal-body .detail-list {
+    gap: 12px;
+}
+.modal-body .detail-list + .detail-list {
+    padding-top: 0;
+}
+.modal-body .detail-row {
+    padding-bottom: 12px;
+}
+.modal-body .detail-row:last-child {
+    padding-bottom: 0px;
+}
+.modal-body .detail-row .label {
+    width: 90px;
+    padding-left: 10px;
+}
+.modal-body .detail-row .wrap {
+    width: 100%;
+    padding-left: 10px;
 }
 .modal-body .form-content {
     padding: 0;
