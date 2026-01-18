@@ -89,13 +89,13 @@
             <form class="apply-form overtime-form">
                 <div class="form-row">
                     <label class="form-label" for="overtime-date">근무일자</label>
-                    <div class="input-wrap">
+                    <div class="input-wrap date-group">
                         <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog">
                         <em>화</em>
+                        <button class="icon-button me fn-modal-open" type="button" aria-label="나의 시간외 현황 팝업 열기" data-target="iamModal">
+                            <span class="button-text">IAM</span>
+                        </button>
                     </div>
-                    <button class="icon-button me fn-modal-open" type="button" aria-label="나의 시간외 현황 팝업 열기" data-target="iamModal">
-                        <span class="button-text">IAM</span>
-                    </button>
                 </div>
 
                 <div class="form-row">
@@ -497,7 +497,10 @@
                                     <span>익일</span>
                                 </label>
                             </div>
-                            <button class="icon-button add fn-add" type="button" aria-label="휴게시간 추가"></button>
+                            <div class="fn-btn-group">
+                                <button class="icon-button add fn-add" type="button" aria-label="휴게시간 추가"></button>
+                                <button class="icon-button remove fn-remove" type="button" aria-label="휴게시간 삭제"></button>
+                            </div>
                             
                         </div>
                     </div>
@@ -544,7 +547,10 @@
                                     <span>익일</span>
                                 </label>
                             </div>
-                            <button class="icon-button remove fn-remove" type="button" aria-label="휴게시간 삭제"></button>
+                            <div class="fn-btn-group">
+                                <button class="icon-button add fn-add" type="button" aria-label="휴게시간 추가"></button>
+                                <button class="icon-button remove fn-remove" type="button" aria-label="휴게시간 삭제"></button>
+                            </div>
                             
                         </div>
                     </div>

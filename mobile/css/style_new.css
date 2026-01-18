@@ -74,6 +74,9 @@ select {
     background-size: 12px;
     padding-right: 28px;
 }
+select:disabled {
+    background-color: #f2f2f2;
+}
 
 input[type=text]:focus, select:focus, textarea:focus, button:focus  {
     outline: none; 
@@ -123,6 +126,40 @@ input:read-only {
     flex-shrink: 0;
 }
 
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  /* border: 1px solid #999; */
+  border-radius: 3px;
+  background: #fff;
+}
+
+input[type="checkbox"]:checked {
+  background: #007aff;
+  border-color: #4f9fc7 !important;
+  border-radius: 3px;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    background-color: #e8f6fd;
+    background-image: url(../images/icon_checked.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input[type="checkbox"]:disabled:checked {
+  opacity: 1; 
+}
 .form-check {
     display: inline-flex;
     align-items: center;
@@ -135,8 +172,8 @@ input:read-only {
 .form-check input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #0b92d2;
-    border: 1px solid #e5e8ed;
+    accent-color: #3caee1;
+    border: 1px solid #dddddd;
 }
 
 .form-radio {
@@ -201,16 +238,19 @@ input:read-only {
 }
 
 .pill-radio input[type="radio"]:checked + .pill-radio-label,
-.pill-check input[type="checkbox"]:checked + .pill-check-label {
+.pill-radio input[type="radio"]:checked:disabled + .pill-radio-label,
+.pill-check input[type="checkbox"]:checked + .pill-check-label,
+.pill-check input[type="checkbox"]:checked:disabled + .pill-check-label {
     background: #e8f6fd;
     border: 1px solid #3caee1;
     color: #0b77b3;
     box-shadow: inset 0 0 0 1px rgba(60, 174, 225, 0.15);
+    opacity: 1;
 }
 .pill-radio input[type="radio"]:disabled + .pill-radio-label,
 .pill-check input[type="checkbox"]:disabled + .pill-check-label {
     background-color: #ececec;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 .pill-check input[type="checkbox"]:checked + .pill-check-label::before {
     content: "";
@@ -474,6 +514,26 @@ input:read-only {
 }
 
 
+
+/* 컨테이너 기본 스타일 */
+.auto-overflow {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+.has-overflow {
+    padding-right: 16px;
+    justify-content: flex-start;
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 30px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 30px), transparent 100%);
+}
+.auto-overflow::-webkit-scrollbar {
+    display: none;
+}
+.auto-overflow.has-overflow {
+    /* 예: 그림자 효과 등 */
+}
 
 
 .tooltip-box {
@@ -762,12 +822,15 @@ h1.title {
 .content {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     position: relative;
     margin-top: 95px;
     padding-bottom: 10px;
     /* margin-bottom: 85px; */
     /* min-height: 100vh; */
+}
+.list-content {
+    
 }
 .fn-height {
     overflow-y: auto;
@@ -981,10 +1044,11 @@ h1.title {
     display: inline-flex;
     align-items: center;
     padding: 4px 10px;
-    border-radius: 999px;
+    border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.01em;
+    white-space: nowrap;
 }
 
 /* 승인 */
@@ -1041,6 +1105,18 @@ h1.title {
     color: #fff;
 }
 
+/* 입금 */
+.status.paid {
+    background: #0bb875;
+    border: 1px solid #0bb875;
+    color: #fff;
+}
+
+/* 미입금 */
+.status.unpaid {
+    border: 1px solid #0bb875;
+    color: #0bb875;
+}
 
 /* 미상신 draft //결재중 pending //승인 approved //회수 recalled //반려 rejected //미결 unprocessed */
 
@@ -1062,7 +1138,7 @@ h1.title {
     z-index: 1;
 }
 .form-content .summary-wrap {
-    box-shadow: 0 8px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.08);
     /* border-bottom: 10px solid #f2f2f2; */
     z-index: 1;
 }
@@ -1322,20 +1398,32 @@ h1.title {
 
 
 
-
+.filter-panel + .list-wrap {
+    padding-top: 0;
+}
 .list-wrap {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 0 10px;
-    height: 100%;
+    padding: 10PX 10px 0;
+    /* height: 100%; */
     position: relative;
 }
-.list-wrap::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
+.list-wrap.no-data-list {
+    height: 100%;
+}
+.list-header {
+    display: flex;
+    gap: 8px;
+    padding: 0 0;
+}
+.list-header.has-overflow {
+    padding-right: 10px;
+}
+.list-header .button {
+    flex: 1;
+    white-space: nowrap;
+    padding: 0 12px;
 }
 .item-list {
     display: flex;
@@ -1344,18 +1432,21 @@ h1.title {
     list-style: none;
     padding: 0;
     margin: 0;
-    height: 100%;
+    /* height: 100%; */
+    flex: 1;
+    /* min-height: calc(100vh - 95px - 74px); */
 }
 .item-list .no-data-wrap {
     display: flex;
     justify-content: center;
-    /* min-height: 300px; */
+    align-items: center;
+    flex: 1;
     height: 100%;
-    /* height: calc(100vh - 35px - 60px - 74px); */
     background-color: transparent;
     background-image: none;
     border: 0;
     box-shadow: none;
+    margin-bottom: 0!important;
 }
 .item-list .no-data {
     display: flex;
@@ -1385,7 +1476,7 @@ h1.title {
     background-repeat: no-repeat;
 }
 .item-card:last-child {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .item-card a {
     display: block;
@@ -1405,6 +1496,26 @@ h1.title {
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #000;
+}
+.event-type-list {
+    display: flex;
+    gap: 4px;
+    flex-direction: row;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+}
+.event-type-list span[class*="type"] {
+    display: flex;
+    gap: 4px;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #f1faff;
+    font-weight: normal;
+    color: #000;
 }
 
 .item-title {
@@ -1437,13 +1548,23 @@ h1.title {
 }
 
 .item-subtext {
-    padding-top: 6px;
+    display: flex;
+    gap: 6px;
+    padding-top: 4px;
     font-size: 14px;
-    color: #868686;
+    color: #000;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.item-subtext.status {
+    font-size: 14px;
+    padding: 6px 0 0;
+}
+.item-subtext.status span {
+    position: relative;
+}
+
 .item-subtext time:first-child {margin-left: 0px;}
 .item-subtext time:last-child {margin-right: 0px;}
 .item-subtext.red {
@@ -1495,6 +1616,11 @@ h1.title {
     background: #e8f4fb;
     color: var(--primary);
     border: 1px solid #0b91d1;
+}
+.action-button.normal {
+    background: #fff;
+    color: #575757;
+    border: 1px solid #999;
 }
 
 
@@ -2048,7 +2174,7 @@ h1.title {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 10px 6px;
+    padding: 10px 6px 0;
 }
 .detail-list .sub-title {
     font-size: 14px;
@@ -2062,7 +2188,7 @@ h1.title {
     flex-direction: column;
     gap: 16px;
     padding: 0px 0px 10px;
-    padding-bottom: 16px;
+    /* padding-bottom: 16px; */
 }
 
 .detail-row {
@@ -2095,9 +2221,48 @@ h1.title {
     color: var(--text);
     text-align: left;
     flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .detail-row .value.red {
     color: #ff0000;
+}
+.approver-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.approver-list .approver-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.approver-list .approver-item::before {
+    content: "";
+    display: inline-flex;
+    width: 12px;
+    height: 12px;
+    background-image: url(../images/icon_me.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.project-info .code {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 600;
+}
+.project-info .name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .badge {
@@ -2205,7 +2370,6 @@ h1.title {
     font-weight: 500;
 }
 
-
 .overtime-form .form-row {
     gap: 8px;
 }
@@ -2213,7 +2377,6 @@ h1.title {
     font-weight: 600;
     font-size: 14px;
     color: #2f3a46;
-    padding-left: 10px;
 }
 .overtime-day {
     font-weight: 600;
@@ -2425,6 +2588,9 @@ h1.title {
 .input-wrap.flex-end {
     justify-content: end;
 }
+.input-wrap.flex-start {
+    justify-content: flex-start;
+}
 
 .input-wrap.group {
     display: flex;
@@ -2438,7 +2604,7 @@ h1.title {
 .input-wrap select + em,
 .input-wrap input[type="text"] ~ em,
 .input-wrap input[type="date"] ~ em {
-    margin-left: 4px;
+    /* margin-left: 4px; */
     font-size: 14px;
     white-space: nowrap;
     letter-spacing: -2px;
@@ -2569,7 +2735,14 @@ input.datepicker {
     background-repeat: no-repeat;
     background-position: center right 10px;
 }
+input.datepicker.min-size {
+    width: 110px;
+}
+.date-group {
+    gap: 20px;
+    justify-content: flex-start;
 
+}
 
 .approver-row .approver-field {
     display: grid;
@@ -2826,6 +2999,7 @@ table.right td {
     padding: 8px 5px;
     font-weight: 500;
     color: #000;
+    text-align: center;
 }
 
 /* 테이블 바디 셀 */
@@ -3005,6 +3179,33 @@ table.right td {
     gap: 2px;
 }
 
+.guide-list {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    color: #6a6f77;
+    font-size: 14px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.guide-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+.guide-list li::before {
+        content: "";
+    width: 12px;
+    min-width: 12px;
+    height: 13px;
+    display: inline-flex;
+    background-image: url(../images/icon_guide01.svg);
+    background-position: center 2px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 
 
 
@@ -3103,9 +3304,28 @@ table.right td {
 }
 
 
-
-
-
+.admin-wrap {
+    padding: 10px 16px 10px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.admin-wrap .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 6px;
+    width: 100%;
+}
+.admin-wrap .form-row .form-label {
+    text-align: center;
+}
+.admin-wrap + .list-wrap {
+    margin-top: -10px;
+}
 
 @media (max-width: 360px) {
     .quick-actions {

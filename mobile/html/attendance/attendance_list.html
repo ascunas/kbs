@@ -38,7 +38,7 @@
 
         <main class="content fn-height list-content">
 
-            <section class="summary-wrap attendance" aria-labelledby="attendance-summary-title" style="display: none;">
+            <section class="summary-wrap attendance" aria-labelledby="attendance-summary-title" style="display: nodne;">
                 <h2 id="attendance-summary-title" class="blind">연차 및 장기근속 휴가 현황</h2>
                 <div class="fn-tabs" role="tablist">
                     <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="panel-annual" data-tab="annual">
@@ -104,7 +104,7 @@
             <!-- tab-content 하나만 있고 내부 데이터만 바뀌는 구조 -->
             <section class="summary-wrap attendance" aria-labelledby="attendance-summary-title" id="list_info2">
                 <h2 id="attendance-summary-title" class="blind">연차 및 장기근속 휴가 현황</h2>
-                <div class="tabs" role="tablist" id="list_tab2">
+                <div class="tabs auto-overflow" role="tablist" id="list_tab2">
                     <button class="tab-button active" type="button">
                         <span>연차휴가</span>
                         <span class="value">10.0 </span>
@@ -308,47 +308,5 @@
             </nav>
         </aside>
     </div>
-    <script>
-    jQuery(function ($) {
-    // 1. 상태 업데이트 및 중앙 정렬 함수
-    function refreshTabScroll($btn, isClick) {
-        var $container = $btn.closest('.tab-scroll'); // 이미 클래스가 있는 경우
-        if (!$container.length) $container = $btn.parent(); // 없으면 직계 부모
-
-        var el = $container.get(0);
-        if (!el) return;
-
-        // 클래스 부여 및 오버플로우 체크
-        var hasOverflow = el.scrollWidth > el.clientWidth + 1;
-        $container.addClass('tab-scroll').toggleClass('has-overflow', hasOverflow);
-
-        // 클릭해서 호출된 경우에만 중앙 정렬 애니메이션 실행
-        if (isClick && hasOverflow) {
-            var targetLeft = $btn[0].offsetLeft + ($btn[0].offsetWidth / 2) - (el.clientWidth / 2);
-            var maxScroll = el.scrollWidth - el.clientWidth;
-            $container.stop().animate({ 
-                scrollLeft: Math.max(0, Math.min(targetLeft, maxScroll)) 
-            }, 250);
-        }
-    }
-
-    // 클릭 시: 클래스 변경 및 정렬
-    $(document).on('click', '.tab-button', function () {
-        var $btn = $(this);
-        //if ($btn.closest('.fn-tabs').length) return;
-
-        $btn.addClass('active').siblings('.tab-button').removeClass('active');
-        refreshTabScroll($btn, true);
-    });
-
-    // 리사이즈 시: 오버플로우 다시 계산
-    $(window).on('resize', function() {
-        $('.tab-scroll').each(function() {
-            var hasOverflow = this.scrollWidth > this.clientWidth + 1;
-            $(this).toggleClass('has-overflow', hasOverflow);
-        });
-    });
-});
-    </script>
 </body>
 </html>

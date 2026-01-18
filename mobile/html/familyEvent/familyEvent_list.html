@@ -37,13 +37,158 @@
         </header>
 
         <main class="content fn-height list-content">
+            
+            <div class="admin-wrap">
+                <div class="form-row">
+                    <label class="form-label" for="employee-id">사번</label>
+                    <div class="input-wrap">
+                        <input id="employee-id" type="text" aria-label="사번" placeholder="사번을 입력하세요">
+                    </div>
+                </div>
+            </div>
 
-            <section class="list-wrap" aria-label="최근 경조금 내역">
+            
+            <!-- <section class="list-wrap" aria-label="경조금 내역" style="display: none;">
+                 <div class="list-header auto-overflow" aria-label="경조금 내역 정보 안내 버튼">
+                    <button class="button fn-modal-open" type="button" aria-haspopup="dialog" data-target="eventDetailModal">
+                        <span>근태와 연계된 경조금</span>
+                    </button>
+                    <button class="button fn-modal-open" type="button" aria-haspopup="dialog" data-target="eventCongratModal">
+                        <span>새출발축하금 안내</span>
+                    </button>
+                    <button class="button fn-modal-open" type="button" aria-haspopup="dialog" data-target="eventCondoleModal">
+                        <span>증여세 신고절차</span>
+                    </button>
+                </div>
                 <ul class="item-list">
                     <li class="item-card no-data-wrap" role="status">
                         <span class="no-data">최근 3개월간 내역이 없습니다.</span>
                     </li>
 
+                </ul>
+            </section> -->
+            <section class="list-wrap" aria-label="경조금 내역">
+                 <div class="list-header auto-overflow" aria-label="경조금 내역 정보 안내 버튼">
+                    <button class="button fn-modal-open" type="button" aria-haspopup="dialog" data-target="eventDetailModal">
+                        <span>근태와 연계된 경조금</span>
+                    </button>
+                    <button class="button fn-modal-open" type="button" aria-haspopup="dialog" data-target="eventCongratModal">
+                        <span>새출발축하금 안내</span>
+                    </button>
+                    <button class="button fn-modal-open" type="button" aria-haspopup="dialog" data-target="eventCondoleModal">
+                        <span>증여세 신고절차</span>
+                    </button>
+                </div>
+                <ul class="item-list family-event-list">
+                    <li class="item-card">
+                        <a href="javascript:void(0);">
+                            <div class="item-top">
+                                <div class="item-title"><time datetime="2025-09-22">2025/09/22</time> ~ <time datetime="2025-09-22">2025/09/22</time></div>
+                            </div>
+                            <div class="item-subtext event-type-list">
+                                <span class="type1">복지기금</span>
+                                <span class="type2">육아복지지원금</span>
+                                <span class="type3">육아복지지원금</span>
+                            </div>
+                            <div class="item-subtext status">
+                                <span class="status paid">입금</span>
+                                <span class="type">30만</span>
+                                <time datetime="2025-09-22">2025/09/22</time>                                
+                            </div>
+                            
+                        </a>
+                    </li>
+
+                    <li class="item-card">
+                        <a href="javascript:void(0);">
+                            <div class="item-top">
+                                <div class="item-title"><time datetime="2025-09-22">2025/09/22</time> ~ <time datetime="2025-09-22">2025/09/22</time></div>
+                            </div>
+                            <div class="item-subtext event-type-list">
+                                <span class="type1">복지기금</span>
+                                <span class="type2">육아복지지원금</span>
+                                <span class="type">육아복지지원금</span>
+                            </div>
+                            <div class="item-subtext status">
+                                <span class="status unpaid">미입금</span>
+                                <span class="type">30만</span>
+                            </div>
+                            
+                        </a>
+                    </li>
+
+                    <li class="item-card">
+                        <a href="javascript:void(0);">
+                            <div class="item-top">
+                                <div class="item-title"><time datetime="2025-09-22">2025/09/22</time> ~ <time datetime="2025-09-22">2025/09/22</time></div>
+                            </div>
+                            <div class="item-subtext event-type-list">
+                                <span class="type1">복지기금</span>
+                                <span class="type2">경사</span>
+                                <span class="type">자녀출산</span>
+                            </div>
+                            <div class="item-subtext status">
+                                <span class="status unpaid">미입금</span>
+                                <span class="type">30만</span>
+                            </div>
+                            
+                        </a>
+                    </li>
+
+                    <li class="item-card">
+                        <a href="javascript:void(0);">
+                            <div class="item-top">
+                                <div class="item-title"><time datetime="2025-09-22">2025/09/22</time> ~ <time datetime="2025-09-22">2025/09/22</time></div>
+                            </div>
+                            <div class="item-subtext event-type-list">
+                                <span class="type1">복지기금</span>
+                                <span class="type2">애사</span>
+                                <span class="type3">외조부 사망</span>
+                            </div>
+                            <div class="item-subtext status">
+                                <span class="status paid">입금</span>
+                                <span class="type">30만</span>
+                                <time datetime="2025-09-22">2025/09/22</time>                                
+                            </div>
+                            
+                        </a>
+                    </li>
+
+                    <li class="item-card">
+                        <a href="javascript:void(0);">
+                            <div class="item-top">
+                                <div class="item-title"><time datetime="2025-09-22">2025/09/22</time> ~ <time datetime="2025-09-22">2025/09/22</time></div>
+                            </div>
+                            <div class="item-subtext event-type-list">
+                                <span class="type1">복지기금</span>
+                                <span class="type2">육아복지지원금</span>
+                                <span class="type">육아복지지원금</span>
+                            </div>
+                            <div class="item-subtext status">
+                                <span class="status unpaid">미입금</span>
+                                <span class="type">30만</span>
+                            </div>
+                            
+                        </a>
+                    </li>
+
+                    <li class="item-card">
+                        <a href="javascript:void(0);">
+                            <div class="item-top">
+                                <div class="item-title"><time datetime="2025-09-22">2025/09/22</time> ~ <time datetime="2025-09-22">2025/09/22</time></div>
+                            </div>
+                            <div class="item-subtext event-type-list">
+                                <span class="type1">복지기금</span>
+                                <span class="type2">경사</span>
+                                <span class="type">자녀출산</span>
+                            </div>
+                            <div class="item-subtext status">
+                                <span class="status unpaid">미입금</span>
+                                <span class="type">30만</span>
+                            </div>
+                            
+                        </a>
+                    </li>
                 </ul>
             </section>
         </main>
@@ -97,6 +242,131 @@
                 </ul>
             </nav>
         </aside>
+    </div>
+
+    <div id="eventDetailModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="eventDetailModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="eventDetailModalTitle">근태와 연계된 경조금</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <p class="help-text">해당 근태 신청 후 승인이 완료되면 관련 경조금이 자동 신청됨</p>
+                <div class="table-wrap">
+                    <table class="info-table left">
+                        <colgroup>
+                            <col style="width: 50%;">
+                            <col style="width: auto">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">근태그룹-근태유형</th>
+                                <th scope="col">경조금(지급기관)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>일반근태-산전후 휴가</td>
+                                <td>경사-자녀출산(복)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-본인결혼</td>
+                                <td>경사-자녀출산(복/공)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-배우자 출산</td>
+                                <td>경사-자녀출산(복)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-배우자</td>
+                                <td>애사-배우자(복/공), 조의용품지원-자녀(공)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-자녀(직계)-자녀</td>
+                                <td>애사-자녀(복/공), 조의용품지원-자녀(공)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-조부</td>
+                                <td>애사-조부(복)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-조모</td>
+                                <td>애사-조모(복)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-외조부</td>
+                                <td>애사-외조부(복)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-외조모</td>
+                                <td>애사-외조모(복)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-부</td>
+                                <td>애사-부(복/공), 조의용품지원-부(공)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(직계)-모</td>
+                                <td>애사-모(복/공), 조의용품지원-모(공)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(배우자)-부</td>
+                                <td>애사-배우자부(복/공),조의용품지원-배우자부(공)</td>
+                            </tr>
+                            <tr>
+                                <td>청원휴가-사망(배우자)-모</td>
+                                <td>애사-배우자모(복/공),조의용품지원-배우자모(공)</td>
+                            </tr>
+                            <tr>
+                                <td>장기근속(2007년12.31 기준 공사의 규정에 의한 장기즌속휴가를 확보한 경우)</td>
+                                <td>장기즌속(복-최초사용시 전액지급)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="help-text">지급기관 : 복-복지기금, 공-공제회</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="eventCongratModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="eventCongratModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="eventCongratModalTitle">새출발축하금 안내</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="guide-list-wrap">
+                    <ul class="guide-list">
+                        <li>정년퇴직 3개월 이전부터 신청가능 합니다. (2041년 01월 01일 부터 신청 가능)</li>
+                        <li>축하금은 신청 후 수시 접수/지급 합니다.</li>
+                        <li>퇴직일 이전에 필히 신청하여 주시기 바랍니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="eventCondoleModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="eventCondoleModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="eventCondoleModalTitle">증여세 신고절차</h2>
+                <button class="modal-close fn-modal-close" type="button" aria-label="모달 닫기"></button>
+            </div>
+            <div class="modal-body">
+                <div class="guide-list-wrap">
+                    <ul class="guide-list">
+                        <li>주소지관할 세무서 혹인 국세청홈텍스(http://nts.go.kr)접속 전자신고 납부</li>
+                        <li>신고시 구비서류 : 증여세과세표준신고 및 자지납부계산서, 여행비가 입금된 통장해당면을 복사하여 첨부</li>
+                        <li>1. 국세청전자신고 : 국세청(공인인증서)홈텍스-세금신고-기타신고-증여세-납부방법-단계별내용입력(KBS NO 111271-0006390)</li>
+                        <li>2. 증여세납부-증여세납부기관:금융기관(은행, 농협, 우체국 등)<br>
+                            - 구비자료 : '영수증(별지제8호)' + 세금금액<br>
+                            - 신고납부일 : 여행비가 입금된 월말일부터 3개월-기한내 신고시 세액 10%감면
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

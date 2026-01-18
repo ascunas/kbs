@@ -345,6 +345,39 @@
         });
       });
     };
+
+    // 가로 스크롤 중앙 정렬 (.auto-overflow)
+    $.fn.autoOverflowPlugin = function () {
+        return this.each(function () {
+            var $container = $(this);
+            if ($container.data('ovfInit')) return;
+            $container.data('ovfInit', true);
+
+            // 오버플로우 상태 업데이트
+            var updateStatus = function() {
+                var hasOverflow = $container[0].scrollWidth > $container[0].clientWidth + 1;
+                $container.toggleClass('has-overflow', hasOverflow);
+            };
+
+            $container.on('click', '> *', function () {
+                if ($container.hasClass('has-overflow')) {
+                    centerTabInView($container, $(this));
+                }
+            });
+
+            $window.on('resize.ovf', throttle(updateStatus, 150));
+            updateStatus();
+        });
+    };
+
+    // No Data 클래스 제어
+    $.fn.noDataCheckPlugin = function () {
+        return this.each(function () {
+            var $wrap = $(this);
+            var hasNoData = $wrap.find('.no-data-wrap').length > 0;
+            $wrap.toggleClass('no-data-list', hasNoData);
+        });
+    };
   })();
 
   function initUiPlugins() {
@@ -352,6 +385,8 @@
     $('.fn-accordion').accordionPlugin();
     $('.tooltip-target').tooltipPlugin();
     $('.fn-dropdown').dropdownPlugin();
+    $('.auto-overflow').autoOverflowPlugin();
+    $('.list-wrap').noDataCheckPlugin();
   }
 
   /* ---------- 레이아웃/헤더 스크롤 ---------- */
