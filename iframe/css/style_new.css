@@ -227,6 +227,56 @@ body {
     .title.only-title {
         margin-bottom: 0px;
     }
+
+
+    
+ .title span {
+        display: flex;
+        align-items: center;
+    }
+    .title .icon {
+        margin-right: 4px;
+        width: 16px;
+        height: 20px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .title .icon.icon-time {
+        background-image: url(../images/icon_time.png);
+    }
+    .title .icon.icon-payment {
+        background-image: url(../images/icon_global.svg);
+    }
+    .title .icon.icon-card {
+        background-image: url(../images/icon_card.png);
+    }
+    .title .icon.icon-phone {
+        background-image: url(../images/icon_phone.png);
+    }
+    .title .icon.icon-welfare {
+        background-image: url(../images/icon_welfare.png);
+    }
+    .title .icon.icon-loan {
+        background-image: url(../images/icon_laon.png);
+    }
+    .title .icon.icon-edu {
+        background-image: url(../images/icon_edu.png);
+    }
+    .title .icon.icon-budget {
+        background-image: url(../images/icon_budget.png);
+    }
+    .title .icon.icon-worker {
+        background-image: url(../images/icon_global.svg);
+    }
+    .title .icon.icon-oversea {
+        background-image: url(../images/icon_oversea.png);
+    }
+    .title .icon.icon-month {
+        background-image: url(../images/icon_month.png);
+    }
+
+
     .subtitle {
         font-size: 16px;
         margin: 0px 0 20px;
@@ -672,6 +722,9 @@ body {
         height: 44px;
         background-image: url(../images/icon_global.svg);
     }
+
+
+
 
     .link-wrap {
         display: flex;
