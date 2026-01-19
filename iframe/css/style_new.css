@@ -436,6 +436,7 @@ body {
         font-weight: 600;
         display: inline-block;
         min-width: 46px;
+        word-break: keep-all;
     }
     .badge.ok { background: #ddeaf0; color: #007194; }
     .badge.no { background: #ffecec; color: #e44d4d; }
