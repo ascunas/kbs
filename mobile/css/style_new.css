@@ -2602,6 +2602,12 @@ h1.title {
     align-items: center;
     flex: 1;
 }
+.input-wrap > .form-style {
+    padding: 0 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
 .input-wrap.flex-end {
     justify-content: end;
 }
