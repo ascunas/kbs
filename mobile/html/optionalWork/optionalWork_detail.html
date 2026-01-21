@@ -83,11 +83,28 @@
             </section>
 
             <form class="apply-form overtime-form">
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <label class="form-label" for="overtime-date">근무일자</label>
                     <div class="input-wrap date-group">
                         <input id="overtime-date" class="datepicker min-size" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog" disabled>
                         <em>화</em>
+                    </div>
+                </div> -->
+
+                <div class="form-row">
+                    <label class="form-label" for="overtime-date">근무일자</label>
+                    <div class="input-wrap group ">
+                        <div class="input-wrap date-group">
+                            <input id="overtime-date" class="datepicker" type="text" value="2025.12.25" readonly="readonly" aria-label="근무일자" aria-haspopup="dialog">
+                            <span class="overtime-day">화</span>
+                            <button class="icon-button me fn-modal-open" type="button" aria-label="나의 시간외 현황 팝업 열기" data-target="iamModal">
+                                <span class="button-text">IAM</span>
+                            </button>
+                        </div>
+                        <div class="date-info">
+                            <em class="type2">비번</em>
+                            <em class="type1">국외출장</em>
+                        </div>
                     </div>
                 </div>
 
@@ -173,6 +190,98 @@
                     </div>
                 </div>
 
+                <div class="display-contents">
+                    <div class="form-row wrap divider">
+                        <span class="form-label form-row-caption">휴게시간1</span>
+                        <div class="form-row-item">
+                            <div class="rest-row">
+                                <span class="form-label">시작시간</span>
+                                <div class="input-wrap select">
+                                    <select aria-label="시작시간 시작 시" disabled>
+                                        <option selected="">08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrap select">
+                                    <select aria-label="시작시간 종료 분" disabled>
+                                        <option selected="">00</option>
+                                        <option>30</option>
+                                    </select>
+                                </div>
+                                <label class="form-check">
+                                    <input type="checkbox" checked disabled>
+                                    <span>익일</span>
+                                </label>
+
+                                <span class="form-label">종료시간</span>
+                                <div class="input-wrap select">
+                                    <select aria-label="종료시간 시작 시" disabled>
+                                        <option>17</option>
+                                        <option selected="">18</option>
+                                        <option>19</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrap select">
+                                    <select aria-label="종료시간 종료 분" disabled>
+                                        <option selected="">00</option>
+                                        <option>30</option>
+                                    </select>
+                                </div>
+                                <label class="form-check">
+                                    <input type="checkbox" disabled>
+                                    <span>익일</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row wrap">
+                        <span class="form-label form-row-caption">휴게시간2</span>
+                        <div class="form-row-item">
+                            <div class="rest-row">
+                                <span class="form-label">시작시간</span>
+                                <div class="input-wrap select">
+                                    <select aria-label="시작시간 시작 시" disabled>
+                                        <option selected="">08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrap select">
+                                    <select aria-label="시작시간 종료 분" disabled>
+                                        <option selected="">00</option>
+                                        <option>30</option>
+                                    </select>
+                                </div>
+                                <label class="form-check">
+                                    <input type="checkbox" checked disabled>
+                                    <span>익일</span>
+                                </label>
+
+                                <span class="form-label">종료시간</span>
+                                <div class="input-wrap select">
+                                    <select aria-label="종료시간 시작 시" disabled>
+                                        <option>17</option>
+                                        <option selected="">18</option>
+                                        <option>19</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrap select">
+                                    <select aria-label="종료시간 종료 분" disabled>
+                                        <option selected="">00</option>
+                                        <option>30</option>
+                                    </select>
+                                </div>
+                                <label class="form-check">
+                                    <input type="checkbox" disabled>
+                                    <span>익일</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-row divider">
                     <section class="overtime-summary-card" aria-label="시간외 요약">
                         <div class="overtime-summary-total-grid">
@@ -212,7 +321,11 @@
         </main>
 
         <div class="footer-action" role="group" aria-label="하단 액션 메뉴">
+            <button class="action-button primary" type="button">결재상신</button>
+            <button class="action-button primary" type="button">저장</button>
             <button class="action-button global" type="button">회수</button>
+            <button class="action-button global" type="button">수정</button>
+            <button class="action-button normal" type="button">삭제</button>
             <button class="action-button cancel" type="button">취소</button>
         </div>
 
