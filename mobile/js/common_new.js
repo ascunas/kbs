@@ -872,7 +872,7 @@
     // datepicker가 있을 때만 초기화
     if ($.fn.datepicker) {
       $('.datepicker').datepicker({
-        format: 'yyyy.mm.dd',
+        format: 'yyyy-mm-dd',
         language: 'ko',
         autoclose: true,
         todayHighlight: true,

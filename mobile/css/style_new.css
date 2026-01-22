@@ -653,6 +653,7 @@ input[type="checkbox"]:disabled:checked {
     justify-content: center;
     background: rgba(0, 0, 0, 0.7); /* 반투명 배경 */
     padding: 0;
+    z-index: 99999;
 }
 .modal#loading-modal.show {
     display: flex; /* 클래스 추가 시 보임 */
@@ -1138,6 +1139,12 @@ h1.title {
     gap: 10px;
     z-index: 1;
 }
+.summary-wrap.optional-work-summary + .filter-panel .filter-row {
+    gap: 2px;
+}
+.summary-wrap.optional-work-summary + .filter-panel .filter-row .filter-label {
+    min-width: 60px;
+}
 .form-content .summary-wrap {
     box-shadow: 0 10px 0px rgba(0, 0, 0, 0.08);
     /* border-bottom: 10px solid #f2f2f2; */
@@ -1271,7 +1278,7 @@ h1.title {
     white-space: nowrap;
     position: absolute;
     right: 20px;
-    top: 10px;
+    top: 5px;
 }
 
 .optional-work-summary .summary-icon {
@@ -2756,7 +2763,7 @@ input.datepicker::placeholder {
 input.datepicker {
     background-image: url(../images/icon_calendar.svg);
     background-repeat: no-repeat;
-    background-position: center right 10px;
+    background-position: center right 8px;
 }
 input.datepicker.min-size {
     width: 110px;
