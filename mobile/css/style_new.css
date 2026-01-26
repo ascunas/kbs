@@ -24,7 +24,7 @@
 *::after {
     box-sizing: border-box;
 }
-
+html {overflow: hidden;}
 body {
     margin: 0;
     background: var(--bg);
@@ -73,7 +73,7 @@ select {
     background-position: center right 10px;
     background-repeat: no-repeat;
     background-size: 12px;
-    padding-right: 28px;
+    padding-right: 26px;
 }
 select:disabled {
     background-color: #f2f2f2;
@@ -752,11 +752,11 @@ input[type="checkbox"]:disabled:checked {
 
 
 #cap {
-    position: fixed;
+    /* position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 31;
+    z-index: 31; */
 }
 
 
@@ -777,10 +777,11 @@ input[type="checkbox"]:disabled:checked {
 }
 
 .app-header {
-    position: fixed;
+    position: relative;
+    /* position: fixed;
     top: 35px;
     left: 0;
-    right: 0;
+    right: 0; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -826,7 +827,7 @@ h1.title {
     flex-direction: column;
     gap: 10px;
     position: relative;
-    margin-top: 95px;
+    /* margin-top: 95px; */
     padding-bottom: 10px;
     /* margin-bottom: 85px; */
     /* min-height: 100vh; */
@@ -2431,7 +2432,7 @@ h1.title {
 }
 .rest-row {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: 62px repeat(3, minmax(0, 1fr));
     gap: 6px;
     align-items: center;
     flex: 1;
