@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0095)http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_test/ess_login_page_text.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+    <!-- host: erpdev  {"return_json_function_name":"ZWEB_COMMON_GET_LOGIN_INFO","E_DEPT_CODE":"50026013","E_DEPT_NAME":"경영본부 경영정보국 경영정보부","E_DEPT_SHORT_NAME":"경영정보부","E_EMAIL":"kwangbon@kbs.co.kr","E_ENGLISH_FIRST_NAME":"Kwangbon","E_ENGLISH_LAST_NAME":"Jung","E_EXT":"","E_ID":"30753","E_JIKGEUP_NAME":"G2직급","E_JIKWI_NAME":"직원","E_MOBILE_PHONE":"010-2129-5703","E_NAME":"정광본","E_WEBGUI_ONLY":""} -->
+    <title>ESS 로그인 화면</title>
+
+    <!-- CSS 로드 first! -->
+    <link rel="stylesheet" href="./ess_login_page_files/jquery-ui-1.9.2.custom.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="./ess_login_page_files/slick.grid.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="./ess_login_page_files/slick.pager.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="./ess_login_page_files/slick-default-theme.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="./ess_login_page_files/slickgrid-kbs.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="./ess_login_page_files/common.css" type="text/css" charset="utf-8">
+        
+
+    <!-- 서버 관련 자바스크립트 선언 -->
+    <script>
+      // 2014.1.9 크로스도메인 문제 해결을 위해 document.domain 구문 추가함 (by 김성호)
+      document.domain = 'kbs.co.kr';
+
+      var server_url = 'https://erpdev.kbs.co.kr';
+      var server_url_prefix = '/sap/bc/bsp/sap';
+
+      var wiki_default_url = 'https://wiki.kbs.co.kr/wordpress/category';
+      var wiki_default_page = '/etc/kbs_smart_erp';
+      var wiki_main_page = '/main';
+
+      var IE = /*@cc_on!@*/false;
+
+
+    </script>
+
+    <!-- 자바스크립트 로드 -->
+    <script type="text/javascript" src="./ess_login_page_files/jquery-1.10.2.min.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/jquery-ui-1.9.2.custom.min.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/jquery.event.drag-2.2.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/jquery.event.drop-2.2.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/jquery.event.drop-2.0.min.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/jquery.cookie.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.core.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.formatters.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.editors.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.grid_20130906.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.dataview.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.pager.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.columnpicker.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.checkboxselectcolumn.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.autotooltips.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.cellrangedecorator.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.cellrangeselector.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.cellcopymanager.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.cellselectionmodel.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.rowselectionmodel.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slick.cellexternalcopymanager.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/slickgrid-kbs.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/moment.min.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/ko.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/JSON2.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/common.js.다운로드" charset="UTF-8"></script>
+        <script type="text/javascript" src="./ess_login_page_files/file.js.다운로드" charset="UTF-8"></script>
+        
+  </head>
+  <body style="">
+
+
+  
+
+<script type="text/javascript">
+
+function init_pass()
+{
+   if (window.confirm('ESS 비밀번호를 초기화하시겠습니까?'))
+   {
+     submit_data = {
+       FUNCTION_NAME : 'ZWEB_SET_ESS_PASS_DEFAULT'
+     };
+     onAjaxProc('../ZWEB_COMMON/AJAX_COMMON.HTM', submit_data, callBackInitPass);
+   }
+   else
+   {
+      // They clicked no
+   }
+}
+function callBackInitPass(ret_data)
+{
+  if(ret_data.E_RET == 'X')
+  {
+    alert(ret_data.E_RET_TEXT + ' 휴대폰으로 수신된 알림톡 문자를 확인하세요.');
+  }else{
+    alert(ret_data.E_RET_TEXT);
+  }
+}
+
+function go_ess_home(){
+
+      if($('#textfield2').val() == ''){
+        alert('비밀번호를 입력하세요.');
+      } else{
+        submit_data = {
+         FUNCTION_NAME : 'ZWEB_CHECK_ESS_PASSWORD',
+         I_PASS : $('#textfield2').val()
+        }
+        onAjaxProc('../ZWEB_COMMON/AJAX_COMMON.HTM', submit_data, callBackGoEssHome);
+      }
+}
+
+function callBackGoEssHome(ret_data)
+{
+
+  if(ret_data.E_RET == 'X')
+  {
+    location.href ="../zweb_ess/ess_list.htm";
+  }else{
+    alert(ret_data.E_RET_TEXT);
+  }
+}
+
+function get_ess_state()
+{
+  submit_data = {
+    FUNCTION_NAME : 'ZWEB_GET_ESS_PASS_STATE'
+  };
+
+  onAjaxProc('../ZWEB_COMMON/AJAX_COMMON.HTM', submit_data, callBackGetState);
+}
+
+function callBackGetState(ret_data){
+  //if( ret_data.E_RET != 'X') { <!-- 현재 ESS 암호 물어보도록 설정 여부 체크. -->
+  //      location.href ="../zweb_ess/ess_list.htm";
+  //}
+  //else {
+     $("#loginbox").css("display", "block");
+     $('#textfield2').focus();
+  //}
+}
+
+$(document).ready(get_ess_state);
+
+</script>
+
+<style>
+.text
+{
+  FONT-FAMILY: "굴림", "돋움","Verdana","Arial";
+  FONT-SIZE:9pt;
+  COLOR: #666;
+}
+.box
+{
+  BACKGROUND-COLOR: #fff;
+  border: 1px solid #ccc;
+  COLOR: #666;
+  FONT-FAMILY: "굴림", "돋움","Verdana","Arial";
+  FONT-SIZE:9pt;
+  padding: 2px 0px 0px 2px;
+}
+.btn-a {
+  display:inline-block;
+  position:relative;
+//  margin:3px;
+  padding:2px 6px;
+  border:0 none;
+//  width:85px;
+//  font:1.1em verdana,arial;
+//  text-transform:uppercase;
+  text-align:center;
+  color:#FFF;
+  background-color:#3591bd;
+  border-radius: 3px;
+  text-decoration:none;
+}
+
+/* 배경이미지 추가 2026.01.09 */
+#loginbox {
+    text-align: center;
+    display: block;
+    background-image: url(ess_pw_bg.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    padding-top: 200px;
+    margin-top: 50px;
+}
+
+</style>
+    <div id="loginbox" style="text-align: center; display: block;">
+          <table width="265" align="center" border="0" cellspacing="0" cellpadding="0">
+              <tbody><tr height="15">
+              </tr>
+              <tr>
+                <td width="265" height="116" background="./ess_login_page_files/pop.gif" style="background-repeat:repeat-x">
+                    <table width="218" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tbody><tr>
+                            <td height="10" colspan="2"></td>
+                        </tr>
+                         <tr>
+                             <td class="text" colspan="2">
+                                 <strong>※ ESS 비밀번호를 입력하세요.</strong><br>
+                             </td>
+                         </tr>
+                        <tr>
+                            <td style="text-align:right; padding:2px;">
+                                <input name="pass" type="password" class="box" id="textfield2" onkeydown="javascript:if(event.keyCode==&#39;13&#39;)go_ess_home();">
+                            </td>
+                            <td style="text-align:left; padding:2px;">
+                                <a href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_test/ess_login_page_text.htm#" onclick="javascript:go_ess_home();"><div class="btn-a">로그인</div></a>
+                             </td>
+                         </tr>
+                         <tr>
+                            <td height="10" colspan="2"></td>
+                         </tr>
+
+                      </tbody></table>
+                  </td>
+                </tr>
+                <tr>
+             </tr>
+            </tbody></table>
+            <table width="60%" align="center">
+                  <tbody><tr>
+                   <td>&nbsp;
+                   </td>
+                   </tr>
+                  <tr>
+                  <td style="text-align:center;">
+                  <strong>※ [안내] ESS 비밀번호 초기화</strong><br>
+                  [최초 접속] 혹은 [비밀번호 분실] 시 아래 초기화 링크를 이용하시기 바랍니다.<br>
+                   클릭시 초기화된 비밀번호가 본인의 휴대폰 알림톡(문자)로 발송됩니다. <br>
+                   로그인 후 비밀번호는 ESS 비밀번호 관리 메뉴에서 수정하시기 바랍니다.
+                  </td>
+                 </tr>
+                 <tr>
+                 <td style="text-align:center;"><a href="http://erpdev.kbs.co.kr:8000/sap(bD1rbyZjPTMwMA==)/bc/bsp/sap/zweb_test/ess_login_page_text.htm#" onclick="init_pass();"><div class="btn-a">비밀번호 초기화</div></a></td>
+                 </tr>
+
+                  <tr>
+                   <td>&nbsp;
+                   </td>
+                   </tr>
+                  <tr>
+                  <td style="text-align:center;">
+                  <strong>※ [안내] ESS 실행 오류 조치 방법</strong><br>
+                  ESS 실행이  안될 경우 아래 설정 파일을 실행한 다음 창을 다 닫으시고 새로 접속 바랍니다.
+                  </td>
+                 </tr>
+                 <tr>
+                 <td align="center"><a href="https://portal.kbs.co.kr/login/IE8910_bpc_pps_20170322.exe">
+                 <div class="btn-a">설정 파일 다운로드</div></a></td>
+                 </tr>
+            </tbody></table>
+     </div>
+
+    
+    
+   
+<div id="ajax_indicator" style="top: 50%; left: 50%; position: absolute; z-index: 200; display: none;">  <p style="text-align:center; padding:16px 0 0 0; left:50%; top:50%; position:absolute;">    <img src="./ess_login_page_files/ajax-loader.gif">  </p></div></body></html>
