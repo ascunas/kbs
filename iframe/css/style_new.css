@@ -51,7 +51,7 @@
 
 html {direction: ltr; }
 body {margin: 0; padding: 0; font-size: 100%;
-	font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Noto Sans", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 	line-height: 1.125; font-size: 14px; font-weight: 400; WindowText; background-color: Window;
 }
 pre {-o-tab-size: 4; -moz-tab-size: 4; tab-size: 4; }
@@ -364,6 +364,7 @@ body {
     }
 
     .ess-main-body, .mss-main-body { margin: 0; padding: 20px; background-color: #f3f3f3}
+    .ess-iframe-body table td, .mss-iframe-body table td { height:19px;}
     .ess-iframe-body, .mss-iframe-body {background-color: #fff;}
     html, body {
         margin: 0;
@@ -427,6 +428,7 @@ body {
         padding: 8px 10px;
         border-bottom: 1px solid #f0f0f0;
         text-align: center;
+        vertical-align: middle;
     }
 
     .badge {
@@ -532,6 +534,7 @@ body {
         background-size: contain;
     }
 
+    .bokji {padding:  0 12%;}
 
     dl.type1, dl.type2 {
         display: flex;
@@ -543,6 +546,9 @@ body {
     dl + dl {
         padding-top: 10px!important;
     }
+    .bokji dl + dl {
+        padding-top: 6px!important;
+    }
     dl.type2 {
         padding: 10px;
         background-color: #f1f4f8;
@@ -550,15 +556,24 @@ body {
         font-weight: 600;
         font-size: 18px;
     }
+    .bokji dl.type2 {
+        padding: 0px;
+        background-color: transparent;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 16px;
+    }
     dl.type1 dt, dl.type2 dt {
         width: 100%;
         padding: 4px;
+        padding-bottom: 0;
     }
     dl.type1 dd, dl.type2 dd {
         text-align: right;
         font-weight: 600;
         word-break: keep-all;
-        padding: 4px
+        padding: 4px;
+        padding-bottom: 0;
     }
      dl.type1 dd.mss-link-hyunwon:hover, dl.type2 dd.mss-link-hyunwon:hover {
         background-color: #ddd;
@@ -573,7 +588,7 @@ body {
         padding-top: 20px;
     }
     dl.type2:last-child {
-        margin-top: 6px;
+        /* margin-top: 6px; */
     }
 
     .custom-select {
@@ -987,15 +1002,44 @@ body {
         .list {
         padding-bottom: 60px;
         }
+
+        dl.type1, dl.type2 {
+            display: block;
+            width: 100%;
+            padding: 4px 0px;
+            font-weight: 600;
+            font-size: 16px;
+            overflow: hidden; 
+        }
+
+        dl.type1 dt, dl.type2 dt,
+        dl.type1 dd, dl.type2 dd {
+            display: inline-block;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        dl.type1 dd, dl.type2 dd {
+            text-align: right;
+        }
     }
 
 
 
+    @media screen and (max-width: 1300px) {
+        .bokji {padding:  0 17%;}
+    }
+    @media screen and (max-width: 1000px) {
+        .bokji {padding:  0 17%;}
+    }
+    @media screen and (max-width: 700px) {
+        .bokji {padding:  0 12%;}
+    }
     
     @supports (display: grid) {
         /* -----------------------------
         반응형 스타일 (모바일 최적화)
         ------------------------------ */
+        
         @media (max-width: 1200px) {
             .right-side { width: 360px; }
         }
@@ -1010,6 +1054,7 @@ body {
             .flex-wrap > div + div:before {
                 /* display: none; */
             }
+            
         }
 
         @media (max-width: 768px) {
@@ -1042,6 +1087,7 @@ body {
                 overflow-x: auto;
             } */
             /* table { min-width: 600px; } */
+            
         }
 
         @media (max-width: 480px) {
