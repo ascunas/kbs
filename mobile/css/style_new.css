@@ -2232,6 +2232,10 @@ h1.title {
     border-bottom: 1px solid #f2f2f2;
     padding-bottom: 16px;
 }
+.detail-row.display-contents .detail-row {    
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 16px;
+}
 
 .detail-row:last-child {
     border-bottom: 0;
