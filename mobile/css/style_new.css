@@ -1157,7 +1157,7 @@ h1.title {
     gap: 10px;
     z-index: 1;
 }
-.summary-wrap.optional-work-summary + .filter-panel .filter-row {
+ .summary-wrap.optional-work-summary + .filter-panel .filter-row, .summary-wrap.overtime-summary + .filter-panel .filter-row{
     gap: 2px;
 }
 .summary-wrap.optional-work-summary + .filter-panel .filter-row .filter-label {
