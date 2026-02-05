@@ -102,19 +102,26 @@
   // 바디 스크롤 잠금/해제
   var bodyScrollLockCount = 0;
 
+  function allowTouchMove(target) {
+    return $(target).closest('.modal-content, .menu-panel').length > 0;
+  }
+
+  function bindBodyScrollLockHandlers() {
+    $(document).off('touchmove.uiScrollLock').on('touchmove.uiScrollLock', function (e) {
+      if (!bodyScrollLockCount) return;
+      if (allowTouchMove(e.target)) return;
+      e.preventDefault();
+    });
+  }
+
+  function unbindBodyScrollLockHandlers() {
+    $(document).off('touchmove.uiScrollLock');
+  }
+
   function lockBodyScroll() {
-    var $body = $('body');
     if (bodyScrollLockCount === 0) {
-      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      $body.data('scroll-lock-position', scrollY);
-      $body.css({
-        position: 'fixed',
-        top: -scrollY + 'px',
-        left: '0',
-        right: '0',
-        width: '100%',
-        overflow: 'hidden'
-      });
+      $('html, body').css('overflow', 'hidden');
+      bindBodyScrollLockHandlers();
     }
     bodyScrollLockCount += 1;
   }
@@ -124,18 +131,8 @@
     bodyScrollLockCount -= 1;
     if (bodyScrollLockCount > 0) return;
 
-    var $body = $('body');
-    var scrollY = $body.data('scroll-lock-position') || 0;
-    $body.css({
-      position: '',
-      top: '',
-      left: '',
-      right: '',
-      width: '',
-      overflow: ''
-    });
-    $body.removeData('scroll-lock-position');
-    window.scrollTo(0, scrollY);
+    $('html, body').css('overflow', '');
+    unbindBodyScrollLockHandlers();
   }
 
   // active tab 가운데로 보내기
