@@ -443,9 +443,13 @@
       var capHeight = $('#cap').outerHeight(true) || 0;
       var headerHeight = $header.length ? ($header.outerHeight(true) || 0) : 0;
       var footerHeight = $footer.length ? ($footer.outerHeight(true) || 0) : 0;
+      var contentTop = capHeight + headerHeight;
 
       var available = viewport - capHeight - headerHeight - footerHeight;
       if (available < 0) available = 0;
+
+      $header.css('top', capHeight + 'px');
+      $('.content').css('top', contentTop + 'px');
 
       $targets.css({
         height: available + 'px',

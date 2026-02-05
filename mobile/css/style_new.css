@@ -772,7 +772,6 @@ input[type="checkbox"]:disabled:checked {
     top: 0;
     right: 0;
     left: 0;
-    height: 50px;
     z-index: 31;
 }
 
