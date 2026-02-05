@@ -102,26 +102,19 @@
   // 바디 스크롤 잠금/해제
   var bodyScrollLockCount = 0;
 
-  function allowTouchMove(target) {
-    return $(target).closest('.modal-content, .menu-panel').length > 0;
-  }
-
-  function bindBodyScrollLockHandlers() {
-    $(document).off('touchmove.uiScrollLock').on('touchmove.uiScrollLock', function (e) {
-      if (!bodyScrollLockCount) return;
-      if (allowTouchMove(e.target)) return;
-      e.preventDefault();
-    });
-  }
-
-  function unbindBodyScrollLockHandlers() {
-    $(document).off('touchmove.uiScrollLock');
-  }
-
   function lockBodyScroll() {
+    var $body = $('body');
     if (bodyScrollLockCount === 0) {
-      $('html, body').css('overflow', 'hidden');
-      bindBodyScrollLockHandlers();
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      $body.data('scroll-lock-position', scrollY);
+      $body.css({
+        position: 'fixed',
+        top: -scrollY + 'px',
+        left: '0',
+        right: '0',
+        width: '100%',
+        overflow: 'hidden'
+      });
     }
     bodyScrollLockCount += 1;
   }
@@ -131,8 +124,18 @@
     bodyScrollLockCount -= 1;
     if (bodyScrollLockCount > 0) return;
 
-    $('html, body').css('overflow', '');
-    unbindBodyScrollLockHandlers();
+    var $body = $('body');
+    var scrollY = $body.data('scroll-lock-position') || 0;
+    $body.css({
+      position: '',
+      top: '',
+      left: '',
+      right: '',
+      width: '',
+      overflow: ''
+    });
+    $body.removeData('scroll-lock-position');
+    window.scrollTo(0, scrollY);
   }
 
   // active tab 가운데로 보내기
@@ -430,44 +433,30 @@
   var HEADER_SCROLLED_CLASS = 'is-scrolled';
 
   function updateLayout() {
-  var $targets = $(SELECTOR_SCROLLABLE);
-  if (!$targets.length) return;
+    var $targets = $(SELECTOR_SCROLLABLE);
+    if (!$targets.length) return;
 
-  raf(function () {
-    refreshCache();
+    raf(function () {
+      refreshCache();
 
-    // visualViewport가 있으면 그 높이를 사용 (키보드 높이 제외됨)
-    // 없으면 기존처럼 window.innerHeight 사용
-    var viewport = window.visualViewport ? window.visualViewport.height : $window.height();
-    
-    var capHeight = $('#cap').outerHeight(true) || 0;
-    var headerHeight = $header.length ? ($header.outerHeight(true) || 0) : 0;
-    var footerHeight = $footer.length ? ($footer.outerHeight(true) || 0) : 0;
+      var viewport = $window.height();
+      var capHeight = $('#cap').outerHeight(true) || 0;
+      var headerHeight = $header.length ? ($header.outerHeight(true) || 0) : 0;
+      var footerHeight = $footer.length ? ($footer.outerHeight(true) || 0) : 0;
 
-    var available = viewport - capHeight - headerHeight - footerHeight;
-    if (available < 0) available = 0;
+      var available = viewport - capHeight - headerHeight - footerHeight;
+      if (available < 0) available = 0;
 
-    $targets.css({
-      height: available + 'px',
-      overflowY: 'auto',
-      WebkitOverflowScrolling: 'touch'
+      $targets.css({
+        height: available + 'px',
+        overflowY: 'auto',
+        WebkitOverflowScrolling: 'touch'
+      });
+
+      checkHeaderStatus();
+      bindScrollableScroll();
     });
-    
-    // 키보드가 올라왔을 때 현재 포커스된 input이 가려진다면 스크롤 시킴
-    if (document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
-        document.activeElement.scrollIntoView({ block: 'center' });
-    }
-
-    checkHeaderStatus();
-    bindScrollableScroll();
-  });
-}
-
-// 키보드 활성화 시 레이아웃 재계산을 위한 리스너 등록
-if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', throttle(updateLayout, 100));
-    window.visualViewport.addEventListener('scroll', throttle(updateLayout, 100));
-}
+  }
 
   function checkHeaderStatus() {
     refreshCache();
