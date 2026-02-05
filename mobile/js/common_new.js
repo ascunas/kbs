@@ -865,6 +865,27 @@
     bindGlobal();
     Modal.init();
 
+    /* ---------- 자동 레이아웃 감지 (Mobile & Legacy 대응) ---------- */
+    function initAutoHeightObserver() {
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+        
+        if (!MutationObserver) {
+            return;
+        }
+
+        var target = document.body;        
+        var observer = new MutationObserver(throttle(function(mutations) {
+            updateLayout();
+        }, 250));
+
+        observer.observe(target, {
+            childList: true,
+            subtree: true,
+            attributes: false
+        });
+    }
+
+    initAutoHeightObserver();
     updateLayout();
     checkHeaderStatus();
     bindScrollableScroll();
