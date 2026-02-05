@@ -841,8 +841,8 @@ h1.title {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    position: relative;
-    margin-top: 95px;
+    position: absolute;
+    top: 95px;
     padding-bottom: 10px;
     /* margin-bottom: 85px; */
     /* min-height: 100vh; */
