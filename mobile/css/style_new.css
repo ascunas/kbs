@@ -752,11 +752,11 @@ input[type="checkbox"]:disabled:checked {
 
 
 #cap {
-    /* position: fixed;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    z-index: 31; */
+    z-index: 31;
 }
 
 
@@ -778,10 +778,10 @@ input[type="checkbox"]:disabled:checked {
 
 .app-header {
     position: relative;
-    /* position: fixed;
+    position: fixed;
     top: 35px;
     left: 0;
-    right: 0; */
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
