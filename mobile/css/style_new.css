@@ -32,6 +32,7 @@ body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.2;
     min-height: 100vh;
+    height: 100%;
     color: #000;
     font-size: 14px;
 }
@@ -3092,6 +3093,7 @@ table.right td {
     transition: background 0.3s ease; /* 배경색 부드럽게 */
     opacity: 0;
     transition: opacity 0.3s ease;
+    height: 100dvh;
     z-index: 41;
 }
 .modal.show {
