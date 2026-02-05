@@ -430,30 +430,44 @@
   var HEADER_SCROLLED_CLASS = 'is-scrolled';
 
   function updateLayout() {
-    var $targets = $(SELECTOR_SCROLLABLE);
-    if (!$targets.length) return;
+  var $targets = $(SELECTOR_SCROLLABLE);
+  if (!$targets.length) return;
 
-    raf(function () {
-      refreshCache();
+  raf(function () {
+    refreshCache();
 
-      var viewport = $window.height();
-      var capHeight = $('#cap').outerHeight(true) || 0;
-      var headerHeight = $header.length ? ($header.outerHeight(true) || 0) : 0;
-      var footerHeight = $footer.length ? ($footer.outerHeight(true) || 0) : 0;
+    // visualViewport가 있으면 그 높이를 사용 (키보드 높이 제외됨)
+    // 없으면 기존처럼 window.innerHeight 사용
+    var viewport = window.visualViewport ? window.visualViewport.height : $window.height();
+    
+    var capHeight = $('#cap').outerHeight(true) || 0;
+    var headerHeight = $header.length ? ($header.outerHeight(true) || 0) : 0;
+    var footerHeight = $footer.length ? ($footer.outerHeight(true) || 0) : 0;
 
-      var available = viewport - capHeight - headerHeight - footerHeight;
-      if (available < 0) available = 0;
+    var available = viewport - capHeight - headerHeight - footerHeight;
+    if (available < 0) available = 0;
 
-      $targets.css({
-        height: available + 'px',
-        overflowY: 'auto',
-        WebkitOverflowScrolling: 'touch'
-      });
-
-      checkHeaderStatus();
-      bindScrollableScroll();
+    $targets.css({
+      height: available + 'px',
+      overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch'
     });
-  }
+    
+    // 키보드가 올라왔을 때 현재 포커스된 input이 가려진다면 스크롤 시킴
+    if (document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+        document.activeElement.scrollIntoView({ block: 'center' });
+    }
+
+    checkHeaderStatus();
+    bindScrollableScroll();
+  });
+}
+
+// 키보드 활성화 시 레이아웃 재계산을 위한 리스너 등록
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', throttle(updateLayout, 100));
+    window.visualViewport.addEventListener('scroll', throttle(updateLayout, 100));
+}
 
   function checkHeaderStatus() {
     refreshCache();
