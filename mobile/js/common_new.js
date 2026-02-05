@@ -99,6 +99,45 @@
     raf(step);
   }
 
+  // 바디 스크롤 잠금/해제
+  var bodyScrollLockCount = 0;
+
+  function lockBodyScroll() {
+    var $body = $('body');
+    if (bodyScrollLockCount === 0) {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      $body.data('scroll-lock-position', scrollY);
+      $body.css({
+        position: 'fixed',
+        top: -scrollY + 'px',
+        left: '0',
+        right: '0',
+        width: '100%',
+        overflow: 'hidden'
+      });
+    }
+    bodyScrollLockCount += 1;
+  }
+
+  function unlockBodyScroll() {
+    if (!bodyScrollLockCount) return;
+    bodyScrollLockCount -= 1;
+    if (bodyScrollLockCount > 0) return;
+
+    var $body = $('body');
+    var scrollY = $body.data('scroll-lock-position') || 0;
+    $body.css({
+      position: '',
+      top: '',
+      left: '',
+      right: '',
+      width: '',
+      overflow: ''
+    });
+    $body.removeData('scroll-lock-position');
+    window.scrollTo(0, scrollY);
+  }
+
   // active tab 가운데로 보내기
   function centerTabInView($container, $btn) {
     var container = $container[0];
@@ -469,7 +508,8 @@
     $menuBtn.attr('aria-expanded', 'true');
     $menuPanel.attr('aria-hidden', 'false');
 
-    $('body').css('overflow', 'hidden');
+    //$('body').css('overflow', 'hidden');
+    lockBodyScroll();
 
     setTimeout(function () {
       $menuPanel.find('[data-menu-close], .menu-close').filter(':visible').first().focus();
@@ -496,7 +536,8 @@
 
     setTimeout(function () {
       $scrim.remove();
-      if (!Modal.isAnyOpen()) $('body').css('overflow', '');
+      //if (!Modal.isAnyOpen()) $('body').css('overflow', '');
+      unlockBodyScroll();
       $menuBtn.first().focus();
     }, MENU_ANIM);
   }
@@ -577,7 +618,8 @@
       $modal.attr('aria-hidden', 'false');
       setInert($modal, false);
 
-      $('body').css('overflow', 'hidden');
+      //$('body').css('overflow', 'hidden');
+      lockBodyScroll();
 
       stack.push($modal[0]);
 
@@ -628,9 +670,11 @@
         var $newTop = get$TopModal();
         if ($newTop.length) {
           focusFirst($newTop);
-          $('body').css('overflow', 'hidden');
+          //$('body').css('overflow', 'hidden');
+          unlockBodyScroll();
         } else {
-          if (!isMenuOpen()) $('body').css('overflow', '');
+          //if (!isMenuOpen()) $('body').css('overflow', '');
+          unlockBodyScroll();
         }
       }, 300);
     }
@@ -743,7 +787,8 @@
       $('.app-shell').attr('aria-busy', 'true');
 
       $m.stop(true, true).fadeIn(200).addClass('show');
-      $('body').css('overflow', 'hidden');
+      //$('body').css('overflow', 'hidden');
+      lockBodyScroll();
     },
     complete: function () {
       var diff = (+new Date()) - this.startT;
@@ -758,7 +803,8 @@
           $(self.statusId).text('로딩이 완료되었습니다.');
           setTimeout(function () { $(self.statusId).text(''); }, 1000);
 
-          if (!Modal.isAnyOpen() && !isMenuOpen()) $('body').css('overflow', '');
+          //if (!Modal.isAnyOpen() && !isMenuOpen()) $('body').css('overflow', '');
+          lockBodyScroll();
         });
       }, delay);
     }
