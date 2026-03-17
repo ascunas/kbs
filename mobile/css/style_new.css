@@ -1073,9 +1073,9 @@ h1.title {
     white-space: nowrap;
 }
 
-/* 승인 */
+/* 승인, 결재 */
 .status.success, .status.approved {
-    background: #40B19D;
+    background: #75b5ff;
     color: #fff;
 }
 
@@ -1089,12 +1089,6 @@ h1.title {
 .status.waiting  {
     background: #FFD240;
     color: #fff;
-}
-
-/* 결재 */
-.status.approved { 
-    background: #75b5ff; 
-    color: #fff; 
 }
 
 /* 변경 */
