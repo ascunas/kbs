@@ -71,6 +71,19 @@
                 </div>
 
                 <div class="form-row">
+                    <label class="form-label">기간</label>
+                    <div class="date-row">
+                        <div class="input-wrap date">
+                            <input type="text" name="start-date" class="datepicker" aria-label="시작일" placeholder="YYYY.MM.DD" readonly="readonly">
+                        </div>
+                        <span class="date-tilde" aria-hidden="true">~</span>
+                        <div class="input-wrap date">
+                            <input type="text" name="end-date" class="datepicker" aria-label="종료일" placeholder="YYYY.MM.DD" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
                     <label class="form-label" for="event-cate">경조유형</label>
                     <div class="input-wrap select">
                         <select id="event-cate" name="event-cate" class="fn-search-select" aria-label="경조금 유형 선택">

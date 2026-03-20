@@ -947,7 +947,7 @@
         language: 'ko',
         autoclose: true,
         todayHighlight: true,
-        orientation: 'bottom'
+        orientation: 'auto'
       });
     }
 
