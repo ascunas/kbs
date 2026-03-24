@@ -432,6 +432,13 @@
   var SELECTOR_SCROLLABLE = '.fn-height';
   var HEADER_SCROLLED_CLASS = 'is-scrolled';
 
+  //0323 viewport 높이 계산: visualViewport API 우선, fallback으로 기존 방식
+  function getViewportHeight() {
+    var vv = window.visualViewport;
+    if (vv && vv.height) return Math.round(vv.height);
+    return window.innerHeight || document.documentElement.clientHeight || $window.height();
+  }
+
   function updateLayout() {
     var $targets = $(SELECTOR_SCROLLABLE);
     if (!$targets.length) return;
@@ -439,7 +446,8 @@
     raf(function () {
       refreshCache();
 
-      var viewport = $window.height();
+      //var viewport = $window.height();
+      var viewport = getViewportHeight(); //0323 업데이트: visualViewport API 활용(키보드 등장 시 높이 변화 감지)
       var capHeight = $('#cap').outerHeight(true) || 0;
       var headerHeight = $header.length ? ($header.outerHeight(true) || 0) : 0;
       var footerHeight = $footer.length ? ($footer.outerHeight(true) || 0) : 0;
@@ -821,6 +829,11 @@
 
     $window.off('scroll.ui').on('scroll.ui', _tHeader);
     $window.off('resize.ui').on('resize.ui', tResize);
+
+    // 0323 업데이트: visualViewport API 활용(키보드 등장 시 높이 변화 감지)
+    if (window.visualViewport) {
+      $(window.visualViewport).off('resize.ui scroll.ui').on('resize.ui scroll.ui', tResize);
+    }
 
     // 메뉴
     $document
